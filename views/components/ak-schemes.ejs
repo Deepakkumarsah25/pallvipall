@@ -1,0 +1,112 @@
+<!-- ==========================================================================
+     ARVIND KEJRIWAL AAP STYLE GOVERNMENT SCHEMES & INITIATIVES
+     Section Header with Shield Icon + 3-Column Cards Grid with Key Points
+     ========================================================================== -->
+<%
+  const schemesList = (typeof initiatives !== 'undefined' && Array.isArray(initiatives) && initiatives.length > 0)
+    ? initiatives.slice(0, 3)
+    : [
+        {
+          key: "social-representation",
+          title: "सामाजिक प्रतिनिधित्व व संवैधानिक अधिकार प्रकोष्ठ",
+          cardTag: "आरक्षण व न्याय",
+          description: "आरक्षण अधिकारों के संरक्षण, संवैधानिक समीक्षा और प्रशासनिक पैरवी हेतु समर्पित कानूनी विंग।",
+          points: [
+            "संवैधानिक मंचों पर सशक्त कानूनी पैरवी",
+            "ब्लॉक व जिला स्तर पर अधिकार जन-जागरूकता",
+            "पीड़ित नागरिकों को निःशुल्क कानूनी सहायता"
+          ]
+        },
+        {
+          key: "education-youth",
+          title: "युवा शिक्षा, कौशल विकास व छात्रवृत्ति अभियान",
+          cardTag: "शिक्षा व भविष्य",
+          description: "प्रतिभाशाली छात्र-छात्राओं को तकनीकी शिक्षा, कोचिंग और प्रतियोगी परीक्षाओं में शत-प्रतिशत सहयोग।",
+          points: [
+            "प्रतियोगी परीक्षाओं के लिए डिजिटल पुस्तकालय",
+            "तकनीकी व व्यावसायिक कौशल प्रशिक्षण केंद्र",
+            "मेधावी विद्यार्थियों हेतु विशेष प्रोत्साहन राशि"
+          ]
+        },
+        {
+          key: "riverine-rights",
+          title: "पारंपरिक आजीविका व जल-संसाधन सुरक्षा योजना",
+          cardTag: "आजीविका अधिकार",
+          description: "नदी तटों, जल संपदा और मत्स्य पालन पर परंपरागत कामगारों के अधिकारों की नीतिगत सुरक्षा।",
+          points: [
+            "मत्स्यपालक व नाव श्रमिकों का निःशुल्क पंजीकरण",
+            "सहकारी समितियों के गठन में प्रशासनिक मदद",
+            "आधुनिक उपकरण व सुरक्षा किट का वितरण"
+          ]
+        }
+      ];
+%>
+
+<section class="ak-section ak-bg-white" id="schemes">
+  <div class="ak-container">
+
+    <!-- Signature Section Header -->
+    <div class="ak-section-header secondary-theme">
+      <div class="ak-header-icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+        </svg>
+      </div>
+      <h2 class="ak-header-title">
+        जनकल्याणकारी योजनाएं <span class="ak-highlight">Government Schemes & Initiatives</span>
+      </h2>
+    </div>
+
+    <p class="ak-header-sub">
+      समाज के प्रत्येक वर्ग के कल्याण, सशक्तिकरण, शिक्षा एवं आर्थिक उन्नति हेतु संचालित प्रमुख जनकल्याणकारी योजनाएं।
+    </p>
+
+    <!-- 3-Column Card Grid -->
+    <div class="ak-cards-grid ak-grid-3">
+      <% schemesList.forEach(function(item) { %>
+        <article class="ak-card">
+          <div class="ak-card-body">
+            <span class="ak-card-badge green" style="position: static; margin-bottom: 12px; width: max-content;">
+              <%= item.cardTag || item.tag || 'जनकल्याण योजना' %>
+            </span>
+
+            <h3 class="ak-card-title" style="font-size: 1.25rem;">
+              <%= item.title %>
+            </h3>
+
+            <p class="ak-card-desc">
+              <%= item.description %>
+            </p>
+
+            <% if (item.points && item.points.length > 0) { %>
+              <div style="margin: 10px 0 20px; padding: 12px; background: var(--ak-bg-alt); border-radius: 12px;">
+                <span style="font-size: 0.82rem; font-weight: 700; color: var(--ak-secondary); display: block; margin-bottom: 6px;">
+                  प्रमुख विशेषताएं व लाभ:
+                </span>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <% item.points.slice(0, 3).forEach(function(pt) { %>
+                    <li style="font-size: 0.85rem; color: var(--ak-text-body); display: flex; align-items: flex-start; gap: 6px;">
+                      <span style="color: var(--ak-secondary); font-weight: 800;">✓</span>
+                      <span><%= pt %></span>
+                    </li>
+                  <% }); %>
+                </ul>
+              </div>
+            <% } %>
+
+            <button 
+              type="button" 
+              class="ak-pill-btn secondary js-open-initiative-modal" 
+              data-initiative="<%= item.key %>"
+              style="margin-top: auto; width: 100%; border: none;"
+            >
+              <span>योजना विवरण व आवेदन</span>
+              <span>→</span>
+            </button>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+
+  </div>
+</section>

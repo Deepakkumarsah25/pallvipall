@@ -1,0 +1,122 @@
+<!-- ==========================================================================
+     ARVIND KEJRIWAL AAP STYLE SOCIAL WALL & CONNECT SECTION
+     Section Header with Share Icon + WhatsApp, YouTube, Twitter & Helpline Cards
+     ========================================================================== -->
+<%
+  const info = (typeof quickInfo !== 'undefined' && quickInfo) ? quickInfo : {};
+  const phone = info.helplineTel || "+919955309029";
+  const whatsappNum = phone.replace(/[^0-9]/g, "");
+  const email = info.email || "nishadaarakshansankalp@gmail.com";
+%>
+
+<section class="ak-section ak-bg-alt" id="social">
+  <div class="ak-container">
+
+    <!-- Signature Section Header -->
+    <div class="ak-section-header">
+      <div class="ak-header-icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
+        </svg>
+      </div>
+      <h2 class="ak-header-title">
+        सोशल मीडिया <span class="ak-highlight">Social Wall & Connect</span>
+      </h2>
+    </div>
+
+    <p class="ak-header-sub">
+      अभियान से सीधे जुड़ें, अपनी समस्याएं साझा करें, और सोशल मीडिया पर जन-आंदोलन का हिस्सा बनें।
+    </p>
+
+    <!-- Social Connect Cards Grid -->
+    <div class="ak-social-grid">
+
+      <!-- WhatsApp Connect Card -->
+      <div class="ak-social-card whatsapp">
+        <div class="ak-social-card-head">
+          <div class="ak-social-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.301-.778.978-.954 1.179-.175.2-.351.226-.652.075-1.558-.78-2.584-1.39-3.626-3.178-.274-.47-.029-.724.122-.874.135-.135.301-.351.451-.527.151-.175.201-.301.302-.502.1-.2.05-.376-.026-.527-.075-.15-.677-1.633-.928-2.235-.244-.587-.493-.507-.678-.517h-.578c-.2 0-.527.075-.803.376s-1.054 1.03-1.054 2.511 1.08 2.912 1.23 3.113c.151.201 2.126 3.246 5.15 4.551 1.821.785 2.531.848 3.44.714.553-.082 1.78-.727 2.031-1.431.251-.703.251-1.305.176-1.431-.076-.126-.277-.201-.578-.352zM12 21.82c-1.77 0-3.5-.463-5.025-1.341l-.36-.213-3.735.98.997-3.642-.234-.372c-.963-1.533-1.472-3.315-1.472-5.152 0-5.45 4.433-9.883 9.884-9.883 2.64 0 5.122 1.028 6.987 2.894 1.865 1.865 2.893 4.347 2.893 6.988 0 5.45-4.433 9.883-9.884 9.883z"/></svg>
+          </div>
+          <div>
+            <h3 class="ak-social-card-title">WhatsApp Connect</h3>
+            <span style="font-size: 0.8rem; color: #25d366; font-weight: 700;">● Live Support</span>
+          </div>
+        </div>
+        <p class="ak-social-card-desc">
+          सीधे व्हाट्सएप पर अभियान से जुड़ें और अपने क्षेत्र की समस्याएं व सुझाव साझा करें।
+        </p>
+        <a 
+          href="https://wa.me/<%= whatsappNum %>?text=<%= encodeURIComponent('जय निषाद राज! मैं निषाद आरक्षण संकल्प अभियान से जुड़ना चाहता हूँ।') %>" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="ak-social-btn"
+        >
+          <span>Chat on WhatsApp</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- YouTube Official Channel -->
+      <div class="ak-social-card youtube">
+        <div class="ak-social-card-head">
+          <div class="ak-social-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div>
+            <h3 class="ak-social-card-title">YouTube Channel</h3>
+            <span style="font-size: 0.8rem; color: #ff0000; font-weight: 700;">● Video Speeches</span>
+          </div>
+        </div>
+        <p class="ak-social-card-desc">
+          जनसभाओं, रैलियों, संकल्प यात्रा और नेतृत्व के प्रेरणादायक भाषणों के वीडियो देखें।
+        </p>
+        <a href="/video" class="ak-social-btn">
+          <span>Watch Videos</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Twitter / X Follow -->
+      <div class="ak-social-card twitter">
+        <div class="ak-social-card-head">
+          <div class="ak-social-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div>
+            <h3 class="ak-social-card-title">Twitter / X Updates</h3>
+            <span style="font-size: 0.8rem; color: #1da1f2; font-weight: 700;">● Latest Tweets</span>
+          </div>
+        </div>
+        <p class="ak-social-card-desc">
+          अभियान के आधिकारिक बयानों, प्रेस विज्ञप्तियों और नीतिगत घोषणाओं से जुड़े रहें।
+        </p>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="ak-social-btn">
+          <span>Follow on X</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- 24/7 Helpline & Office Card -->
+      <div class="ak-social-card helpline">
+        <div class="ak-social-card-head">
+          <div class="ak-social-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1A11.36 11.36 0 0 1 8.5 3.97c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-.99-1.09z"/></svg>
+          </div>
+          <div>
+            <h3 class="ak-social-card-title">हेल्पलाइन केंद्र</h3>
+            <span style="font-size: 0.8rem; color: var(--ak-primary); font-weight: 700;">● 24x7 Helpline</span>
+          </div>
+        </div>
+        <p class="ak-social-card-desc">
+          सीधे कॉल करके सहायता प्राप्त करें या अपनी सदस्यता दर्ज कराएं: <strong><%= phone %></strong>
+        </p>
+        <a href="tel:<%= phone %>" class="ak-social-btn">
+          <span>Call Helpline</span>
+          <span>☎</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>

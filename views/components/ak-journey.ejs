@@ -1,0 +1,112 @@
+<!-- ==========================================================================
+     ARVIND KEJRIWAL AAP STYLE JOURNEY THROUGH TIME (TIMELINE)
+     Horizontal Connecting Track + Circular Nodes + Animated Bottom Accent Bar
+     ========================================================================== -->
+<%
+  const journeyItems = (typeof kalash !== 'undefined' && kalash && kalash.milestonesSection && kalash.milestonesSection.items && kalash.milestonesSection.items.length > 0)
+    ? kalash.milestonesSection.items
+    : [
+        {
+          district: "गोपालगंज",
+          title: "गोपालगंज में ऐतिहासिक लोकतांत्रिक महा-संकल्प सम्मेलन",
+          image: "/images/democratic-pledge-featured.jpg",
+          description: "हजारों नागरिकों और मातृशक्तियों ने शपथ ली: आगामी चुनाव में अपने विवेक और विचार के आधार पर स्वतंत्र मताधिकार का प्रयोग करेंगे।",
+          tag: "प्रथम चरण",
+          year: "Phase 1"
+        },
+        {
+          district: "वाराणसी घाट",
+          title: "वाराणसी दशाश्वमेध घाट — स्वतंत्र मताधिकार का पावन महा-संकल्प",
+          image: "/images/democratic-pledge-varanasi.jpg",
+          description: "पवित्र गंगा तट पर हजारों माताओं-बहनों और नागरिकों ने सहभागिता करते हुए सामाजिक एकता और स्वतंत्र मतदान की प्रतिज्ञा ली।",
+          tag: "द्वितीय चरण",
+          year: "Phase 2"
+        },
+        {
+          district: "पटना",
+          title: "गांधी मैदान पटना — युवा शक्ति का लोकतांत्रिक शंखनाद",
+          image: "/images/democratic-pledge-patna.jpg",
+          description: "पवित्र संगम व गंगा तट पर नागरिकों ने एकजुट होकर सामाजिक समरसता और जन-जागरण का ऐतिहासिक शंखनाद किया।",
+          tag: "तृतीय चरण",
+          year: "Phase 3"
+        },
+        {
+          district: "भोपाल",
+          title: "भोपाल नर्मदांचल — सामाजिक अधिकार व स्वतंत्र जनमत महा-अधिवेशन",
+          image: "/images/democratic-pledge-bhopal.jpg",
+          description: "मध्य प्रदेश के कोने-कोने से जुटे जनसमूह ने अपने संवैधानिक अधिकारों की रक्षा और विवेकपूर्ण मतदान की ऐतिहासिक प्रतिज्ञा ली।",
+          tag: "चतुर्थ चरण",
+          year: "Phase 4"
+        }
+      ];
+%>
+
+<section class="ak-section ak-bg-alt" id="journey">
+  <div class="ak-container">
+
+    <!-- Signature Section Header -->
+    <div class="ak-section-header secondary-theme">
+      <div class="ak-header-icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+        </svg>
+      </div>
+      <h2 class="ak-header-title">
+        ऐतिहासिक यात्रा <span class="ak-highlight">Journey Through Time</span>
+      </h2>
+    </div>
+
+    <p class="ak-header-sub">
+      गांव-गांव, घाट-घाट और नगर-नगर फैली जन-चेतना और संकल्प यात्रा का कालक्रम एवं ऐतिहासिक पड़ाव।
+    </p>
+
+    <!-- Timeline Track Wrapper -->
+    <div class="ak-timeline-track-wrap">
+      <div class="ak-timeline-track-line" aria-hidden="true"></div>
+
+      <div class="ak-timeline-grid">
+        <% journeyItems.slice(0, 4).forEach(function(item, idx) { %>
+          <div class="ak-timeline-card-wrapper">
+            <!-- Node on the connecting line -->
+            <div class="ak-timeline-node" aria-hidden="true"></div>
+
+            <article class="ak-timeline-card">
+              <div class="ak-card-img-wrap" style="height: 180px;">
+                <img 
+                  src="<%= item.image || '/images/kalash-yatra-featured.jpg' %>" 
+                  alt="<%= item.title %>" 
+                  loading="lazy" 
+                  onerror="this.src='/images/kalash-yatra-hero.jpg'"
+                />
+                <span class="ak-card-badge green">
+                  <%= item.year || item.tag || ('पड़ाव ' + (idx + 1)) %>
+                </span>
+              </div>
+
+              <div class="ak-timeline-card-body">
+                <% if (item.district || item.stateName) { %>
+                  <span class="ak-card-meta">
+                    <span>📍</span> <%= item.district %><% if (item.stateName) { %> · <%= item.stateName %><% } %>
+                  </span>
+                <% } %>
+                <h3 class="ak-card-title"><%= item.title %></h3>
+                <p class="ak-card-desc"><%= item.description %></p>
+              </div>
+
+              <!-- Animated bottom accent bar (Signature AAP style hover effect) -->
+              <div class="ak-card-accent-bar" style="background: var(--ak-secondary);"></div>
+            </article>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+    <div class="ak-section-cta">
+      <a href="/video" class="ak-pill-btn secondary">
+        <span>पूरी संकल्प यात्रा देखें</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</section>

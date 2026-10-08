@@ -1,0 +1,804 @@
+/* ==========================================================================
+   ARVIND KEJRIWAL AAP STYLE HOMEPAGE STYLESHEET
+   Design System, Components & Sections matching arvindkejriwalaap.com
+   ========================================================================== */
+
+:root {
+  --ak-primary: #d71920;
+  --ak-primary-dark: #a81218;
+  --ak-primary-light: rgba(215, 25, 32, 0.08);
+  --ak-secondary: #0b8441;
+  --ak-secondary-dark: #065f2c;
+  --ak-secondary-light: rgba(11, 132, 65, 0.08);
+
+  --ak-bg-white: #ffffff;
+  --ak-bg-alt: #f6f9f7;
+  --ak-card-bg: #ffffff;
+  --ak-border: #dce8e0;
+  --ak-border-light: #e8f2ec;
+
+  --ak-text-dark: #111d16;
+  --ak-text-body: #3c5244;
+  --ak-text-muted: #5a7263;
+
+  --ak-radius-sm: 8px;
+  --ak-radius-md: 14px;
+  --ak-radius-lg: 20px;
+  --ak-radius-full: 9999px;
+
+  --ak-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --ak-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --ak-shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Base Container */
+.ak-container {
+  width: min(1360px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* Sections */
+.ak-section {
+  padding: 56px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ak-bg-white {
+  background-color: var(--ak-bg-white);
+}
+
+.ak-bg-alt {
+  background-color: var(--ak-bg-alt);
+}
+
+/* ==========================================================================
+   SIGNATURE SECTION HEADER (Xn Component from arvindkejriwalaap.com)
+   4px Vertical Accent Bar + Rounded Icon Container + Bold Heading with Highlight
+   ========================================================================== */
+.ak-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  border-left: 4.5px solid var(--ak-primary);
+  padding-left: 14px;
+  transition: transform 0.25s ease;
+}
+
+.ak-section-header.secondary-theme {
+  border-left-color: var(--ak-secondary);
+}
+
+.ak-header-icon-box {
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--ak-primary-light);
+  color: var(--ak-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ak-section-header.secondary-theme .ak-header-icon-box {
+  background: var(--ak-secondary-light);
+  color: var(--ak-secondary);
+}
+
+.ak-section-header:hover .ak-header-icon-box {
+  transform: scale(1.08);
+  background: rgba(215, 25, 32, 0.16);
+}
+
+.ak-header-title {
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  font-weight: 800;
+  color: var(--ak-text-dark);
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.ak-highlight {
+  color: var(--ak-primary);
+}
+
+.ak-section-header.secondary-theme .ak-highlight {
+  color: var(--ak-secondary);
+}
+
+/* Section Header Subtitle */
+.ak-header-sub {
+  font-size: 0.95rem;
+  color: var(--ak-text-muted);
+  margin-top: -16px;
+  margin-bottom: 24px;
+  margin-left: 20px;
+  max-width: 780px;
+}
+
+/* ==========================================================================
+   PILL BUTTONS (Matching Arvind Kejriwal AAP Button Style)
+   ========================================================================== */
+.ak-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 30px;
+  border-radius: var(--ak-radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--ak-primary) 0%, var(--ak-primary-dark) 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(215, 25, 32, 0.28);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.ak-pill-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(215, 25, 32, 0.38);
+  background: linear-gradient(135deg, var(--ak-primary-dark) 0%, #7d0d12 100%);
+  color: #ffffff !important;
+}
+
+.ak-pill-btn.secondary {
+  background: linear-gradient(135deg, var(--ak-secondary) 0%, var(--ak-secondary-dark) 100%);
+  box-shadow: 0 4px 16px rgba(11, 132, 65, 0.28);
+}
+
+.ak-pill-btn.secondary:hover {
+  background: linear-gradient(135deg, var(--ak-secondary-dark) 0%, #043f1d 100%);
+  box-shadow: 0 8px 24px rgba(11, 132, 65, 0.38);
+}
+
+.ak-section-cta {
+  margin-top: 32px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .ak-section-cta {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   1. HERO SLIDER (Aspect Ratio 16/9 Mobile, 50vh Desktop)
+   ========================================================================== */
+.ak-hero-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: var(--navbar-height, 64px);
+  overflow: hidden;
+  background: #0d1a12;
+}
+
+.ak-hero-slider {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 50vh, 560px);
+  overflow: hidden;
+}
+
+.ak-hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.75s ease, transform 0.9s ease;
+  transform: scale(1.03);
+}
+
+.ak-hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.ak-hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ak-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.ak-hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 820px;
+  color: #ffffff;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.ak-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--ak-radius-full);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 14px;
+  width: max-content;
+}
+
+.ak-hero-title {
+  font-size: clamp(1.6rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.22;
+  margin: 0 0 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ak-hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: #79d69f;
+  margin: 0 0 12px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.ak-hero-desc {
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  line-height: 1.6;
+  opacity: 0.92;
+  max-width: 680px;
+  margin: 0 0 24px;
+}
+
+.ak-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ak-hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.25s ease;
+}
+
+.ak-hero-arrow:hover {
+  background: var(--ak-primary);
+  border-color: var(--ak-primary);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.ak-hero-arrow.prev {
+  left: 20px;
+}
+
+.ak-hero-arrow.next {
+  right: 20px;
+}
+
+.ak-hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.ak-hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.ak-hero-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   2. ABOUT / LEADER SECTION
+   ========================================================================== */
+.ak-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.ak-about-img-frame {
+  position: relative;
+  border-radius: var(--ak-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ak-shadow-lg);
+  aspect-ratio: 4/3;
+  border: 4px solid #ffffff;
+}
+
+.ak-about-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ak-about-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 8px 16px;
+  border-radius: var(--ak-radius-full);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ak-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ak-about-heading {
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  font-weight: 800;
+  color: var(--ak-text-dark);
+  line-height: 1.35;
+  margin: 0 0 16px;
+}
+
+.ak-about-text {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ak-text-body);
+  margin-bottom: 20px;
+}
+
+.ak-about-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ak-about-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.94rem;
+  color: var(--ak-text-dark);
+  font-weight: 600;
+}
+
+.ak-point-check {
+  color: var(--ak-secondary);
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   GRID CARD SYSTEMS (Matches arvindkejriwalaap.com 4-column & 3-column cards)
+   ========================================================================== */
+.ak-cards-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.ak-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ak-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .ak-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ak-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ak-about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .ak-grid-4,
+  .ak-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Base Card Style (arvindkejriwalaap.com card) */
+.ak-card {
+  background: var(--ak-card-bg);
+  border-radius: var(--ak-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ak-shadow-sm);
+  border: 1px solid var(--ak-border-light);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.ak-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ak-shadow-lg);
+  border-color: rgba(215, 25, 32, 0.3);
+}
+
+/* Card Cover Image */
+.ak-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background: #f0f4f1;
+}
+
+.ak-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.ak-card:hover .ak-card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.ak-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: var(--ak-radius-full);
+  background: var(--ak-primary);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+
+.ak-card-badge.green {
+  background: var(--ak-secondary);
+}
+
+.ak-play-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ak-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.ak-card:hover .ak-play-badge {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.ak-card-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ak-card-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ak-text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ak-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ak-text-dark);
+  line-height: 1.35;
+  margin: 0 0 10px;
+  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ak-card:hover .ak-card-title {
+  color: var(--ak-primary);
+}
+
+.ak-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ak-text-body);
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ak-card-link-text {
+  margin-top: auto;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ak-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   4. JOURNEY THROUGH TIME (Timeline with connecting line & animated bar)
+   ========================================================================== */
+.ak-timeline-track-wrap {
+  position: relative;
+  margin-top: 14px;
+}
+
+.ak-timeline-track-line {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #d8e8de;
+  border-radius: var(--ak-radius-full);
+  z-index: 1;
+}
+
+.ak-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  padding-top: 26px;
+}
+
+.ak-timeline-card-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Circle Node on Timeline Track */
+.ak-timeline-node {
+  position: absolute;
+  top: -24px;
+  left: 28px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 5px solid var(--ak-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ak-timeline-card-wrapper:hover .ak-timeline-node {
+  transform: scale(1.2);
+  border-color: var(--ak-secondary);
+}
+
+/* Timeline Card */
+.ak-timeline-card {
+  background: #ffffff;
+  border-radius: var(--ak-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ak-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--ak-border-light);
+  transition: all 0.3s ease;
+}
+
+.ak-timeline-card-wrapper:hover .ak-timeline-card {
+  transform: translateY(-6px);
+  box-shadow: var(--ak-shadow-lg);
+}
+
+.ak-timeline-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Animated bottom accent line (arvindkejriwalaap.com signature) */
+.ak-card-accent-bar {
+  height: 5px;
+  width: 100%;
+  background: var(--ak-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ak-timeline-card-wrapper:hover .ak-card-accent-bar {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   8. SOCIAL WALL & CONNECT
+   ========================================================================== */
+.ak-social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ak-social-card {
+  background: #ffffff;
+  border-radius: var(--ak-radius-lg);
+  padding: 24px;
+  border: 1px solid var(--ak-border-light);
+  box-shadow: var(--ak-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ak-social-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ak-shadow-md);
+}
+
+.ak-social-card.whatsapp {
+  border-top: 4px solid #25d366;
+}
+
+.ak-social-card.youtube {
+  border-top: 4px solid #ff0000;
+}
+
+.ak-social-card.twitter {
+  border-top: 4px solid #1da1f2;
+}
+
+.ak-social-card.helpline {
+  border-top: 4px solid var(--ak-primary);
+}
+
+.ak-social-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ak-social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ak-social-card.whatsapp .ak-social-icon {
+  background: #25d366;
+}
+
+.ak-social-card.youtube .ak-social-icon {
+  background: #ff0000;
+}
+
+.ak-social-card.twitter .ak-social-icon {
+  background: #1da1f2;
+}
+
+.ak-social-card.helpline .ak-social-icon {
+  background: var(--ak-primary);
+}
+
+.ak-social-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ak-text-dark);
+}
+
+.ak-social-card-desc {
+  font-size: 0.88rem;
+  color: var(--ak-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ak-social-btn {
+  margin-top: auto;
+  padding: 10px 18px;
+  border-radius: var(--ak-radius-full);
+  font-size: 0.86rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #ffffff !important;
+  background: var(--ak-text-dark);
+  transition: all 0.2s ease;
+}
+
+.ak-social-card.whatsapp .ak-social-btn {
+  background: #25d366;
+}
+
+.ak-social-card.youtube .ak-social-btn {
+  background: #ff0000;
+}
+
+.ak-social-card.twitter .ak-social-btn {
+  background: #1da1f2;
+}
+
+.ak-social-card.helpline .ak-social-btn {
+  background: var(--ak-primary);
+}

@@ -1,0 +1,107 @@
+<!-- ==========================================================================
+     ARVIND KEJRIWAL AAP STYLE EVENTS & NEWS SECTION
+     Section Header with Calendar Icon + Responsive Event Cards + View Events CTA
+     ========================================================================== -->
+<%
+  const newsList = (typeof homeNewsList !== 'undefined' && Array.isArray(homeNewsList)) ? homeNewsList.slice(0, 4) : [];
+
+  function formatEventDate(d) {
+    if (!d) return "हालिया अपडेट";
+    const dateObj = new Date(d);
+    return Number.isNaN(dateObj.getTime()) 
+      ? "हालिया अपडेट" 
+      : dateObj.toLocaleDateString("hi-IN", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  const defaultEvents = [
+    {
+      title: "ऐतिहासिक राष्ट्रीय संकल्प महा-सम्मेलन",
+      category: "राष्ट्रीय अधिवेशन",
+      source: "मुख्य कार्यालय",
+      summary: "देशभर के प्रतिनिधियों की सहभागिता के साथ स्वाभिमान, आरक्षण और राजनीतिक भागीदारी का ऐतिहासिक निर्णय।",
+      image: "/images/democratic-pledge-featured.jpg"
+    },
+    {
+      title: "युवा स्वाभिमान व शिक्षा अधिकार यात्रा",
+      category: "युवा चेतना",
+      source: "युवा मोर्चा",
+      summary: "छात्रों और युवाओं को प्रतियोगी परीक्षाओं में निःशुल्क मार्गदर्शन और छात्रवृत्ति दिलाने का महा-अभियान।",
+      image: "/images/democratic-pledge-patna.jpg"
+    },
+    {
+      title: "महिला शक्ति जन-संवाद व पंचायत",
+      category: "मातृशक्ति",
+      source: "महिला विंग",
+      summary: "मातृशक्ति के सम्मान और सामाजिक सुरक्षा को लेकर गांव-गांव महिलाओं का विशेष सम्मेलन।",
+      image: "/images/democratic-pledge-varanasi.jpg"
+    },
+    {
+      title: "परंपरागत आजीविका संरक्षण महा-पंचायत",
+      category: "किसान-कामगार",
+      source: "विकास प्रकोष्ठ",
+      summary: "मत्स्यपालकों और नदी तट के श्रमिकों के पारंपरिक अधिकारों की कानूनी रक्षा पर विचार-विमर्श।",
+      image: "/images/democratic-pledge-bhopal.jpg"
+    }
+  ];
+
+  const displayEvents = newsList.length > 0 ? newsList : defaultEvents;
+%>
+
+<section class="ak-section ak-bg-alt" id="events">
+  <div class="ak-container">
+
+    <!-- Signature Section Header -->
+    <div class="ak-section-header">
+      <div class="ak-header-icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
+        </svg>
+      </div>
+      <h2 class="ak-header-title">
+        आयोजन व समाचार <span class="ak-highlight">Events & News</span>
+      </h2>
+    </div>
+
+    <p class="ak-header-sub">
+      अभियान से जुड़े महत्वपूर्ण कार्यक्रम, आगामी जनसभाएं, प्रेस विज्ञप्तियां और जन-आंदोलन के ताजा समाचार।
+    </p>
+
+    <!-- 4-Column Events Grid -->
+    <div class="ak-cards-grid ak-grid-4">
+      <% displayEvents.forEach(function(item) { %>
+        <article class="ak-card">
+          <div class="ak-card-img-wrap">
+            <img 
+              src="<%= item.thumbnailPath || item.image || '/images/kalash-yatra-featured.jpg' %>" 
+              alt="<%= item.title %>" 
+              loading="lazy"
+              onerror="this.src='/images/kalash-yatra-hero.jpg'"
+            />
+            <span class="ak-card-badge">
+              <%= item.category || 'Event' %>
+            </span>
+          </div>
+
+          <div class="ak-card-body">
+            <span class="ak-card-meta">
+              <span>📅</span> <%= formatEventDate(item.publicationDate || item.publishedAt || item.createdAt) %>
+            </span>
+            <h3 class="ak-card-title"><%= item.title %></h3>
+            <% if (item.summary) { %>
+              <p class="ak-card-desc"><%= item.summary %></p>
+            <% } %>
+            <a href="<%= item._id ? ('/news/' + item._id) : '/news' %>" class="ak-card-link-text">पूरा समाचार पढ़ें →</a>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+
+    <div class="ak-section-cta">
+      <a href="/news" class="ak-pill-btn">
+        <span>View All Events & News</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
