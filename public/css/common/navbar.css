@@ -30,7 +30,7 @@ body {
   --mobile-navbar-height: 60px;
 
   --navbar-bg: linear-gradient(135deg, #d71920 0%, #b8141a 55%, #9e0f14 100%);
-  --navbar-border: #0b8441;
+  --navbar-border: rgba(0, 0, 0, 0.16);
 
   --primary-red: #d71920;
   --dark-red: #a81218;
@@ -72,7 +72,7 @@ body.drawer-open {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
-  border-bottom: 3.5px solid var(--navbar-border);
+  border-bottom: 2px solid var(--navbar-border);
   box-shadow: 0 4px 22px rgba(168, 18, 24, 0.32), 0 2px 8px rgba(0, 0, 0, 0.15);
 
   padding-top: env(safe-area-inset-top, 0px);
@@ -84,7 +84,7 @@ body.drawer-open {
   line-height: 1.4;
 }
 
-/* Samajwadi Top Sheen Line */
+/* Header Top Sheen Line */
 .site-header::before {
   content: "";
   position: absolute;
@@ -92,7 +92,7 @@ body.drawer-open {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(16, 224, 110, 0.6) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.5) 100%);
   z-index: 2001;
 }
 
@@ -255,12 +255,18 @@ body.drawer-open {
   transform: translateY(-1px);
 }
 
-.nav-links a.active {
-  background: var(--primary-green);
-  color: #ffffff;
-  font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.26);
+.nav-links a.active,
+.nav-links a:active {
+  background: #ffffff;
+  color: var(--primary-red);
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.nav-links a.active:hover {
+  background: #ffffff;
+  color: var(--dark-red);
 }
 
 /* =========================================================
@@ -785,17 +791,18 @@ body.drawer-open {
 
   .nav-links a:hover,
   .nav-links a:focus-visible {
-    background: #f0f7f2;
-    color: #0b8441;
+    background: #fdf2f2;
+    color: var(--primary-red);
     padding-left: 18px;
   }
 
-  .nav-links a.active {
-    background: linear-gradient(135deg, #0b8441 0%, #065f2c 100%);
-    color: #fff;
-    border-color: #0b8441;
+  .nav-links a.active,
+  .nav-links a:active {
+    background: linear-gradient(135deg, #d71920 0%, #b8141a 100%);
+    color: #ffffff;
+    border-color: #d71920;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(11, 132, 65, 0.25);
+    box-shadow: 0 4px 12px rgba(215, 25, 32, 0.25);
   }
 }
 

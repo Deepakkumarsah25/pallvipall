@@ -254,6 +254,7 @@ const startServer = async () => {
   try {
     // Connect MongoDB
     await mongoose.connect(MONGODB_URI);
+    console.log(`✅ MongoDB Connected Successfully: Database [${mongoose.connection.name}] on [${mongoose.connection.host}]`);
 
     // Automatically create admin if not exists
     await createDefaultAdmin();
