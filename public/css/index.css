@@ -3,25 +3,35 @@
    ========================================================================== */
 
 :root {
-  --bg-primary: #fbf4ec;
+  --bg-primary: #f6f9f7;
   --bg-card: #ffffff;
-  --bg-card-alt: #fdfaf6;
-  --border-subtle: #ead8c5;
-  --border-strong: #d9c1ab;
+  --bg-card-alt: #f0f7f2;
+  --border-subtle: #dce8e0;
+  --border-strong: #bdd2c4;
 
-  --primary-red: #d72a2a;
-  --dark-red: #8c1a1a;
-  --deep-red: #651111;
-  --accent-gold: #c97d10;
+  /* Samajwadi Party Red & Green Signature Palette */
+  --primary-red: #d71920;
+  --dark-red: #a81218;
+  --deep-red: #780d12;
+  --light-red: #fef2f2;
 
-  --text-dark: #2a1b1b;
-  --text-brown: #6b4f4f;
-  --text-muted: #876f62;
+  --primary-green: #0b8441;
+  --dark-green: #065f2c;
+  --deep-green: #03401d;
+  --light-green: #eef8f2;
+  --accent-green: #10b981;
+
+  --sp-flag-gradient: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
+  --sp-duo-gradient: linear-gradient(135deg, #d71920 0%, #a81218 48%, #0b8441 52%, #065f2c 100%);
+
+  --text-dark: #111d16;
+  --text-brown: #2d4536;
+  --text-muted: #5a7263;
   --text-light: #ffffff;
 
-  --shadow-sm: 0 2px 8px rgba(107, 79, 79, 0.06);
-  --shadow-md: 0 8px 24px rgba(140, 26, 26, 0.08);
-  --shadow-lg: 0 16px 40px rgba(140, 26, 26, 0.12);
+  --shadow-sm: 0 2px 8px rgba(11, 132, 65, 0.05);
+  --shadow-md: 0 8px 24px rgba(215, 25, 32, 0.07);
+  --shadow-lg: 0 16px 40px rgba(11, 132, 65, 0.1);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -81,15 +91,21 @@ body {
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(215, 42, 42, 0.08);
-  border: 1px solid rgba(215, 42, 42, 0.2);
+  background: rgba(11, 132, 65, 0.08);
+  border: 1px solid rgba(11, 132, 65, 0.25);
   border-radius: var(--radius-full);
-  color: var(--primary-red);
+  color: var(--primary-green);
   font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: 14px;
+}
+
+.section-tag.tag-red {
+  background: rgba(215, 25, 32, 0.08);
+  border-color: rgba(215, 25, 32, 0.25);
+  color: var(--primary-red);
 }
 
 .section-tag svg {
@@ -120,9 +136,9 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-red), transparent);
+  background: linear-gradient(90deg, var(--primary-red), var(--primary-green));
   border-radius: 2px;
-  opacity: 0.45;
+  opacity: 0.75;
 }
 
 .section-subtitle {
@@ -153,24 +169,49 @@ body {
 .ny-btn-primary {
   background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
   color: #ffffff;
-  box-shadow: 0 6px 18px rgba(215, 42, 42, 0.28);
+  box-shadow: 0 6px 18px rgba(215, 25, 32, 0.28);
 }
 
 .ny-btn-primary:hover {
-  background: linear-gradient(135deg, #e43333 0%, #991d1d 100%);
+  background: linear-gradient(135deg, #e62028 0%, #ba141b 100%);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(215, 42, 42, 0.35);
+  box-shadow: 0 10px 24px rgba(215, 25, 32, 0.38);
+}
+
+.ny-btn-green {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(11, 132, 65, 0.28);
+}
+
+.ny-btn-green:hover {
+  background: linear-gradient(135deg, #0e964b 0%, #076d33 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(11, 132, 65, 0.38);
 }
 
 .ny-btn-outline {
+  background: transparent;
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+}
+
+.ny-btn-outline:hover {
+  background: rgba(11, 132, 65, 0.08);
+  color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.ny-btn-outline-red {
   background: transparent;
   border-color: var(--primary-red);
   color: var(--primary-red);
 }
 
-.ny-btn-outline:hover {
-  background: rgba(215, 42, 42, 0.08);
+.ny-btn-outline-red:hover {
+  background: rgba(215, 25, 32, 0.08);
   color: var(--dark-red);
   transform: translateY(-2px);
 }

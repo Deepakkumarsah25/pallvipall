@@ -3,20 +3,23 @@
 ========================================= */
 
 :root {
-  --gallery-bg: #f8f5f2;
+  --gallery-bg: #f6f9f7;
   --gallery-card-bg: #ffffff;
-  --gallery-primary: #d72a2a;
-  --gallery-primary-dark: #a91c1c;
-  --gallery-primary-light: #fff0ec;
-  --gallery-primary-border: #f7c9be;
-  --gallery-gold: #c28834;
-  --gallery-gold-light: #fef8ee;
-  --gallery-text-dark: #2c1e1e;
-  --gallery-text-muted: #806e67;
-  --gallery-border: #ebdcd3;
+  --gallery-primary: #d71920;
+  --gallery-primary-dark: #a81218;
+  --gallery-primary-light: #fef2f2;
+  --gallery-primary-border: #f8cfcf;
+  --gallery-green: #0b8441;
+  --gallery-green-dark: #065f2c;
+  --gallery-green-light: #eef8f2;
+  --gallery-gold: #0b8441;
+  --gallery-gold-light: #eef8f2;
+  --gallery-text-dark: #111d16;
+  --gallery-text-muted: #5a7263;
+  --gallery-border: #dce8e0;
   --gallery-radius: 16px;
-  --gallery-shadow: 0 10px 30px rgba(58, 28, 20, 0.06);
-  --gallery-shadow-hover: 0 18px 40px rgba(180, 40, 20, 0.15);
+  --gallery-shadow: 0 10px 30px rgba(11, 132, 65, 0.06);
+  --gallery-shadow-hover: 0 18px 40px rgba(11, 132, 65, 0.15);
 }
 
 .gallery-page {
@@ -31,7 +34,7 @@
 
 .gallery-hero {
   position: relative;
-  background: linear-gradient(135deg, #1f1212 0%, #3a1515 50%, #8c1a1a 100%);
+  background: linear-gradient(135deg, #0d2618 0%, #06401e 48%, #780d12 100%);
   color: #ffffff;
   padding: 86px max(24px, calc((100% - 1232px) / 2)) 48px;
   text-align: left;
@@ -42,7 +45,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(215, 42, 42, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 30%, rgba(11, 132, 65, 0.3) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -52,7 +55,7 @@
   gap: 8px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffddd3;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 700;
   padding: 6px 18px;
@@ -73,14 +76,14 @@
 }
 
 .gallery-hero h1 span {
-  color: #f7a288;
+  color: #79d69f;
 }
 
 .gallery-hero p {
   max-width: 720px;
   margin: 0 0 22px;
   font-size: clamp(16px, 2vw, 19px);
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.6;
   font-weight: 400;
 }
@@ -108,7 +111,7 @@
 }
 
 .gallery-stat-pill strong {
-  color: #f7b733;
+  color: #79d69f;
   font-size: 19px;
   font-weight: 800;
 }
@@ -139,7 +142,7 @@
   position: relative;
   margin: 0;
   padding-left: 16px;
-  color: #1f2937;
+  color: var(--gallery-text-dark);
   font-size: 36px;
   line-height: 1.3;
   font-weight: 800;
@@ -153,7 +156,7 @@
   bottom: 15%;
   width: 5px;
   border-radius: 4px;
-  background: linear-gradient(180deg, var(--gallery-primary), #f0a534);
+  background: linear-gradient(180deg, var(--gallery-primary), var(--gallery-green));
 }
 
 .gallery-result-count {
@@ -172,19 +175,19 @@
   gap: 10px;
   margin-left: auto;
   padding: 0 18px;
-  border: 2px solid #f1c9cd;
+  border: 2px solid var(--gallery-border);
   border-radius: 999px;
   background: #fff;
-  color: var(--gallery-primary);
-  box-shadow: 0 4px 14px rgba(215, 38, 61, .1);
+  color: var(--gallery-green);
+  box-shadow: 0 4px 14px rgba(11, 132, 65, .08);
   transition: border-color .2s, box-shadow .2s;
 }
 
-.gallery-search:hover { border-color: var(--gallery-primary); }
+.gallery-search:hover { border-color: var(--gallery-green); }
 
 .gallery-search:focus-within {
-  border-color: var(--gallery-primary);
-  box-shadow: 0 0 0 4px rgba(215, 38, 61, .15), 0 6px 18px rgba(215, 38, 61, .18);
+  border-color: var(--gallery-green);
+  box-shadow: 0 0 0 4px rgba(11, 132, 65, .15), 0 6px 18px rgba(11, 132, 65, .18);
 }
 
 .gallery-search > span { font-size: 19px; font-weight: 800; }
@@ -284,16 +287,16 @@
 }
 
 .district-chip:hover {
-  border-color: #f1a6ad;
-  color: var(--gallery-primary);
+  border-color: var(--gallery-green);
+  color: var(--gallery-green);
   background: #fff;
 }
 
 .district-chip.active {
-  background: linear-gradient(135deg, var(--gallery-primary), var(--gallery-primary-dark));
+  background: linear-gradient(135deg, var(--gallery-green), var(--gallery-green-dark));
   color: #ffffff;
-  border-color: var(--gallery-primary-dark);
-  box-shadow: 0 4px 14px rgba(215, 42, 42, 0.25);
+  border-color: var(--gallery-green-dark);
+  box-shadow: 0 4px 14px rgba(11, 132, 65, 0.25);
   font-weight: 700;
 }
 

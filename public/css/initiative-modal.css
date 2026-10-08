@@ -43,7 +43,7 @@
   transform: translateY(0) scale(1);
 }
 
-/* Modal Top Accent Line */
+/* Modal Top Accent Line - Samajwadi Party Flag Gradient */
 .initiative-modal-window::before {
   content: "";
   position: absolute;
@@ -51,14 +51,14 @@
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, var(--dark-red), var(--primary-red), var(--accent-gold), var(--primary-red));
+  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
   z-index: 10;
 }
 
 /* Modal Header */
 .initiative-modal-header {
   padding: 24px 28px 18px 28px;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, #f4e8dc 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7f2 100%);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: flex-start;
@@ -76,13 +76,13 @@
   width: 46px;
   height: 46px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+  background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(215, 42, 42, 0.25);
+  box-shadow: 0 4px 12px rgba(11, 132, 65, 0.25);
 }
 
 .modal-category-icon svg {
@@ -94,7 +94,7 @@
 .modal-category-tag {
   font-size: 0.76rem;
   font-weight: 800;
-  color: var(--accent-gold);
+  color: var(--primary-red);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: block;
@@ -157,7 +157,7 @@
 
 /* Highlights List Box */
 .modal-highlights-card {
-  background: var(--bg-primary);
+  background: var(--bg-card-alt);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 18px 20px;
@@ -166,7 +166,7 @@
 .modal-card-label {
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--dark-red);
+  color: var(--primary-green);
   margin: 0 0 12px 0;
   display: flex;
   align-items: center;
@@ -194,7 +194,7 @@
 .modal-highlight-item svg {
   width: 18px;
   height: 18px;
-  fill: var(--primary-red);
+  fill: var(--primary-green);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -222,16 +222,16 @@
 }
 
 .modal-helpline-btn:hover {
-  background: var(--bg-primary);
-  border-color: var(--primary-red);
-  color: var(--primary-red);
+  background: var(--bg-card-alt);
+  border-color: var(--primary-green);
+  color: var(--primary-green);
   transform: translateY(-2px);
 }
 
 .modal-helpline-btn svg {
   width: 17px;
   height: 17px;
-  fill: var(--primary-red);
+  fill: var(--primary-green);
 }
 
 /* Quick Action Form inside Modal */
@@ -302,8 +302,8 @@
 .modal-field input:focus,
 .modal-field select:focus,
 .modal-field textarea:focus {
-  border-color: var(--primary-red);
-  box-shadow: 0 0 0 3px rgba(215, 42, 42, 0.12);
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(11, 132, 65, 0.12);
 }
 
 .modal-submit-btn {
@@ -325,7 +325,7 @@
 /* Modal Footer */
 .initiative-modal-footer {
   padding: 14px 28px;
-  background: var(--bg-primary);
+  background: #f0f7f2;
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;

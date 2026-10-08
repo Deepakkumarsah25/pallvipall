@@ -3,12 +3,14 @@
    ========================================= */
 
 :root {
-  --footer-bg:rgba(252, 241, 229, 0.97);
-  --footer-border: #ead8c5;
-  --footer-red: #d72a2a;
-  --footer-dark-red: #8c1a1a;
-  --footer-text: #4a3636;
-  --footer-muted: #786257;
+  --footer-bg: linear-gradient(180deg, #072a17 0%, #041d0f 100%);
+  --footer-border: rgba(255, 255, 255, 0.08);
+  --footer-red: #d71920;
+  --footer-dark-red: #a81218;
+  --footer-green: #10b958;
+  --footer-dark-green: #0b8441;
+  --footer-text: #ffffff;
+  --footer-muted: #bad6c6;
 }
 
 /* Base Footer Shell */
@@ -22,20 +24,20 @@
   overflow: hidden;
 }
 
-/* Subtle Crimson Top Accent Line */
+/* Samajwadi Party Red & Green Signature Top Accent Line */
 .site-footer::before {
   content: "";
   display: block;
   width: 100%;
-  height: 3px;
+  height: 4px;
   background: linear-gradient(
     90deg,
-    transparent,
-    var(--footer-red),
-    var(--footer-dark-red),
-    var(--footer-red),
-    transparent
+    #d71920 0%,
+    #d71920 50%,
+    #0b8441 50%,
+    #0b8441 100%
   );
+  box-shadow: 0 -2px 14px rgba(215, 25, 32, 0.35);
 }
 
 /* =========================================
@@ -44,7 +46,7 @@
 .footer-main {
   width: min(1140px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 36px 0 28px;
+  padding: 42px 0 32px;
   display: grid;
   grid-template-columns: 1.4fr 1.3fr 1fr;
   gap: 48px;
@@ -63,23 +65,23 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--footer-dark-red);
-  font-size: 19px;
+  color: #ffffff;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.3px;
 }
 
 .footer-logo-mark {
-  width: 44px;
-  height: 44px;
-  flex: 0 0 44px;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: #ffffff;
-  border: 1.5px solid #ecdcd5;
-  box-shadow: 0 4px 12px rgba(66, 37, 27, 0.08);
+  border: 2px solid #10b958;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   padding: 3px;
 }
@@ -106,21 +108,32 @@
 .footer-contact h3 {
   position: relative;
   margin: 2px 0 16px;
-  color: var(--footer-dark-red);
+  color: #ffffff;
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.2px;
 }
 
-.footer-links h3::after,
+.footer-links h3::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  margin-top: 6px;
+  border-radius: 10px;
+  background: #10b958;
+  box-shadow: 0 0 8px rgba(16, 185, 88, 0.55);
+}
+
 .footer-contact h3::after {
   content: "";
   display: block;
-  width: 28px;
-  height: 2.5px;
+  width: 32px;
+  height: 3px;
   margin-top: 6px;
   border-radius: 10px;
-  background: var(--footer-red);
+  background: #d71920;
+  box-shadow: 0 0 8px rgba(215, 25, 32, 0.55);
 }
 
 /* =========================================
@@ -152,19 +165,23 @@
   display: inline-flex;
   align-items: center;
   margin-bottom: 12px;
-  color: var(--footer-muted);
+  color: #d4ebdd;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .footer-links-col a:hover,
-.footer-links a:hover,
+.footer-links a:hover {
+  color: #55ef9c;
+  transform: translateX(4px);
+}
+
 .footer-contact a:hover {
-  color: var(--footer-red);
-  transform: translateX(3px);
+  color: #ffffff;
+  transform: translateX(4px);
 }
 
 /* =========================================
@@ -189,23 +206,24 @@
   margin: 0 auto;
   padding: 18px 0;
   border-top: 1px solid var(--footer-border);
+  background: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  color: var(--footer-muted);
+  color: #9ec0ad;
   font-size: 12.5px;
   font-weight: 500;
 }
 
 .footer-bottom span:first-child {
-  color: var(--footer-text);
+  color: #bad6c6;
   font-weight: 600;
 }
 
 .footer-bottom a,
 .footer-dev-link {
-  color: var(--footer-dark-red, #8c1a1a);
+  color: #55ef9c;
   font-weight: 700;
   text-decoration: none !important;
   transition: all 0.2s ease;
@@ -213,9 +231,9 @@
 
 .footer-bottom a:hover,
 .footer-dev-link:hover {
-  color: var(--primary-red, #dc2626);
+  color: #ff6e73;
   text-decoration: none !important;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 /* =========================================

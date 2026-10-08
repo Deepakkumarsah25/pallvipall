@@ -1,3 +1,14 @@
+:root {
+  --red: #d71920;
+  --red-deep: #a81218;
+  --green: #0b8441;
+  --green-dark: #065f2c;
+  --line: #dce8e0;
+  --cream: #f6f9f7;
+  --ink: #111d16;
+  --ink-soft: #5a7263;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11,7 +22,7 @@
 }
 
 label {
-  color: var(--red-deep);
+  color: var(--ink);
   font-size: 0.88rem;
   font-weight: 600;
 }
@@ -34,18 +45,19 @@ input {
   font-family: inherit;
   font-size: 0.93rem;
   outline: none;
+  transition: all 0.2s ease;
 }
 
 input:focus {
   background: #fff;
-  border-color: var(--red);
+  border-color: var(--green);
 
   box-shadow:
-    0 0 0 3px rgba(215, 42, 42, 0.08);
+    0 0 0 3px rgba(11, 132, 65, 0.14);
 }
 
 input::placeholder {
-  color: #a89191;
+  color: #8ca395;
 }
 
 

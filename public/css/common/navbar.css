@@ -29,12 +29,15 @@ body {
   --navbar-height: 64px;
   --mobile-navbar-height: 60px;
 
-  --navbar-bg: rgba(252, 241, 229, 0.97);
-  --navbar-border: #e9d9c8;
+  --navbar-bg: linear-gradient(135deg, #d71920 0%, #b8141a 55%, #9e0f14 100%);
+  --navbar-border: #0b8441;
 
-  --primary-red: #d72a2a;
-  --dark-red: #8c1a1a;
-  --text-brown: #6b4f4f;
+  --primary-red: #d71920;
+  --dark-red: #a81218;
+  --primary-green: #0b8441;
+  --dark-green: #065f2c;
+  --text-dark: #ffffff;
+  --text-brown: #ffffff;
 }
 
 /* =========================================================
@@ -59,42 +62,38 @@ body.drawer-open {
 
   width: 100%;
 
-  /*
-    IMPORTANT:
-    Height fixed rahegi.
-    11vh nahi use karna.
-  */
   height: var(--navbar-height);
-
   min-height: var(--navbar-height);
 
   z-index: 2000;
 
   background: var(--navbar-bg);
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
-  border-bottom:
-    1px solid var(--navbar-border);
+  border-bottom: 3.5px solid var(--navbar-border);
+  box-shadow: 0 4px 22px rgba(168, 18, 24, 0.32), 0 2px 8px rgba(0, 0, 0, 0.15);
 
-  /*
-    Safe area sirf top me
-  */
-  padding-top:
-    env(
-      safe-area-inset-top,
-      0px
-    );
+  padding-top: env(safe-area-inset-top, 0px);
 
-  /*
-    Content clipping nahi hoga
-  */
   overflow: visible;
 
   isolation: isolate;
   font-family: "Noto Sans Devanagari", sans-serif;
   line-height: 1.4;
+}
+
+/* Samajwadi Top Sheen Line */
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(16, 224, 110, 0.6) 100%);
+  z-index: 2001;
 }
 
 /* =========================================================
@@ -106,9 +105,6 @@ body.drawer-open {
 
   max-width: 1200px;
 
-  /*
-    Header ke andar exact height
-  */
   height: 100%;
 
   min-height: var(--navbar-height);
@@ -137,8 +133,8 @@ body.drawer-open {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
-  color: var(--dark-red);
+  gap: 11px;
+  color: #ffffff;
   font-family: "Noto Sans Devanagari", sans-serif;
   font-weight: 700;
   line-height: 1.35;
@@ -151,12 +147,16 @@ body.drawer-open {
 
 .brand-logo {
   display: block;
-  width: 58px;
-  height: 58px;
+  width: 50px;
+  height: 50px;
   max-width: none;
   border-radius: 50%;
   object-fit: cover;
-  flex: 0 0 48px;
+  flex: 0 0 50px;
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+  padding: 1px;
 }
 
 /* Brand text - Never cut or truncate */
@@ -169,6 +169,8 @@ body.drawer-open {
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: -0.2px;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* =========================================================
@@ -210,7 +212,7 @@ body.drawer-open {
 
   justify-content: center;
 
-  gap: 4px;
+  gap: 6px;
 
   list-style: none;
 
@@ -230,10 +232,10 @@ body.drawer-open {
   align-items: center;
   justify-content: center;
   min-height: 38px;
-  padding: 7px 11px;
+  padding: 7px 14px;
   border-radius: 999px;
-  color: var(--text-brown);
-  font-size: 0.91rem;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 0.92rem;
   font-weight: 600;
   line-height: 1.25;
   text-align: center;
@@ -241,14 +243,24 @@ body.drawer-open {
   white-space: nowrap;
   transition:
     background 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  background: var(--primary-red);
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
 
-  color: #fff;
+.nav-links a.active {
+  background: var(--primary-green);
+  color: #ffffff;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.26);
 }
 
 /* =========================================================
@@ -302,20 +314,13 @@ body.drawer-open {
 /* Hamburger hover */
 
 .burger:hover {
-  background:
-    rgba(
-      215,
-      42,
-      42,
-      0.08
-    );
+  background: rgba(255, 255, 255, 0.18);
 }
 
 /* Hamburger focus */
 
 .burger:focus-visible {
-  outline:
-    2px solid var(--primary-red);
+  outline: 2px solid #ffffff;
 
   outline-offset: 2px;
 }
@@ -337,7 +342,7 @@ body.drawer-open {
 
   border-radius: 5px;
 
-  background: var(--dark-red);
+  background: #ffffff;
 
   transition:
     transform 0.3s ease,
@@ -644,13 +649,13 @@ body.drawer-open {
         )
       );
 
-    background: #fbf4ec;
+    background: #ffffff;
 
     border-left:
-      1px solid var(--navbar-border);
+      1px solid #dce8e0;
 
     border-top:
-      1px solid var(--navbar-border);
+      4px solid #d71920;
 
     box-shadow:
       -10px 10px 30px
@@ -658,7 +663,7 @@ body.drawer-open {
         0,
         0,
         0,
-        0.20
+        0.25
       );
 
     display: flex;
@@ -756,9 +761,9 @@ body.drawer-open {
     border-radius: 10px;
 
     border-bottom:
-      1px solid var(--navbar-border);
+      1px solid #eef3f0;
 
-    color: var(--text-brown);
+    color: #111d16;
 
     font-size: 1rem;
 
@@ -780,12 +785,17 @@ body.drawer-open {
 
   .nav-links a:hover,
   .nav-links a:focus-visible {
-    background:
-      var(--primary-red);
+    background: #f0f7f2;
+    color: #0b8441;
+    padding-left: 18px;
+  }
 
+  .nav-links a.active {
+    background: linear-gradient(135deg, #0b8441 0%, #065f2c 100%);
     color: #fff;
-
-    padding-left: 16px;
+    border-color: #0b8441;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(11, 132, 65, 0.25);
   }
 }
 

@@ -62,7 +62,7 @@
 
 .trust-pillar-item:hover {
   transform: translateX(6px);
-  border-color: var(--primary-red);
+  border-color: var(--primary-green);
   box-shadow: var(--shadow-md);
 }
 
@@ -70,13 +70,18 @@
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+  background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(215, 42, 42, 0.25);
+  box-shadow: 0 4px 12px rgba(11, 132, 65, 0.25);
+}
+
+.trust-pillar-item:nth-child(even) .trust-pillar-icon {
+  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+  box-shadow: 0 4px 12px rgba(215, 25, 32, 0.25);
 }
 
 .trust-pillar-icon svg {
@@ -121,7 +126,7 @@
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, var(--dark-red), var(--primary-red), var(--accent-gold));
+  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
 }
 
 .pledge-quote-mark {
@@ -136,7 +141,7 @@
 .pledge-quote-text {
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--dark-red);
+  color: var(--text-dark);
   line-height: 1.5;
   margin: 0 0 20px 0;
 }
@@ -162,7 +167,7 @@
 .pledge-point-check svg {
   width: 18px;
   height: 18px;
-  fill: #2e7d32;
+  fill: var(--primary-green);
   flex-shrink: 0;
 }
 
@@ -205,6 +210,10 @@
   margin-bottom: 6px;
   display: block;
   letter-spacing: -0.02em;
+}
+
+.metric-col:nth-child(even) .metric-number {
+  color: var(--primary-green);
 }
 
 .metric-label {

@@ -7,8 +7,8 @@
    1. Base & Page Wrapper
    -------------------------------------------------------------------------- */
 body.contact-page-body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #f6f9f7;
+  color: #111d16;
   font-family: 'Noto Sans Devanagari', sans-serif;
   margin: 0;
   padding: 0;
@@ -27,8 +27,18 @@ body.contact-page-body {
   padding: clamp(38px, 6vw, 56px) 20px clamp(34px, 5vw, 50px);
   text-align: center;
   margin-top: var(--navbar-height, 64px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #dce8e0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contact-top-banner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
 }
 
 .contact-banner-inner {
@@ -51,7 +61,7 @@ body.contact-page-body {
    3. Main Contact Section & 2-Column Grid
    -------------------------------------------------------------------------- */
 .contact-main-wrapper {
-  background-color: #f8fafc;
+  background-color: #f6f9f7;
   padding: 40px 0 70px 0;
 }
 
@@ -75,23 +85,23 @@ body.contact-page-body {
 .contact-form-box,
 .contact-connect-box {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dce8e0;
   border-radius: 14px;
   padding: clamp(22px, 3.8vw, 36px);
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 8px 24px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 1px 3px rgba(11, 132, 65, 0.03), 0 8px 24px rgba(11, 132, 65, 0.04);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .contact-form-box:hover,
 .contact-connect-box:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04), 0 12px 30px rgba(15, 23, 42, 0.05);
+  border-color: #bdd2c4;
+  box-shadow: 0 2px 6px rgba(11, 132, 65, 0.04), 0 12px 30px rgba(11, 132, 65, 0.07);
 }
 
 .contact-box-header {
   margin-bottom: 22px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #eef5f0;
 }
 
 .contact-box-title {
@@ -108,14 +118,14 @@ body.contact-page-body {
 
 /* Rich, vibrant gradient text for Contact Us and संदेश भेजें */
 .title-gradient {
-  background: linear-gradient(125deg, #dc2626 0%, #ea580c 45%, #e11d48 85%, #8b5cf6 100%);
+  background: linear-gradient(125deg, #d71920 0%, #0b8441 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
   display: inline-block;
   letter-spacing: 0.4px;
-  filter: drop-shadow(0 1px 1px rgba(220, 38, 38, 0.12));
+  filter: drop-shadow(0 1px 1px rgba(215, 25, 32, 0.12));
 }
 
 /* Colorful badge for / Write to Us */
@@ -123,31 +133,31 @@ body.contact-page-body {
   font-family: 'Noto Sans Devanagari', sans-serif;
   font-size: 0.92rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #fff1f2 0%, #ffedd5 100%);
-  color: #c2410c;
-  border: 1px solid #fed7aa;
+  background: #f0f8f3;
+  color: var(--primary-green, #0b8441);
+  border: 1px solid #c8e4d3;
   padding: 3px 12px;
   border-radius: 99px;
   letter-spacing: 0.3px;
   display: inline-flex;
   align-items: center;
-  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.08);
+  box-shadow: 0 2px 6px rgba(11, 132, 65, 0.08);
   vertical-align: middle;
 }
 
-/* Vivid colorful accent underline under the headers */
+/* Vivid colorful accent underline under the headers - Samajwadi Flag Gradient */
 .contact-colorful-bar {
   width: 58px;
   height: 4px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #dc2626 0%, #ea580c 50%, #f59e0b 100%);
+  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
   margin: 6px 0 10px 0;
-  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);
+  box-shadow: 0 2px 6px rgba(11, 132, 65, 0.25);
 }
 
 .contact-box-header p {
   font-size: 0.9rem;
-  color: #64748b;
+  color: #5a7263;
   margin: 0;
   line-height: 1.5;
 }
@@ -174,11 +184,11 @@ body.contact-page-body {
 .form-label {
   font-size: 0.86rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #111d16;
 }
 
 .form-label span.req {
-  color: #dc2626;
+  color: #d71920;
 }
 
 .form-control-input,
@@ -187,7 +197,7 @@ body.contact-page-body {
   padding: 11px 14px;
   font-family: inherit;
   font-size: 0.92rem;
-  color: #0f172a;
+  color: #111d16;
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
@@ -204,8 +214,8 @@ body.contact-page-body {
 .form-control-input:focus,
 .form-control-textarea:focus {
   background: #ffffff;
-  border-color: #801818;
-  box-shadow: 0 0 0 3px rgba(128, 24, 24, 0.12);
+  border-color: #0b8441;
+  box-shadow: 0 0 0 3px rgba(11, 132, 65, 0.12);
 }
 
 .form-control-textarea {
@@ -227,7 +237,7 @@ body.contact-page-body {
   gap: 8px;
   width: 100%;
   padding: 12px 24px;
-  background: #801818;
+  background: linear-gradient(135deg, var(--primary-red, #d71920) 0%, var(--dark-red, #a81218) 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -235,15 +245,24 @@ body.contact-page-body {
   font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(128, 24, 24, 0.2);
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(215, 25, 32, 0.25);
+  transition: all 0.2s ease;
   margin-top: 4px;
 }
 
 .form-submit-btn:hover:not(:disabled) {
-  background: #681313;
+  background: linear-gradient(135deg, #e62028 0%, #ba141b 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(128, 24, 24, 0.28);
+  box-shadow: 0 6px 18px rgba(215, 25, 32, 0.35);
+}
+
+.form-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.form-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .form-submit-btn:active:not(:disabled) {
@@ -313,9 +332,9 @@ body.contact-page-body {
 }
 
 .connect-item:hover .connect-icon-circle {
-  background: #f1f5f9;
-  color: #801818;
-  border-color: #cbd5e1;
+  background: #f0f7f2;
+  color: var(--primary-green, #0b8441);
+  border-color: var(--primary-green, #0b8441);
 }
 
 .connect-text-group {
@@ -327,7 +346,7 @@ body.contact-page-body {
   display: block;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #64748b;
+  color: #5a7263;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
@@ -335,7 +354,7 @@ body.contact-page-body {
 
 .connect-address-text {
   font-size: 0.94rem;
-  color: #1e293b;
+  color: #111d16;
   line-height: 1.55;
   margin: 0 0 8px 0;
   font-weight: 500;
@@ -351,7 +370,7 @@ body.contact-page-body {
   align-items: center;
   gap: 6px;
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #dce8e0;
   color: #334155;
   padding: 5px 12px;
   border-radius: 6px;
@@ -363,9 +382,9 @@ body.contact-page-body {
 }
 
 .connect-map-link:hover {
-  background: #0f172a;
+  background: var(--primary-green, #0b8441);
   color: #ffffff;
-  border-color: #0f172a;
+  border-color: var(--primary-green, #0b8441);
 }
 
 .connect-map-link svg {
@@ -388,13 +407,13 @@ body.contact-page-body {
 .connect-direct-link {
   font-size: 0.94rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #111d16;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .connect-direct-link:hover {
-  color: #801818;
+  color: var(--primary-green, #0b8441);
 }
 
 /* WhatsApp Inline Action Button */

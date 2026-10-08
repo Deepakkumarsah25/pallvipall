@@ -8,9 +8,9 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+  background: linear-gradient(135deg, var(--primary-red) 0%, #b8141b 45%, var(--primary-green) 55%, var(--dark-green) 100%);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-right: none;
   border-radius: 28px 0 0 28px;
   padding: 12px 14px 12px 16px;
@@ -19,14 +19,14 @@
   gap: 8px;
   cursor: pointer;
   z-index: 998;
-  box-shadow: -4px 6px 20px rgba(140, 26, 26, 0.35);
+  box-shadow: -4px 6px 20px rgba(11, 132, 65, 0.35);
   transition: all var(--transition-normal);
   font-family: var(--font-main);
 }
 
 .sidebar-dock-trigger:hover {
   padding-left: 22px;
-  background: linear-gradient(135deg, var(--primary-red) 0%, #a31d1d 100%);
+  background: linear-gradient(135deg, #e62028 0%, var(--primary-red) 45%, #0e964b 55%, var(--primary-green) 100%);
 }
 
 .sidebar-dock-icon {
@@ -56,7 +56,7 @@
 .sidebar-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(42, 27, 27, 0.55);
+  background: rgba(17, 29, 22, 0.55);
   backdrop-filter: blur(4px);
   z-index: 1050;
   opacity: 0;
@@ -78,7 +78,7 @@
   width: min(420px, 92vw);
   background: #ffffff;
   border-left: 1px solid var(--border-subtle);
-  box-shadow: -10px 0 35px rgba(42, 27, 27, 0.18);
+  box-shadow: -10px 0 35px rgba(17, 29, 22, 0.18);
   z-index: 1060;
   transform: translateX(100%);
   transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
@@ -94,11 +94,22 @@
 /* Sidebar Header */
 .sidebar-header {
   padding: 20px 24px;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, #f4e8dc 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7f2 100%);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+}
+
+.sidebar-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
 }
 
 .sidebar-brand-box {
@@ -112,7 +123,7 @@
   height: 40px;
   border-radius: 50%;
   background: #ffffff;
-  border: 1.5px solid #ebdcd5;
+  border: 1.5px solid #dce8e0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +192,7 @@
 
 /* Membership Card inside Sidebar */
 .sidebar-action-card {
-  background: var(--bg-primary);
+  background: var(--bg-card-alt);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 18px;
@@ -191,7 +202,7 @@
 .sidebar-card-title {
   font-size: 1rem;
   font-weight: 800;
-  color: var(--dark-red);
+  color: var(--primary-green);
   margin: 0 0 6px 0;
   display: flex;
   align-items: center;
@@ -239,8 +250,8 @@
 
 .sidebar-input-group input:focus,
 .sidebar-input-group select:focus {
-  border-color: var(--primary-red);
-  box-shadow: 0 0 0 3px rgba(215, 42, 42, 0.12);
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(11, 132, 65, 0.12);
 }
 
 .sidebar-submit-btn {
@@ -259,10 +270,10 @@
   padding: 12px 14px;
   background: #ffffff;
   border-radius: var(--radius-sm);
-  border-left: 3px solid var(--primary-red);
-  border-top: 1px solid #f0e4d7;
-  border-right: 1px solid #f0e4d7;
-  border-bottom: 1px solid #f0e4d7;
+  border-left: 3px solid var(--primary-green);
+  border-top: 1px solid #dce8e0;
+  border-right: 1px solid #dce8e0;
+  border-bottom: 1px solid #dce8e0;
   transition: transform var(--transition-fast);
 }
 
@@ -273,7 +284,7 @@
 .sidebar-notice-date {
   font-size: 0.74rem;
   font-weight: 700;
-  color: var(--accent-gold);
+  color: var(--primary-red);
   margin-bottom: 3px;
   display: block;
 }
@@ -303,7 +314,7 @@
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  background: var(--bg-primary);
+  background: var(--bg-card-alt);
   text-decoration: none;
   color: var(--text-dark);
   font-size: 0.9rem;
@@ -314,21 +325,21 @@
 
 .sidebar-contact-link:hover {
   background: #ffffff;
-  border-color: var(--primary-red);
-  color: var(--primary-red);
+  border-color: var(--primary-green);
+  color: var(--primary-green);
   transform: translateY(-1px);
 }
 
 .sidebar-contact-link svg {
   width: 18px;
   height: 18px;
-  fill: var(--primary-red);
+  fill: var(--primary-green);
 }
 
 /* Sidebar Footer Note */
 .sidebar-footer {
   padding: 16px 24px;
-  background: #fbf4ec;
+  background: #f0f7f2;
   border-top: 1px solid var(--border-subtle);
   font-size: 0.78rem;
   color: var(--text-muted);
