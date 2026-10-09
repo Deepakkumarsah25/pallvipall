@@ -10,17 +10,16 @@
       </button>
       <div class="page-heading">
         <h1>
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--admin-primary)" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          About Page Manager (7 Core Points)
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--admin-primary)" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          About Leader Manager (पल्लवी पाल - समाजवादी पार्टी)
         </h1>
-        <p>Edit text, imagery, and highlights directly aligned with the live About page UI.</p>
+        <p>Manage profile, bio, education, political career, party posts, achievements, social work, gallery &amp; social links.</p>
       </div>
     </div>
 
     <div class="topbar-right">
       <a href="/about" target="_blank" class="view-site-btn">
-        <span>View Live Page</span>
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/></svg>
+        <span>View Public Profile ↗</span>
       </a>
       <div class="admin-user-pill">
         <div class="admin-user-avatar"><%= (admin && admin.name ? admin.name.charAt(0) : 'A').toUpperCase() %></div>
@@ -45,12 +44,8 @@
         margin-bottom: 20px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        max-width: 100%;
-        box-sizing: border-box;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        scrollbar-width: thin;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
       }
-
       .about-tab-btn {
         display: inline-flex;
         align-items: center;
@@ -58,7 +53,7 @@
         padding: 8px 14px;
         border-radius: 8px;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         color: #475569;
         background: transparent;
         border: none;
@@ -68,308 +63,142 @@
         transition: all 0.18s ease;
         flex-shrink: 0;
       }
-
       .about-tab-btn:hover {
         background: #f1f5f9;
         color: var(--admin-text-dark);
       }
-
       .about-tab-btn.active {
         background: var(--admin-primary);
         color: #ffffff;
         box-shadow: 0 2px 6px rgba(220, 38, 38, 0.28);
       }
-
       .admin-panel-card {
         background: #ffffff;
         border: 1px solid var(--admin-border);
         border-radius: 12px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-        padding: 22px;
-        margin-bottom: 22px;
-        max-width: 100%;
-        box-sizing: border-box;
+        padding: 24px;
+        margin-bottom: 24px;
       }
-
       .card-header-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 18px;
-        padding-bottom: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
         border-bottom: 1px solid var(--admin-border-subtle);
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
       }
-
       .card-title-group h2 {
-        font-size: 16.5px;
-        font-weight: 700;
+        font-size: 17px;
+        font-weight: 800;
         color: var(--admin-text-dark);
-        margin: 0 0 4px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        margin-bottom: 4px;
       }
-
       .card-title-group p {
-        font-size: 13px;
+        font-size: 12px;
         color: var(--admin-text-muted);
         margin: 0;
       }
-
-      .form-grid-2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .form-grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-
       .form-field {
         margin-bottom: 16px;
-        min-width: 0;
       }
-
       .form-field label {
         display: block;
-        font-size: 12.5px;
+        font-size: 12px;
         font-weight: 700;
-        color: #334155;
-        margin-bottom: 5px;
+        color: var(--admin-text-dark);
+        margin-bottom: 6px;
       }
-
-      .form-input, .form-textarea {
+      .form-input, .form-textarea, .form-select {
         width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
         padding: 9px 12px;
         border-radius: 8px;
         border: 1px solid var(--admin-border);
-        background: #ffffff;
-        font-size: 13.5px;
-        font-family: inherit;
+        background: #fff;
+        font-size: 13px;
         color: var(--admin-text-dark);
-        transition: border-color 0.18s, box-shadow 0.18s;
+        box-sizing: border-box;
       }
-
-      .form-input:focus, .form-textarea:focus {
+      .form-input:focus, .form-textarea:focus, .form-select:focus {
         outline: none;
         border-color: var(--admin-primary);
-        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
       }
-
-      .form-textarea {
-        min-height: 80px;
-        resize: vertical;
-        line-height: 1.5;
-      }
-
-      /* Dual Image Card Component */
-      .dual-image-card {
-        background: #f8fafc;
-        border: 1px solid var(--admin-border);
-        border-radius: 10px;
-        padding: 16px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-      }
-
-      .dual-image-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .dual-image-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: #1e293b;
-      }
-
-      .dual-image-badge {
-        font-size: 11px;
-        font-weight: 600;
-        background: #e2e8f0;
-        color: #475569;
-        padding: 2px 8px;
-        border-radius: 6px;
-      }
-
-      .dual-image-body {
+      .form-grid-2 {
         display: grid;
-        grid-template-columns: 140px 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 16px;
-        align-items: start;
       }
-
-      .dual-image-preview-col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .preview-frame {
-        width: 130px;
-        height: 86px;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--admin-border);
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      }
-
-      .preview-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .preview-caption {
-        font-size: 11px;
-        color: var(--admin-text-muted);
-        text-align: center;
-      }
-
-      .dual-image-inputs-col {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .image-opt-group {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .opt-label {
-        font-size: 11.5px;
-        font-weight: 700;
-        color: #475569;
-      }
-
-      .file-upload-wrapper input[type="file"] {
-        width: 100%;
-        padding: 6px 10px;
-        font-size: 12px;
-        background: #ffffff;
-        border: 1px solid var(--admin-border);
-        border-radius: 7px;
-        color: #475569;
-        cursor: pointer;
-      }
-
-      .opt-divider {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #94a3b8;
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .opt-divider::before, .opt-divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: #e2e8f0;
-      }
-
-      /* Card Mini Photo Box (for Activities & Messages) */
-      .card-photo-box {
+      .form-grid-3 {
         display: grid;
-        grid-template-columns: 80px 1fr;
-        gap: 12px;
-        align-items: center;
-        background: #ffffff;
-        border: 1px solid var(--admin-border);
-        border-radius: 8px;
-        padding: 8px 10px;
-        margin-top: 6px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
       }
-
-      .card-photo-preview {
-        width: 76px;
-        height: 56px;
-        border-radius: 6px;
-        overflow: hidden;
-        border: 1px solid var(--admin-border);
-        background: #f1f5f9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      @media (max-width: 768px) {
+        .form-grid-2, .form-grid-3 {
+          grid-template-columns: 1fr;
+        }
       }
-
-      .card-photo-preview.round {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-      }
-
-      .card-photo-preview img {
+      .item-table {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin-top: 14px;
       }
-
-      .card-photo-inputs input[type="file"] {
-        font-size: 11px;
-        padding: 4px;
-        width: 100%;
-      }
-
-      /* Sub-item Cards */
-      .sub-item-card {
+      .item-table th {
         background: #f8fafc;
-        border: 1px solid var(--admin-border);
-        border-radius: 10px;
-        padding: 16px;
-        margin-bottom: 14px;
-        position: relative;
-        transition: border-color 0.18s;
-        max-width: 100%;
-        box-sizing: border-box;
+        padding: 10px 14px;
+        font-weight: 800;
+        color: #475569;
+        text-align: left;
+        border-bottom: 1px solid var(--admin-border);
       }
-
-      .sub-item-card:hover {
-        border-color: #cbd5e1;
+      .item-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--admin-border-subtle);
+        vertical-align: middle;
       }
-
-      .sub-item-badge {
-        display: inline-block;
-        padding: 2px 8px;
-        background: #e2e8f0;
-        color: #334155;
-        font-size: 11px;
-        font-weight: 700;
+      .item-table tr:hover td {
+        background: #fafaf9;
+      }
+      .btn-action-sm {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 10px;
         border-radius: 6px;
-        margin-bottom: 10px;
-      }
-
-      .section-subheading {
-        font-size: 13.5px;
+        font-size: 12px;
         font-weight: 700;
-        color: #1e293b;
-        margin: 18px 0 10px;
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
       }
-
+      .btn-edit-sm {
+        background: #eff6ff;
+        color: #2563eb;
+      }
+      .btn-edit-sm:hover { background: #dbeafe; }
+      .btn-del-sm {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+      .btn-del-sm:hover { background: #fee2e2; }
+      .badge-sp {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 800;
+        background: #fef2f2;
+        color: #b91c1c;
+      }
       .btn-submit-action {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 22px;
+        padding: 10px 20px;
         border-radius: 8px;
         background: var(--admin-primary);
         color: #ffffff;
@@ -377,711 +206,935 @@
         font-weight: 700;
         border: none;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
-        transition: background 0.18s, transform 0.15s;
+        box-shadow: 0 2px 6px rgba(220, 38, 38, 0.2);
+        transition: all 0.2s;
       }
-
       .btn-submit-action:hover {
         background: var(--admin-primary-dark);
         transform: translateY(-1px);
       }
-
-      @media (max-width: 1100px) {
-        .form-grid-3 {
-          grid-template-columns: repeat(2, 1fr);
-        }
+      .add-box-card {
+        background: #fdfbf7;
+        border: 1.5px dashed #fed7aa;
+        border-radius: 10px;
+        padding: 18px;
+        margin-bottom: 22px;
       }
-
-      @media (max-width: 768px) {
-        .admin-panel-card {
-          padding: 16px;
-        }
-        .dual-image-body, .card-photo-box {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-        .form-grid-2, .form-grid-3 {
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-        .card-header-bar {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .btn-submit-action {
-          width: 100%;
-          justify-content: center;
-        }
+      .add-box-card h3 {
+        font-size: 14px;
+        font-weight: 800;
+        color: #9a3412;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .photo-preview-wrap {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      .photo-thumb-box {
+        width: 80px;
+        height: 95px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--admin-border);
+        background: #f1f5f9;
+        flex-shrink: 0;
+      }
+      .photo-thumb-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .modal-backdrop-custom {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.6);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .modal-backdrop-custom.active {
+        display: flex;
+      }
+      .modal-card-custom {
+        background: #fff;
+        border-radius: 14px;
+        width: 100%;
+        max-width: 540px;
+        padding: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        max-height: 90vh;
+        overflow-y: auto;
       }
     </style>
 
     <!-- Alert / Toast Messages -->
-    <% if (typeof message !== 'undefined' && message) { %>
+    <% if (message) { %>
       <div class="admin-alert admin-alert-success">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        <span><%= message %></span>
+        ✓ <%= message %>
       </div>
     <% } %>
-
-    <% if (typeof error !== 'undefined' && error) { %>
+    <% if (error) { %>
       <div class="admin-alert admin-alert-error">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span><%= error %></span>
+        ⚠ <%= error %>
       </div>
     <% } %>
 
-    <!-- 8 Tabs (Header + 7 Core Points) -->
+    <!-- 9 Responsive Navigation Tabs -->
     <div class="about-nav-tabs">
-      <a href="/admin/about?tab=meta" class="about-tab-btn <%= activeTab === 'meta' ? 'active' : '' %>">
-        Header & Title
+      <a href="/admin/about?tab=profile" class="about-tab-btn <%= activeTab === 'profile' ? 'active' : '' %>">
+        1. Profile &amp; Hero
       </a>
-      <a href="/admin/about?tab=objective" class="about-tab-btn <%= activeTab === 'objective' ? 'active' : '' %>">
-        1. Objective
+      <a href="/admin/about?tab=position" class="about-tab-btn <%= activeTab === 'position' ? 'active' : '' %>">
+        2. Current Position
       </a>
-      <a href="/admin/about?tab=mission" class="about-tab-btn <%= activeTab === 'mission' ? 'active' : '' %>">
-        2. Mission
+      <a href="/admin/about?tab=bio" class="about-tab-btn <%= activeTab === 'bio' ? 'active' : '' %>">
+        3. Biography &amp; Ideology
       </a>
-      <a href="/admin/about?tab=vision" class="about-tab-btn <%= activeTab === 'vision' ? 'active' : '' %>">
-        3. Vision (Photo)
+      <a href="/admin/about?tab=education" class="about-tab-btn <%= activeTab === 'education' ? 'active' : '' %>">
+        4. Education (<%= about.education ? about.education.length : 0 %>)
       </a>
-      <a href="/admin/about?tab=background" class="about-tab-btn <%= activeTab === 'background' ? 'active' : '' %>">
-        4. Background
+      <a href="/admin/about?tab=career" class="about-tab-btn <%= activeTab === 'career' ? 'active' : '' %>">
+        5. Political Career (<%= about.politicalCareer ? about.politicalCareer.length : 0 %>)
       </a>
-      <a href="/admin/about?tab=reservation" class="about-tab-btn <%= activeTab === 'reservation' ? 'active' : '' %>">
-        5. Reservation Info
+      <a href="/admin/about?tab=party_posts" class="about-tab-btn <%= activeTab === 'party_posts' ? 'active' : '' %>">
+        6. Party Posts (<%= about.partyPosts ? about.partyPosts.length : 0 %>)
       </a>
-      <a href="/admin/about?tab=activities" class="about-tab-btn <%= activeTab === 'activities' ? 'active' : '' %>">
-        6. Key Activities (Photos)
+      <a href="/admin/about?tab=achievements" class="about-tab-btn <%= activeTab === 'achievements' ? 'active' : '' %>">
+        7. Achievements (<%= about.achievements ? about.achievements.length : 0 %>)
       </a>
-      <a href="/admin/about?tab=messages" class="about-tab-btn <%= activeTab === 'messages' ? 'active' : '' %>">
-        7. Important Messages (Photos)
+      <a href="/admin/about?tab=social_work" class="about-tab-btn <%= activeTab === 'social_work' ? 'active' : '' %>">
+        8. Social Work (<%= about.socialWork ? about.socialWork.length : 0 %>)
+      </a>
+      <a href="/admin/about?tab=social_links" class="about-tab-btn <%= activeTab === 'social_links' ? 'active' : '' %>">
+        9. Social Media Links (<%= about.socialLinks ? about.socialLinks.length : 0 %>)
       </a>
     </div>
 
     <!-- ==========================================
-         TAB 0: HEADER (No Image in UI)
+         TAB 1: PROFILE & HERO
     ========================================== -->
-    <% if (activeTab === 'meta') { %>
+    <% if (activeTab === 'profile') { %>
       <div class="admin-panel-card">
         <div class="card-header-bar">
           <div class="card-title-group">
-            <h2>Header Title & Subtitle</h2>
-            <p>Update the top banner title and tagline displayed at the very top of the About page.</p>
+            <h2>Profile &amp; Hero Section (मुख्य परिचय)</h2>
+            <p>Update Pallavi Pal's primary photo, name, party, designation, constituency, and short introduction.</p>
           </div>
         </div>
 
-        <form action="/admin/about/meta" method="POST">
-          <div class="form-field">
-            <label>Page Main Title</label>
-            <input type="text" name="pageTitle" class="form-input" value="<%= about.meta.pageTitle %>" required />
-          </div>
-
-          <div class="form-field">
-            <label>Subtitle / Core Tagline</label>
-            <textarea name="pageSubtitle" class="form-textarea" rows="2"><%= about.meta.pageSubtitle %></textarea>
-          </div>
-
-          <div style="margin-top: 10px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Header Settings
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 1: OBJECTIVE (No Image in UI)
-    ========================================== -->
-    <% if (activeTab === 'objective') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 1: Campaign Objective (अभियान का उद्देश्य)</h2>
-            <p>Configure navigation title, section heading, description, and 4 objective pillars.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/objective" method="POST">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.objective.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.objective.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Primary Description</label>
-            <textarea name="description" class="form-textarea" rows="3"><%= about.objective.description %></textarea>
-          </div>
-
-          <div class="section-subheading">4 Objective Pillars</div>
-
-          <div class="form-grid-2">
-            <% (about.objective.points || []).forEach((pt, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Pillar #<%= idx + 1 %></span>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Pillar Title</label>
-                  <input type="text" name="point_title[]" class="form-input" value="<%= pt.title %>" required />
-                </div>
-                <div class="form-field" style="margin-bottom: 0;">
-                  <label>Pillar Description</label>
-                  <textarea name="point_desc[]" class="form-textarea" rows="2"><%= pt.desc %></textarea>
-                </div>
+        <form action="/admin/about/profile" method="POST" enctype="multipart/form-data">
+          <!-- Profile Photo (Dual upload) -->
+          <div style="background: #fafaf9; border: 1px solid var(--admin-border); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+            <label style="font-size: 13px; font-weight: 800; color: #1e293b; display: block; margin-bottom: 10px;">Official Portrait Photo</label>
+            <div class="photo-preview-wrap">
+              <div class="photo-thumb-box">
+                <img id="profile_photo_preview" src="<%= about.profile.photo || '/images/about/pallavi-pal.svg' %>" alt="Profile Preview" onerror="this.src='/images/about/pallavi-pal.svg';" />
               </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Objective Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 2: MISSION (No Image in UI)
-    ========================================== -->
-    <% if (activeTab === 'mission') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 2: Mission (मिशन)</h2>
-            <p>Define the campaign mission statement, heading, and 4 action pillars.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/mission" method="POST">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.mission.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.mission.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Mission Narrative</label>
-            <textarea name="description" class="form-textarea" rows="3"><%= about.mission.description %></textarea>
-          </div>
-
-          <div class="section-subheading">4 Mission Action Pillars</div>
-
-          <div class="form-grid-2">
-            <% (about.mission.pillars || []).forEach((pil, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Pillar #<%= idx + 1 %></span>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Pillar Title</label>
-                  <input type="text" name="pillar_title[]" class="form-input" value="<%= pil.title %>" required />
+              <div style="flex: 1;">
+                <div style="margin-bottom: 8px;">
+                  <span style="font-size: 11px; font-weight: 700; color: #64748b; display: block; margin-bottom: 4px;">Option 1: Upload Image File</span>
+                  <input type="file" name="photoFile" accept="image/*" onchange="previewImg(this, 'profile_photo_preview')" style="font-size: 12px;" />
                 </div>
-                <div class="form-field" style="margin-bottom: 0;">
-                  <label>Pillar Description</label>
-                  <textarea name="pillar_desc[]" class="form-textarea" rows="2"><%= pil.desc %></textarea>
-                </div>
-              </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Mission Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 3: VISION (UI Displays Photo: 1 of 3)
-    ========================================== -->
-    <% if (activeTab === 'vision') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 3: Vision (दृष्टिकोण - Photo Enabled)</h2>
-            <p>Configure vision goals and the primary visual photo displayed prominently in this section on the live page.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/vision" method="POST" enctype="multipart/form-data">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.vision.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.vision.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Vision Narrative</label>
-            <textarea name="description" class="form-textarea" rows="3"><%= about.vision.description %></textarea>
-          </div>
-
-          <!-- Dual Image Input for Vision -->
-          <div class="dual-image-card">
-            <div class="dual-image-header">
-              <span class="dual-image-title">Vision Visual Photo (Displayed on Live UI)</span>
-              <span class="dual-image-badge">File Upload OR URL</span>
-            </div>
-            <div class="dual-image-body">
-              <div class="dual-image-preview-col">
-                <div class="preview-frame">
-                  <img id="preview_vis" src="<%= about.vision.image || '/images/about/pallavi-pal-heritage.jpg' %>" alt="Vision Preview" onerror="this.src='/images/about/pallavi-pal-hero.jpg';" />
-                </div>
-                <small class="preview-caption">Live Preview</small>
-              </div>
-              <div class="dual-image-inputs-col">
-                <div class="image-opt-group">
-                  <span class="opt-label">Option 1: Choose File from Computer</span>
-                  <div class="file-upload-wrapper">
-                    <input type="file" name="imageFile" accept="image/*" onchange="previewSelectedFile(this, 'preview_vis')" />
-                  </div>
-                </div>
-                <div class="opt-divider"><span>OR</span></div>
-                <div class="image-opt-group">
-                  <span class="opt-label">Option 2: Enter Photo URL / Path</span>
-                  <input type="text" name="image" class="form-input" value="<%= about.vision.image %>" placeholder="/images/about/pallavi-pal-heritage.jpg or https://..." oninput="previewUrlInput(this.value, 'preview_vis')" />
+                <div>
+                  <span style="font-size: 11px; font-weight: 700; color: #64748b; display: block; margin-bottom: 4px;">Option 2: Photo URL / Path</span>
+                  <input type="text" name="photo" class="form-input" value="<%= about.profile.photo %>" placeholder="/images/about/... or https://..." oninput="document.getElementById('profile_photo_preview').src = this.value;" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="section-subheading">4 Strategic Vision Goals</div>
-
-          <div class="form-grid-2">
-            <% (about.vision.visionPoints || []).forEach((vp, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Vision Goal #<%= idx + 1 %></span>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Goal Title</label>
-                  <input type="text" name="vp_title[]" class="form-input" value="<%= vp.title %>" required />
-                </div>
-                <div class="form-field" style="margin-bottom: 0;">
-                  <label>Goal Description</label>
-                  <textarea name="vp_desc[]" class="form-textarea" rows="2"><%= vp.desc %></textarea>
-                </div>
-              </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Vision Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 4: BACKGROUND (No Image in UI)
-    ========================================== -->
-    <% if (activeTab === 'background') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 4: Campaign Background (अभियान की पृष्ठभूमि)</h2>
-            <p>Historical roots and timeline milestones of the campaign.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/background" method="POST">
           <div class="form-grid-2">
             <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.background.navTitle %>" required />
+              <label>Full Name (हिंदी)</label>
+              <input type="text" name="name" class="form-input" value="<%= about.profile.name %>" required />
             </div>
-
             <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.background.title %>" required />
+              <label>Name (English)</label>
+              <input type="text" name="englishName" class="form-input" value="<%= about.profile.englishName %>" />
             </div>
           </div>
-
-          <div class="form-field">
-            <label>Primary Background Narrative</label>
-            <textarea name="description" class="form-textarea" rows="3"><%= about.background.description %></textarea>
-          </div>
-
-          <div class="section-subheading">Historical Milestones (Timeline)</div>
-
-          <div class="form-grid-2">
-            <% (about.background.timeline || []).forEach((tm, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Milestone #<%= idx + 1 %></span>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Era / Phase</label>
-                  <input type="text" name="time_phase[]" class="form-input" value="<%= tm.phase %>" required />
-                </div>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Milestone Title</label>
-                  <input type="text" name="time_title[]" class="form-input" value="<%= tm.title %>" required />
-                </div>
-                <div class="form-field" style="margin-bottom: 0;">
-                  <label>Summary Description</label>
-                  <textarea name="time_desc[]" class="form-textarea" rows="2"><%= tm.desc %></textarea>
-                </div>
-              </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Background Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 5: RESERVATION INFO (No Image in UI)
-    ========================================== -->
-    <% if (activeTab === 'reservation') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 5: Reservation Information (आरक्षण संकल्प अभियान)</h2>
-            <p>Constitutional provisions and key community demands.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/reservation" method="POST">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.reservation.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.reservation.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Primary Overview</label>
-            <textarea name="description" class="form-textarea" rows="3"><%= about.reservation.description %></textarea>
-          </div>
-
-          <div class="section-subheading">4 Core Constitutional Demands</div>
-
-          <div class="form-grid-2">
-            <% (about.reservation.keyDemands || []).forEach((dem, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Demand #<%= idx + 1 %></span>
-                <div class="form-grid-2" style="margin-bottom: 8px;">
-                  <div class="form-field" style="margin-bottom: 0;">
-                    <label>Demand Title</label>
-                    <input type="text" name="demand_title[]" class="form-input" value="<%= dem.title %>" required />
-                  </div>
-                  <div class="form-field" style="margin-bottom: 0;">
-                    <label>Category / Tag</label>
-                    <input type="text" name="demand_tag[]" class="form-input" value="<%= dem.tag %>" />
-                  </div>
-                </div>
-                <div class="form-field" style="margin-bottom: 0;">
-                  <label>Demand Description</label>
-                  <textarea name="demand_desc[]" class="form-textarea" rows="2"><%= dem.desc %></textarea>
-                </div>
-              </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Reservation Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 6: ACTIVITIES (UI Displays Photos: 2 of 3)
-    ========================================== -->
-    <% if (activeTab === 'activities') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 6: Key Activities (प्रमुख गतिविधियां - Photos Enabled)</h2>
-            <p>Ground-level initiatives where each activity card displays its photo on the live page.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/activities" method="POST" enctype="multipart/form-data">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.activities.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.activities.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Activities Overview</label>
-            <textarea name="description" class="form-textarea" rows="2"><%= about.activities.description %></textarea>
-          </div>
-
-          <!-- Showcase Visual & Detail Section -->
-          <div class="section-subheading">Main Activities Showcase (Photo & Side Details Section)</div>
-
-          <div class="sub-item-card" style="margin-bottom: 24px; background: #ffffff; border: 1.5px solid #fed7aa;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-              <span class="sub-item-badge" style="background: var(--admin-primary); color: #fff; margin-bottom: 0;">Showcase Highlight Unit</span>
-              <span style="font-size: 11px; color: var(--admin-muted); font-weight: 600;">Laptop: Photo Left + Detail Right | Mobile: Photo Top + Detail Below</span>
-            </div>
-
-            <!-- Dual Image Input for Showcase Photo -->
-            <div class="dual-image-card" style="margin-bottom: 16px;">
-              <div class="dual-image-header">
-                <span class="dual-image-title">Showcase Visual Photo</span>
-                <span class="dual-image-badge">File Upload OR URL</span>
-              </div>
-              <div class="dual-image-body">
-                <div class="dual-image-preview-col">
-                  <div class="preview-frame">
-                    <img id="preview_act_main" src="<%= about.activities.image || '/images/about/pallavi-pal-chaupal.jpg' %>" alt="Activities Main Photo" onerror="this.src='/images/about/pallavi-pal-hero.jpg';" />
-                  </div>
-                  <small class="preview-caption">Live Preview</small>
-                </div>
-                <div class="dual-image-inputs-col">
-                  <div class="image-opt-group">
-                    <span class="opt-label">Option 1: Choose File from Computer</span>
-                    <div class="file-upload-wrapper">
-                      <input type="file" name="imageFile" accept="image/*" onchange="previewSelectedFile(this, 'preview_act_main')" />
-                    </div>
-                  </div>
-                  <div class="opt-divider"><span>OR</span></div>
-                  <div class="image-opt-group">
-                    <span class="opt-label">Option 2: Enter Photo URL / Path</span>
-                    <input type="text" name="image" class="form-input" value="<%= about.activities.image || '' %>" placeholder="/images/about/pallavi-pal-chaupal.jpg or https://..." oninput="previewUrlInput(this.value, 'preview_act_main')" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label>Detail Heading (Displays on Right Side in Laptop / Below on Phone)</label>
-              <input type="text" name="detailTitle" class="form-input" value="<%= about.activities.detailTitle || 'जमीनी गतिविधियां एवं जनसंपर्क विस्तार' %>" />
-            </div>
-
-            <div class="form-field">
-              <label>Detail Description (Overview narrative about ground activities)</label>
-              <textarea name="detailDescription" class="form-textarea" rows="2"><%= about.activities.detailDescription || 'अभियान के अंतर्गत प्रत्येक गांव, पंचायत और ब्लॉक स्तर पर चौपालों और जनसंवाद कार्यक्रमों का निरंतर आयोजन किया जा रहा है, जिससे समाज के प्रत्येक व्यक्ति तक अधिकार और एकता का संदेश पहुंचे।' %></textarea>
-            </div>
-
-            <label style="font-size: 12px; font-weight: 700; color: var(--admin-dark); display: block; margin: 14px 0 8px;">Showcase Highlights / Key Points (3 Points)</label>
-            <% 
-              const actDetailPoints = (about.activities.detailPoints && about.activities.detailPoints.length > 0) 
-                ? about.activities.detailPoints 
-                : [
-                    { title: "गांव-गांव चौपाल व जनसंवाद", desc: "बुजुर्गों, युवाओं और महिलाओं के साथ बैठकर स्थानीय समस्याओं व संवैधानिक अधिकारों पर संवाद।" },
-                    { title: "संकल्प हस्ताक्षर अभियान", desc: "आरक्षण के समर्थन में लाखों परिवारों से संकल्प पत्र भरकर संगठित शक्ति का प्रदर्शन।" },
-                    { title: "विधिक व सामाजिक मार्गदर्शन", desc: "जाति प्रमाण पत्र, छात्रवृत्ति व सरकारी योजनाओं के लाभ हेतु युवाओं को मार्गदर्शन।" }
-                  ];
-            %>
-            <div class="form-grid-3">
-              <% actDetailPoints.forEach((dp, dIdx) => { %>
-                <div style="background: #faf8f5; border: 1px solid #ebd9c8; border-radius: 8px; padding: 12px;">
-                  <span class="sub-item-badge" style="font-size: 10px; margin-bottom: 6px;">Highlight #<%= dIdx + 1 %></span>
-                  <div class="form-field" style="margin-bottom: 6px;">
-                    <label style="font-size: 11px;">Heading</label>
-                    <input type="text" name="detail_point_title[]" class="form-input" value="<%= dp.title %>" style="font-size: 12px; padding: 6px 8px;" />
-                  </div>
-                  <div class="form-field" style="margin-bottom: 0;">
-                    <label style="font-size: 11px;">Description</label>
-                    <textarea name="detail_point_desc[]" class="form-textarea" rows="2" style="font-size: 12px; padding: 6px 8px;"><%= dp.desc %></textarea>
-                  </div>
-                </div>
-              <% }); %>
-            </div>
-          </div>
-
-          <div class="section-subheading">Key Ground Activities (with Individual Photos)</div>
-
-          <div class="form-grid-2">
-            <% (about.activities.activityList || []).forEach((act, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Activity #<%= idx + 1 %></span>
-                <div class="form-grid-2" style="margin-bottom: 8px;">
-                  <div class="form-field" style="margin-bottom: 0;">
-                    <label>Activity Name</label>
-                    <input type="text" name="act_name[]" class="form-input" value="<%= act.name %>" required />
-                  </div>
-                  <div class="form-field" style="margin-bottom: 0;">
-                    <label>Tag / Category</label>
-                    <input type="text" name="act_tag[]" class="form-input" value="<%= act.tag %>" />
-                  </div>
-                </div>
-
-                <!-- Dual Photo Input for this Activity Card -->
-                <div class="card-photo-box">
-                  <div class="card-photo-preview">
-                    <img id="preview_act_<%= idx %>" src="<%= act.image || '/images/about/pallavi-pal-chaupal.jpg' %>" alt="Activity Photo" onerror="this.src='/images/about/pallavi-pal-hero.jpg';" />
-                  </div>
-                  <div class="card-photo-inputs">
-                    <div style="margin-bottom: 4px;">
-                      <span class="opt-label">Option 1: Choose File</span>
-                      <input type="file" name="act_file_<%= idx %>" accept="image/*" onchange="previewSelectedFile(this, 'preview_act_<%= idx %>')" />
-                    </div>
-                    <div>
-                      <span class="opt-label">Option 2: Photo URL / Path</span>
-                      <input type="text" name="act_image[]" class="form-input" value="<%= act.image %>" placeholder="/images/about/... or https://..." oninput="previewUrlInput(this.value, 'preview_act_<%= idx %>')" style="font-size: 12px; padding: 5px 8px;" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-field" style="margin-bottom: 0; margin-top: 10px;">
-                  <label>Description</label>
-                  <textarea name="act_desc[]" class="form-textarea" rows="2"><%= act.desc %></textarea>
-                </div>
-              </div>
-            <% }); %>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Activities Section
-            </button>
-          </div>
-        </form>
-      </div>
-    <% } %>
-
-    <!-- ==========================================
-         TAB 7: MESSAGES (UI Displays Photos: 3 of 3)
-    ========================================== -->
-    <% if (activeTab === 'messages') { %>
-      <div class="admin-panel-card">
-        <div class="card-header-bar">
-          <div class="card-title-group">
-            <h2>Point 7: Important Messages (महत्वपूर्ण संदेश - Photos Enabled)</h2>
-            <p>Leadership and wing statements where each leader card displays their photo on the live page.</p>
-          </div>
-        </div>
-
-        <form action="/admin/about/messages" method="POST" enctype="multipart/form-data">
-          <div class="form-grid-2">
-            <div class="form-field">
-              <label>Navigation Button Label</label>
-              <input type="text" name="navTitle" class="form-input" value="<%= about.messages.navTitle %>" required />
-            </div>
-
-            <div class="form-field">
-              <label>Section Heading</label>
-              <input type="text" name="title" class="form-input" value="<%= about.messages.title %>" required />
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label>Messages Overview</label>
-            <textarea name="description" class="form-textarea" rows="2"><%= about.messages.description %></textarea>
-          </div>
-
-          <div class="section-subheading">Leadership & Wing Statements (with Individual Photos)</div>
 
           <div class="form-grid-3">
-            <% (about.messages.messagesList || []).forEach((msg, idx) => { %>
-              <div class="sub-item-card">
-                <span class="sub-item-badge">Message #<%= idx + 1 %></span>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Sender Name</label>
-                  <input type="text" name="msg_sender[]" class="form-input" value="<%= msg.senderName %>" required />
-                </div>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Role / Wing</label>
-                  <input type="text" name="msg_role[]" class="form-input" value="<%= msg.role %>" />
-                </div>
-                <div class="form-field" style="margin-bottom: 8px;">
-                  <label>Designation</label>
-                  <input type="text" name="msg_desig[]" class="form-input" value="<%= msg.designation %>" />
-                </div>
-
-                <!-- Dual Photo Input for Message Author -->
-                <div class="card-photo-box">
-                  <div class="card-photo-preview round">
-                    <img id="preview_msg_<%= idx %>" src="<%= msg.photo || '/images/about/pallavi-pal-hero.jpg' %>" alt="Author Photo" onerror="this.src='/images/about/pallavi-pal-hero.jpg';" />
-                  </div>
-                  <div class="card-photo-inputs">
-                    <div style="margin-bottom: 4px;">
-                      <span class="opt-label">Option 1: Choose File</span>
-                      <input type="file" name="msg_file_<%= idx %>" accept="image/*" onchange="previewSelectedFile(this, 'preview_msg_<%= idx %>')" />
-                    </div>
-                    <div>
-                      <span class="opt-label">Option 2: Photo URL / Path</span>
-                      <input type="text" name="msg_photo[]" class="form-input" value="<%= msg.photo %>" placeholder="/images/... or https://..." oninput="previewUrlInput(this.value, 'preview_msg_<%= idx %>')" style="font-size: 12px; padding: 5px 8px;" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-field" style="margin-bottom: 0; margin-top: 10px;">
-                  <label>Statement / Message</label>
-                  <textarea name="msg_text[]" class="form-textarea" rows="3"><%= msg.message %></textarea>
-                </div>
-              </div>
-            <% }); %>
+            <div class="form-field">
+              <label>Designation / पद</label>
+              <input type="text" name="designation" class="form-input" value="<%= about.profile.designation %>" required />
+            </div>
+            <div class="form-field">
+              <label>Political Party</label>
+              <input type="text" name="party" class="form-input" value="<%= about.profile.party %>" required />
+            </div>
+            <div class="form-field">
+              <label>Constituency / Region</label>
+              <input type="text" name="constituency" class="form-input" value="<%= about.profile.constituency %>" />
+            </div>
           </div>
 
-          <div style="margin-top: 16px;">
-            <button type="submit" class="btn-submit-action">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              Save Messages Section
-            </button>
+          <div class="form-field">
+            <label>Short Intro / संक्षिप्त संदेश (Displayed prominently in Hero banner)</label>
+            <textarea name="shortIntro" class="form-textarea" rows="3"><%= about.profile.shortIntro %></textarea>
           </div>
+
+          <button type="submit" class="btn-submit-action">
+            Save Profile &amp; Hero
+          </button>
         </form>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 2: BIOGRAPHY
+    ========================================== -->
+    <% if (activeTab === 'bio') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>About &amp; Biography (जीवन परिचय एवं विचारधारा)</h2>
+            <p>Edit narrative biography, paragraphs, and core political values.</p>
+          </div>
+        </div>
+
+        <form action="/admin/about/bio" method="POST">
+          <div class="form-field">
+            <label>Section Heading</label>
+            <input type="text" name="heading" class="form-input" value="<%= about.biography.heading %>" required />
+          </div>
+
+          <div class="form-field">
+            <label>Primary Biography Summary / मुख्य सारांश</label>
+            <textarea name="summary" class="form-textarea" rows="4"><%= about.biography.summary %></textarea>
+          </div>
+
+          <div class="form-field">
+            <label>Detailed Narrative Paragraphs (One paragraph per line)</label>
+            <textarea name="paragraphsText" class="form-textarea" rows="5" placeholder="Write paragraphs separated by new lines..."><%= (about.biography.paragraphs || []).join("\n") %></textarea>
+            <small style="color: var(--admin-text-muted); font-size: 11px;">Each line becomes a formatted paragraph in the Biography section.</small>
+          </div>
+
+          <div class="form-field">
+            <label>Core Political Values / मूल्य (Separated by commas or new lines)</label>
+            <textarea name="coreValuesText" class="form-textarea" rows="3" placeholder="e.g. सामाजिक न्याय, लोकतंत्र, महिला सशक्तिकरण"><%= (about.biography.coreValues || []).join(", ") %></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-action">
+            Save Biography
+          </button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 3: CURRENT POSITION
+    ========================================== -->
+    <% if (activeTab === 'position') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Current Position (वर्तमान दायित्व एवं पद)</h2>
+            <p>Highlight Pallavi Pal's current active role and official responsibilities (displayed directly inside the Hero Overview section on the public profile).</p>
+          </div>
+        </div>
+
+        <form action="/admin/about/position" method="POST">
+          <div class="form-grid-3">
+            <div class="form-field">
+              <label>Position Title</label>
+              <input type="text" name="title" class="form-input" value="<%= about.currentPosition.title %>" required />
+            </div>
+            <div class="form-field">
+              <label>Organization / Party Role</label>
+              <input type="text" name="role" class="form-input" value="<%= about.currentPosition.role %>" />
+            </div>
+            <div class="form-field">
+              <label>Location / Jurisdiction</label>
+              <input type="text" name="location" class="form-input" value="<%= about.currentPosition.location %>" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Description &amp; Key Responsibilities</label>
+            <textarea name="description" class="form-textarea" rows="3"><%= about.currentPosition.description %></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-action">
+            Save Current Position
+          </button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 4: EDUCATION CRUD
+    ========================================== -->
+    <% if (activeTab === 'education') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Education (शैक्षणिक योग्यता)</h2>
+            <p>Manage degrees, institutions, years and educational details.</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add New Education Entry</h3>
+          <form action="/admin/about/education/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field">
+                <label>Degree / Qualification *</label>
+                <input type="text" name="degree" class="form-input" placeholder="e.g. स्नातकोत्तर (M.A.) / स्नातक (B.A.)" required />
+              </div>
+              <div class="form-field">
+                <label>Institution / University</label>
+                <input type="text" name="institution" class="form-input" placeholder="e.g. लखनऊ विश्वविद्यालय" />
+              </div>
+              <div class="form-field">
+                <label>Year / Session</label>
+                <input type="text" name="year" class="form-input" placeholder="e.g. 2018 or उत्तीर्ण" />
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label>Additional Details / Notes</label>
+                <input type="text" name="details" class="form-input" placeholder="e.g. राजनीति विज्ञान एवं समाजशास्त्र" />
+              </div>
+              <div class="form-field">
+                <label>Display Order (Priority)</label>
+                <input type="number" name="order" class="form-input" value="<%= (about.education ? about.education.length : 0) + 1 %>" />
+              </div>
+            </div>
+            <button type="submit" class="btn-submit-action">Add Education Entry</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.education && about.education.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Degree / Qualification</th>
+                <th>Institution</th>
+                <th>Year</th>
+                <th>Details</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.education.forEach((edu, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= edu.degree %></strong></td>
+                  <td><%= edu.institution || '—' %></td>
+                  <td><span class="badge-sp"><%= edu.year || '—' %></span></td>
+                  <td><%= edu.details || '—' %></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-edu-<%= edu._id %>')">Edit</button>
+                    <form action="/admin/about/education/delete/<%= edu._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this education entry?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-edu-<%= edu._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Education</h3>
+                        <form action="/admin/about/education/edit/<%= edu._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Degree</label>
+                            <input type="text" name="degree" class="form-input" value="<%= edu.degree %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Institution</label>
+                            <input type="text" name="institution" class="form-input" value="<%= edu.institution %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Year</label>
+                            <input type="text" name="year" class="form-input" value="<%= edu.year %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Details</label>
+                            <input type="text" name="details" class="form-input" value="<%= edu.details %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= edu.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-edu-<%= edu._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No education entries added yet.</p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 5: POLITICAL CAREER CRUD
+    ========================================== -->
+    <% if (activeTab === 'career') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Political Career (राजनीतिक सफर एवं महत्वपूर्ण पड़ाव)</h2>
+            <p>Chronological political career milestones and movements led.</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add Political Career Milestone</h3>
+          <form action="/admin/about/career/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field" style="grid-column: span 2;">
+                <label>Milestone Title / Role *</label>
+                <input type="text" name="title" class="form-input" placeholder="e.g. जनहित आंदोलन एवं संघर्ष" required />
+              </div>
+              <div class="form-field">
+                <label>Time Period / Year</label>
+                <input type="text" name="period" class="form-input" placeholder="e.g. 2022 - वर्तमान" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Description of Milestone / Details</label>
+              <textarea name="description" class="form-textarea" rows="2" placeholder="Describe the role or political activity..."></textarea>
+            </div>
+            <div class="form-field">
+              <label>Display Order</label>
+              <input type="number" name="order" class="form-input" style="max-width: 150px;" value="<%= (about.politicalCareer ? about.politicalCareer.length : 0) + 1 %>" />
+            </div>
+            <button type="submit" class="btn-submit-action">Add Career Milestone</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.politicalCareer && about.politicalCareer.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Milestone Title</th>
+                <th>Period</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.politicalCareer.forEach((car, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= car.title %></strong></td>
+                  <td><span class="badge-sp"><%= car.period || '—' %></span></td>
+                  <td><%= car.description || '—' %></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-car-<%= car._id %>')">Edit</button>
+                    <form action="/admin/about/career/delete/<%= car._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this career milestone?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-car-<%= car._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Career Milestone</h3>
+                        <form action="/admin/about/career/edit/<%= car._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-input" value="<%= car.title %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Period</label>
+                            <input type="text" name="period" class="form-input" value="<%= car.period %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Description</label>
+                            <textarea name="description" class="form-textarea" rows="3"><%= car.description %></textarea>
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= car.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-car-<%= car._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No career milestones recorded yet.</p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 6: PARTY POSTS CRUD
+    ========================================== -->
+    <% if (activeTab === 'party_posts') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Samajwadi Party Posts (संगठनात्मक दायित्व)</h2>
+            <p>Roles and responsibilities held within Samajwadi Party.</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add Samajwadi Party Post</h3>
+          <form action="/admin/about/party-posts/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field">
+                <label>Post Title / दायित्व *</label>
+                <input type="text" name="postTitle" class="form-input" placeholder="e.g. वरिष्ठ नेत्री / प्रभारी" required />
+              </div>
+              <div class="form-field">
+                <label>Wing / Organization</label>
+                <input type="text" name="wing" class="form-input" value="समाजवादी पार्टी" />
+              </div>
+              <div class="form-field">
+                <label>Tenure / Period</label>
+                <input type="text" name="period" class="form-input" placeholder="e.g. वर्तमान" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Description of Responsibilities</label>
+              <textarea name="description" class="form-textarea" rows="2" placeholder="Details about organizational responsibilities..."></textarea>
+            </div>
+            <div class="form-field">
+              <label>Display Order</label>
+              <input type="number" name="order" class="form-input" style="max-width: 150px;" value="<%= (about.partyPosts ? about.partyPosts.length : 0) + 1 %>" />
+            </div>
+            <button type="submit" class="btn-submit-action">Add Party Post</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.partyPosts && about.partyPosts.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Post Title</th>
+                <th>Wing / Org</th>
+                <th>Period</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.partyPosts.forEach((post, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= post.postTitle %></strong></td>
+                  <td><%= post.wing || 'समाजवादी पार्टी' %></td>
+                  <td><span class="badge-sp"><%= post.period || '—' %></span></td>
+                  <td><%= post.description || '—' %></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-post-<%= post._id %>')">Edit</button>
+                    <form action="/admin/about/party-posts/delete/<%= post._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this party post?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-post-<%= post._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Party Post</h3>
+                        <form action="/admin/about/party-posts/edit/<%= post._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Post Title</label>
+                            <input type="text" name="postTitle" class="form-input" value="<%= post.postTitle %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Wing</label>
+                            <input type="text" name="wing" class="form-input" value="<%= post.wing %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Period</label>
+                            <input type="text" name="period" class="form-input" value="<%= post.period %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Description</label>
+                            <textarea name="description" class="form-textarea" rows="3"><%= post.description %></textarea>
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= post.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-post-<%= post._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No party posts added yet.</p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 7: ACHIEVEMENTS CRUD
+    ========================================== -->
+    <% if (activeTab === 'achievements') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Achievements (उपलब्धियां एवं सम्मान)</h2>
+            <p>Significant political and social accomplishments.</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add Achievement</h3>
+          <form action="/admin/about/achievements/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field" style="grid-column: span 2;">
+                <label>Achievement Title *</label>
+                <input type="text" name="title" class="form-input" placeholder="e.g. जनसमस्याओं का प्रभावी समाधान" required />
+              </div>
+              <div class="form-field">
+                <label>Category / Year</label>
+                <input type="text" name="category" class="form-input" placeholder="e.g. जनसेवा / 2023" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Description / Details</label>
+              <textarea name="description" class="form-textarea" rows="2" placeholder="Details about this achievement..."></textarea>
+            </div>
+            <div class="form-field">
+              <label>Display Order</label>
+              <input type="number" name="order" class="form-input" style="max-width: 150px;" value="<%= (about.achievements ? about.achievements.length : 0) + 1 %>" />
+            </div>
+            <button type="submit" class="btn-submit-action">Add Achievement</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.achievements && about.achievements.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Achievement</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.achievements.forEach((ach, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= ach.title %></strong></td>
+                  <td><span class="badge-sp"><%= ach.category || '—' %></span></td>
+                  <td><%= ach.description || '—' %></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-ach-<%= ach._id %>')">Edit</button>
+                    <form action="/admin/about/achievements/delete/<%= ach._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this achievement?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-ach-<%= ach._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Achievement</h3>
+                        <form action="/admin/about/achievements/edit/<%= ach._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-input" value="<%= ach.title %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Category</label>
+                            <input type="text" name="category" class="form-input" value="<%= ach.category %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Description</label>
+                            <textarea name="description" class="form-textarea" rows="3"><%= ach.description %></textarea>
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= ach.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-ach-<%= ach._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No achievements added yet.</p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 8: SOCIAL WORK CRUD
+    ========================================== -->
+    <% if (activeTab === 'social_work') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Social Work (सामाजिक कार्य एवं जनसेवा)</h2>
+            <p>Community service, healthcare camps, women empowerment &amp; public welfare.</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add Social Work Initiative</h3>
+          <form action="/admin/about/social-work/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field" style="grid-column: span 2;">
+                <label>Initiative Title *</label>
+                <input type="text" name="title" class="form-input" placeholder="e.g. निःशुल्क स्वास्थ्य एवं सहायता शिविर" required />
+              </div>
+              <div class="form-field">
+                <label>Focus Area / क्षेत्र</label>
+                <input type="text" name="focusArea" class="form-input" placeholder="e.g. स्वास्थ्य सेवा / महिला अधिकार" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Description / Details</label>
+              <textarea name="description" class="form-textarea" rows="2" placeholder="Details about this initiative..."></textarea>
+            </div>
+            <div class="form-field">
+              <label>Display Order</label>
+              <input type="number" name="order" class="form-input" style="max-width: 150px;" value="<%= (about.socialWork ? about.socialWork.length : 0) + 1 %>" />
+            </div>
+            <button type="submit" class="btn-submit-action">Add Social Work</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.socialWork && about.socialWork.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Initiative</th>
+                <th>Focus Area</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.socialWork.forEach((soc, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= soc.title %></strong></td>
+                  <td><span class="badge-sp"><%= soc.focusArea || 'जनसेवा' %></span></td>
+                  <td><%= soc.description || '—' %></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-soc-<%= soc._id %>')">Edit</button>
+                    <form action="/admin/about/social-work/delete/<%= soc._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this social work entry?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-soc-<%= soc._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Social Work</h3>
+                        <form action="/admin/about/social-work/edit/<%= soc._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-input" value="<%= soc.title %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Focus Area</label>
+                            <input type="text" name="focusArea" class="form-input" value="<%= soc.focusArea %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>Description</label>
+                            <textarea name="description" class="form-textarea" rows="3"><%= soc.description %></textarea>
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= soc.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-soc-<%= soc._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No social work entries added yet.</p>
+        <% } %>
+      </div>
+    <% } %>
+
+    <!-- ==========================================
+         TAB 9: SOCIAL MEDIA LINKS CRUD
+    ========================================== -->
+    <% if (activeTab === 'social_links') { %>
+      <div class="admin-panel-card">
+        <div class="card-header-bar">
+          <div class="card-title-group">
+            <h2>Official Social Media Links (सोशल मीडिया लिंक)</h2>
+            <p>Add, edit or delete verified social platforms (Facebook, Twitter/X, Instagram, YouTube, etc.)</p>
+          </div>
+        </div>
+
+        <!-- Add Form -->
+        <div class="add-box-card">
+          <h3>+ Add Social Media Link</h3>
+          <form action="/admin/about/social-links/add" method="POST">
+            <div class="form-grid-3">
+              <div class="form-field">
+                <label>Platform *</label>
+                <select name="platform" class="form-select" required>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Twitter">Twitter / X</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="WhatsApp">WhatsApp Channel</option>
+                  <option value="Telegram">Telegram</option>
+                  <option value="Website">Website</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Handle / Display Name</label>
+                <input type="text" name="handle" class="form-input" placeholder="e.g. @PallaviPalSP" />
+              </div>
+              <div class="form-field">
+                <label>Official URL *</label>
+                <input type="url" name="url" class="form-input" placeholder="https://..." required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Display Order</label>
+              <input type="number" name="order" class="form-input" style="max-width: 150px;" value="<%= (about.socialLinks ? about.socialLinks.length : 0) + 1 %>" />
+            </div>
+            <button type="submit" class="btn-submit-action">Add Social Link</button>
+          </form>
+        </div>
+
+        <!-- Existing List -->
+        <% if (about.socialLinks && about.socialLinks.length > 0) { %>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Platform</th>
+                <th>Handle</th>
+                <th>URL</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% about.socialLinks.forEach((link, idx) => { %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><strong><%= link.platform %></strong></td>
+                  <td><span class="badge-sp"><%= link.handle || '—' %></span></td>
+                  <td><a href="<%= link.url %>" target="_blank" style="color: #2563eb; text-decoration: underline;"><%= link.url %></a></td>
+                  <td>
+                    <button type="button" class="btn-action-sm btn-edit-sm" onclick="openEditModal('edit-link-<%= link._id %>')">Edit</button>
+                    <form action="/admin/about/social-links/delete/<%= link._id %>" method="POST" style="display: inline;" onsubmit="return confirm('Delete this social link?');">
+                      <button type="submit" class="btn-action-sm btn-del-sm">Delete</button>
+                    </form>
+
+                    <!-- Edit Modal -->
+                    <div id="edit-link-<%= link._id %>" class="modal-backdrop-custom">
+                      <div class="modal-card-custom">
+                        <h3 style="margin-bottom: 16px;">Edit Social Link</h3>
+                        <form action="/admin/about/social-links/edit/<%= link._id %>" method="POST">
+                          <div class="form-field">
+                            <label>Platform</label>
+                            <input type="text" name="platform" class="form-input" value="<%= link.platform %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Handle</label>
+                            <input type="text" name="handle" class="form-input" value="<%= link.handle %>" />
+                          </div>
+                          <div class="form-field">
+                            <label>URL</label>
+                            <input type="url" name="url" class="form-input" value="<%= link.url %>" required />
+                          </div>
+                          <div class="form-field">
+                            <label>Order</label>
+                            <input type="number" name="order" class="form-input" value="<%= link.order %>" />
+                          </div>
+                          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                            <button type="button" class="btn-action-sm" onclick="closeEditModal('edit-link-<%= link._id %>')">Cancel</button>
+                            <button type="submit" class="btn-submit-action">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p style="color: var(--admin-text-muted); font-size: 13px;">No social links added yet.</p>
+        <% } %>
       </div>
     <% } %>
 
   </div><!-- /.admin-body -->
+</div><!-- /.admin-main -->
 
-  <script>
-    // Live Image Preview Helpers for Dual Upload (File / URL)
-    function previewSelectedFile(input, previewImgId) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.getElementById(previewImgId);
-          if (img) img.src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
+<script>
+  function openEditModal(modalId) {
+    const el = document.getElementById(modalId);
+    if (el) el.classList.add('active');
+  }
 
-    function previewUrlInput(val, previewImgId) {
-      if (val && val.trim() !== "") {
-        const img = document.getElementById(previewImgId);
-        if (img) img.src = val.trim();
-      }
+  function closeEditModal(modalId) {
+    const el = document.getElementById(modalId);
+    if (el) el.classList.remove('active');
+  }
+
+  function previewImg(input, imgId) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.getElementById(imgId);
+        if (img) img.src = e.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
     }
-  </script>
+  }
+</script>
 
 <%- include("../common/footer") %>
