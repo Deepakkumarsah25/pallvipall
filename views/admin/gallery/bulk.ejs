@@ -11,9 +11,9 @@
       <div class="page-heading">
         <h1>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--admin-primary)" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Bulk Image Upload
+          एक साथ कई फ़ोटो अपलोड करें (Bulk Image Upload)
         </h1>
-        <p>Select multiple pledge photos at once, set district and date, and upload in a single click</p>
+        <p>एक साथ कई फ़ोटो चुनें, उनका स्थान, तारीख और शीर्षक सेट करें और एक क्लिक में अपलोड करें</p>
       </div>
     </div>
     <div class="topbar-right">
@@ -33,13 +33,13 @@
       <div class="admin-alert admin-alert-error">⚠ <%= error %></div>
     <% } %>
 
-    <div class="admin-card" style="max-width: 900px; margin: 0 auto;">
+    <div class="admin-card" style="max-width: 860px; margin: 0 auto;">
       <div class="admin-card-header">
         <h3>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          Multi-Image Batch Upload Console
+          मल्टीपल इमेज बैच अपलोड कंसोल
         </h3>
-        <span style="font-size: 11px; color: var(--admin-text-muted);">Up to 50 photos supported simultaneously</span>
+        <span style="font-size: 11px; color: var(--admin-text-muted);">एक साथ 50 फ़ोटो तक समर्थित</span>
       </div>
 
       <div class="admin-card-body">
@@ -52,17 +52,17 @@
           <!-- Upload Dropzone -->
           <div
             id="dropArea"
-            style="border: 2px dashed #d72a2a; background: #fffaf8; border-radius: 14px; padding: 36px 20px; text-align: center; cursor: pointer; transition: all 0.2s ease; margin-bottom: 24px;"
+            style="border: 2px dashed #0b8441; background: #f0fdf4; border-radius: 14px; padding: 36px 20px; text-align: center; cursor: pointer; transition: all 0.2s ease; margin-bottom: 24px;"
             onclick="document.getElementById('bulkPhotos').click();"
           >
-            <div style="width: 58px; height: 58px; background: #fff0ec; color: var(--admin-primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+            <div style="width: 58px; height: 58px; background: #dcfce7; color: var(--admin-primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
               <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             </div>
             <div style="font-size: 16px; font-weight: 800; color: var(--admin-text-dark);">
-              Drag & drop photos here or click to browse
+              फ़ोटो यहां खींचें और छोड़ें या ब्राउज़ करने के लिए क्लिक करें
             </div>
             <p style="font-size: 12px; color: var(--admin-text-muted); margin-top: 6px;">
-              Select 1 to 50 photos at once (JPG, PNG, WEBP)
+              एक साथ 1 से 50 फ़ोटो चुनें (JPG, PNG, WEBP)
             </p>
             <input
               type="file"
@@ -80,7 +80,7 @@
           <div id="fileSelectionInfo" style="display: none; margin-bottom: 24px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
               <strong id="fileCountBadge" style="font-size: 13px; color: var(--admin-primary); font-weight: 800;">
-                0 photos selected
+                0 फ़ोटो चयनित
               </strong>
               <button
                 type="button"
@@ -92,114 +92,97 @@
             </div>
             <div
               id="thumbnailsGrid"
-              style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; max-height: 250px; overflow-y: auto; padding: 12px; background: #fff; border: 1px solid var(--admin-border); border-radius: 10px;"
+              style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; max-height: 220px; overflow-y: auto; padding: 12px; background: #fff; border: 1px solid var(--admin-border); border-radius: 10px;"
             ></div>
           </div>
 
           <!-- Batch Common Settings -->
-          <div style="background: #faf7f5; padding: 22px; border-radius: 12px; border: 1px solid #ebdcd5; margin-bottom: 24px;">
-            <h4 style="font-size: 13px; font-weight: 800; color: var(--admin-text-dark); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;">
-              Common Details for this Batch
+          <div style="background: #f8faf9; padding: 22px; border-radius: 12px; border: 1px solid #dce8e0; margin-bottom: 24px;">
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--admin-text-dark); margin: 0 0 16px;">
+              चयनित सभी फ़ोटो के लिए सामान्य विवरण (Common Event Details)
             </h4>
 
             <div class="form-grid-2" style="margin-bottom: 16px;">
               <div class="form-group" style="margin-bottom: 0;">
-                <label for="defaultState">State (राज्य) *</label>
-                <select id="defaultState" name="defaultState" class="form-control" required style="font-weight: 600;">
-                  <option value="">-- Select State (राज्य चुनें) --</option>
-                  <% if (typeof statesList !== 'undefined' && statesList.length > 0) { %>
-                    <% statesList.forEach(function(st) { %>
-                      <option value="<%= st %>" <%= st === 'Uttar Pradesh' ? 'selected' : '' %>><%= st %></option>
-                    <% }); %>
-                  <% } %>
-                </select>
-                <span class="form-hint">Select State / Union Territory for this batch</span>
-              </div>
-
-              <div class="form-group" style="margin-bottom: 0;">
-                <label for="defaultDistrict">District (ज़िला) *</label>
-                <select id="defaultDistrict" name="defaultDistrict" class="form-control" required style="font-weight: 600;">
-                  <option value="">-- Select District (ज़िला चुनें) --</option>
-                </select>
+                <label for="location" style="font-weight: 700;">स्थान / क्षेत्र (Location) *</label>
                 <input
                   type="text"
-                  id="customBulkDistrict"
-                  name="customBulkDistrict"
+                  id="location"
+                  name="location"
                   class="form-control"
-                  placeholder="Type custom district / tehsil name here..."
-                  style="display: none; margin-top: 8px;"
+                  placeholder="उदा. सिराथू, कौशाम्बी / लखनऊ"
+                  value="उत्तर प्रदेश"
+                  required
                 />
-                <span class="form-hint">Applied to all photos in this batch</span>
+                <span class="form-hint">सभी फ़ोटो पर यही स्थान दिखेगा</span>
               </div>
-            </div>
 
-            <div class="form-grid-2" style="margin-bottom: 16px;">
               <div class="form-group" style="margin-bottom: 0;">
-                <label for="defaultDate">Pledge Date (संकल्प दिनांक) *</label>
+                <label for="defaultDate" style="font-weight: 700;">कार्यक्रम तारीख (Event Date)</label>
                 <input
                   type="date"
                   id="defaultDate"
                   name="defaultDate"
                   class="form-control"
-                  value="<%= todayStr %>"
-                  required
+                  value="<%= typeof todayStr !== 'undefined' ? todayStr : '' %>"
                 />
-                <span class="form-hint">Date of the pledge</span>
+                <span class="form-hint">आयोजन की तारीख</span>
               </div>
             </div>
 
-            <div class="form-grid-2">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label for="defaultName">Default Name / Group Name Prefix</label>
-                <input
-                  type="text"
-                  id="defaultName"
-                  name="defaultName"
-                  class="form-control"
-                  placeholder="e.g. Community Pledge / Youth Pledge Wing"
-                  value="जनसंवाद कार्यक्रम"
-                />
-                <span class="form-hint">खाली छोड़ने पर 'जनसमर्थक' उपयोग किया जाएगा</span>
-              </div>
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="title" style="font-weight: 700;">शीर्षक / कार्यक्रम नाम (Title Prefix)</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-control"
+                placeholder="उदा. सिराथू जनसंवाद कार्यक्रम"
+                value="कार्यक्रम झलकियां"
+              />
+              <span class="form-hint">फ़ोटो पर नाम दिया जाएगा (उदा. शीर्षक #1, #2...)</span>
+            </div>
 
-              <div class="form-group" style="margin-bottom: 0;">
-                <label for="defaultCaption">Caption / Message</label>
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="description" style="font-weight: 700;">विवरण (Description)</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control"
+                rows="2"
+                placeholder="उदा. पल्लवी पाल जी के नेतृत्व में जनसेवा व विकास कार्यक्रम की विशेष झलक।"
+              ></textarea>
+              <span class="form-hint">सभी फ़ोटो के लिए सामान्य विवरण</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--admin-text-dark);">
                 <input
-                  type="text"
-                  id="defaultCaption"
-                  name="defaultCaption"
-                  class="form-control"
-                  placeholder="उदा. पल्लवी पाल जनसंवाद एवं जनसेवा कार्यक्रम"
-                  value="पल्लवी पाल - जनसेवा एवं सामाजिक सरोकार के ऐतिहासिक पल"
+                  type="checkbox"
+                  name="isPublished"
+                  value="true"
+                  checked
+                  style="width: 18px; height: 18px; accent-color: var(--admin-primary);"
                 />
-                <span class="form-hint">यह संदेश सभी अपलोड की गई तस्वीरों से जुड़ जाएगा</span>
-              </div>
+                <span>अपलोड के तुरंत बाद लाइव वेबसाइट पर प्रकाशित करें (Publish Live)</span>
+              </label>
             </div>
           </div>
 
-          <!-- Publish Status Toggle -->
-          <div class="form-group" style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding: 12px 16px; background: #fff; border: 1px solid var(--admin-border); border-radius: 9px;">
-            <input
-              type="checkbox"
-              id="isPublished"
-              name="isPublished"
-              checked
-              style="width: 20px; height: 20px; accent-color: var(--admin-primary); cursor: pointer;"
-            />
-            <label for="isPublished" style="margin-bottom: 0; cursor: pointer; font-size: 13px; font-weight: 700;">
-              Publish live immediately upon upload
-            </label>
-          </div>
-
-          <!-- Submit Buttons -->
-          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; border-top: 1px solid var(--admin-border-subtle); padding-top: 20px; flex-wrap: wrap;">
-            <a href="/admin/gallery" class="btn-admin btn-admin-outline">
-              Cancel
-            </a>
-            <button type="submit" id="submitBtn" class="btn-admin btn-admin-primary" style="padding: 12px 24px;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              <span id="submitBtnText">Upload Photos</span>
+          <!-- Submit Button -->
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <button
+              type="submit"
+              id="bulkSubmitBtn"
+              class="btn-admin btn-admin-primary"
+              style="padding: 12px 28px; font-size: 15px; font-weight: 700;"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>अपलोड शुरू करें (Upload All)</span>
             </button>
+            <a href="/admin/gallery" class="btn-admin btn-admin-outline" style="padding: 12px 20px;">
+              रद्द करें (Cancel)
+            </a>
           </div>
         </form>
       </div>
@@ -213,109 +196,38 @@
     const fileSelectionInfo = document.getElementById("fileSelectionInfo");
     const fileCountBadge = document.getElementById("fileCountBadge");
     const thumbnailsGrid = document.getElementById("thumbnailsGrid");
-    const submitBtnText = document.getElementById("submitBtnText");
-
-    thumbnailsGrid.innerHTML = "";
 
     if (!files || files.length === 0) {
       fileSelectionInfo.style.display = "none";
-      submitBtnText.textContent = "Upload Photos";
       return;
     }
 
-    fileSelectionInfo.style.display = "block";
-    fileCountBadge.textContent = files.length + " photos ready for upload";
-    submitBtnText.textContent = "Upload " + files.length + " Photos";
+    fileCountBadge.textContent = `${files.length} फ़ोटो चयनित`;
+    thumbnailsGrid.innerHTML = "";
 
-    Array.from(files).forEach((file, index) => {
+    Array.from(files).forEach((file) => {
       const reader = new FileReader();
-      reader.onload = function(e) {
-        const item = document.createElement("div");
-        item.style.position = "relative";
-        item.style.borderRadius = "8px";
-        item.style.overflow = "hidden";
-        item.style.border = "1px solid #e0d0c8";
-        item.style.height = "85px";
-
-        item.innerHTML = `
-          <img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover;" alt="${file.name}"/>
-          <span style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.65); color: #fff; font-size: 9px; padding: 2px 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            #${index + 1}
-          </span>
-        `;
-        thumbnailsGrid.appendChild(item);
+      reader.onload = (e) => {
+        const div = document.createElement("div");
+        div.style.cssText = "position: relative; width: 100%; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid var(--admin-border);";
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.style.cssText = "width: 100%; height: 100%; object-fit: cover;";
+        div.appendChild(img);
+        thumbnailsGrid.appendChild(div);
       };
       reader.readAsDataURL(file);
     });
+
+    fileSelectionInfo.style.display = "block";
   }
 
   function clearBulkSelection() {
     const input = document.getElementById("bulkPhotos");
-    input.value = "";
-    handleBulkFilesSelected(input);
+    if (input) input.value = "";
+    document.getElementById("fileSelectionInfo").style.display = "none";
+    document.getElementById("thumbnailsGrid").innerHTML = "";
   }
-
-  // Drag & drop highlight
-  const dropArea = document.getElementById("dropArea");
-  if (dropArea) {
-    ["dragenter", "dragover"].forEach(eventName => {
-      dropArea.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropArea.style.background = "#fff0eb";
-        dropArea.style.borderColor = "#b51c1c";
-      }, false);
-    });
-
-    ["dragleave", "drop"].forEach(eventName => {
-      dropArea.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropArea.style.background = "#fffaf8";
-        dropArea.style.borderColor = "#d72a2a";
-      }, false);
-    });
-
-    dropArea.addEventListener("drop", (e) => {
-      const dt = e.dataTransfer;
-      const files = dt.files;
-      const fileInput = document.getElementById("bulkPhotos");
-      fileInput.files = files;
-      handleBulkFilesSelected(fileInput);
-    }, false);
-  }
-
-  // Show loading state on submit
-  document.getElementById("bulkUploadForm").addEventListener("submit", function(e) {
-    const distEl = document.getElementById("defaultDistrict");
-    const customDistEl = document.getElementById("customBulkDistrict");
-    if (distEl && distEl.value === "__other__") {
-      if (!customDistEl || !customDistEl.value.trim()) {
-        e.preventDefault();
-        alert("Please enter the custom district name.");
-        if (customDistEl) customDistEl.focus();
-        return false;
-      }
-    }
-
-    const btn = document.getElementById("submitBtn");
-    btn.disabled = true;
-    btn.style.opacity = "0.7";
-    btn.innerHTML = "<span>Uploading, please wait...</span>";
-  });
-</script>
-
-<script src="/js/admin/india-states-districts.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof setupStateDistrictSelectors === "function") {
-      setupStateDistrictSelectors({
-        stateEl: "defaultState",
-        districtEl: "defaultDistrict",
-        customDistrictEl: "customBulkDistrict",
-        selectedState: "Uttar Pradesh",
-        selectedDistrict: ""
-      });
-    }
-  });
 </script>
 
 <%- include("../common/footer") %>

@@ -11,13 +11,13 @@
       <div class="page-heading">
         <h1>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--admin-primary)" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Sankalp Photo Gallery
+          फ़ोटो एवं कार्यक्रम गैलरी प्रबंधन
         </h1>
-        <p>Manage, edit, bulk upload, and control publication status of pledge photos</p>
+        <p>व्यक्तिगत स्मृतियां, जनसंवाद एवं सार्वजनिक कार्यक्रमों की फ़ोटो जोड़ें, संपादित करें व प्रबंधित करें</p>
       </div>
     </div>
     <div class="topbar-right" style="gap: 10px;">
-      <a href="/admin/gallery/bulk" class="btn-admin btn-admin-outline" style="border-color: #c28834; color: #a26b1a; background: #fffdf9;">
+      <a href="/admin/gallery/bulk" class="btn-admin btn-admin-outline" style="border-color: #0b8441; color: #0b8441; background: #f0fdf4;">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <span>Bulk Upload</span>
       </a>
@@ -31,57 +31,6 @@
 
   <!-- Body -->
   <div class="admin-body">
-    <style>
-      .gallery-filter-form {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .gallery-filter-inputs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: center;
-        flex: 1;
-      }
-
-      @media (max-width: 900px) {
-        .gallery-filter-inputs {
-          width: 100%;
-        }
-        .gallery-filter-inputs > div,
-        .gallery-filter-inputs select {
-          flex: 1 1 calc(50% - 10px);
-          width: auto !important;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .topbar-right .btn-admin span {
-          display: none;
-        }
-        .topbar-right .btn-admin {
-          padding: 8px 10px;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .gallery-filter-inputs {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .gallery-filter-inputs > div,
-        .gallery-filter-inputs select,
-        .gallery-filter-inputs button,
-        .gallery-filter-inputs a {
-          width: 100% !important;
-          flex: none;
-        }
-      }
-    </style>
-
     <% if (message) { %>
       <div class="admin-alert admin-alert-success">✓ <%= message %></div>
     <% } %>
@@ -92,208 +41,163 @@
     <!-- Quick Stats Cards -->
     <div class="admin-stats-grid">
       <div class="admin-card" style="margin-bottom: 0; padding: 18px; border-left: 4px solid var(--admin-primary);">
-        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">Total Sankalp Photos</div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">कुल फ़ोटो (Total)</div>
         <div style="font-size: 26px; font-weight: 800; color: var(--admin-text-dark); margin-top: 6px;"><%= stats.total %></div>
       </div>
       <div class="admin-card" style="margin-bottom: 0; padding: 18px; border-left: 4px solid var(--admin-success);">
-        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">Published Photos (Live)</div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">लाइव फ़ोटो (Published)</div>
         <div style="font-size: 26px; font-weight: 800; color: var(--admin-success); margin-top: 6px;"><%= stats.published %></div>
       </div>
       <div class="admin-card" style="margin-bottom: 0; padding: 18px; border-left: 4px solid #f59e0b;">
-        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">Unpublished (Draft/Hidden)</div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">अप्रकाशित / छिपी हुई (Hidden)</div>
         <div style="font-size: 26px; font-weight: 800; color: #b45309; margin-top: 6px;"><%= stats.unpublished %></div>
-      </div>
-      <div class="admin-card" style="margin-bottom: 0; padding: 18px; border-left: 4px solid #8b5cf6;">
-        <div style="font-size: 11px; font-weight: 700; color: var(--admin-text-muted); text-transform: uppercase;">Covered Districts</div>
-        <div style="font-size: 26px; font-weight: 800; color: #6d28d9; margin-top: 6px;"><%= stats.districtsCount %></div>
       </div>
     </div>
 
-    <!-- Filter & Search Toolbar -->
-    <div class="admin-card" style="padding: 16px 20px; margin-bottom: 20px;">
-      <form action="/admin/gallery" method="GET" class="gallery-filter-form">
-        <div class="gallery-filter-inputs">
-          <!-- Search input -->
-          <div style="position: relative; min-width: 220px; flex: 1;">
-            <input
-              type="text"
-              name="search"
-              value="<%= filters.search %>"
-              placeholder="Search by name, district, or caption..."
-              class="form-control"
-              style="height: 38px; padding-left: 36px;"
-            />
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#999" stroke-width="2" style="position: absolute; left: 12px; top: 11px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <!-- Filter Card: Simple Search & Status Filter -->
+    <div class="admin-card" style="margin-top: 20px;">
+      <div class="admin-card-body" style="padding: 16px 20px;">
+        <form action="/admin/gallery" method="GET" style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; flex: 1;">
+            <div style="min-width: 280px; flex: 1;">
+              <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="शीर्षक, स्थान या विवरण खोजें..."
+                value="<%= filters.search || '' %>"
+              />
+            </div>
+
+            <div style="min-width: 170px;">
+              <select name="status" class="form-control">
+                <option value="all" <%= filters.status === 'all' ? 'selected' : '' %>>सभी स्थिति (All Status)</option>
+                <option value="published" <%= filters.status === 'published' ? 'selected' : '' %>>केवल लाइव (Published)</option>
+                <option value="unpublished" <%= filters.status === 'unpublished' ? 'selected' : '' %>>अप्रकाशित (Hidden)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-admin btn-admin-primary">
+              फ़िल्टर करें
+            </button>
+
+            <% if (filters.search || (filters.status && filters.status !== 'all')) { %>
+              <a href="/admin/gallery" class="btn-admin btn-admin-outline" style="color: #6b7280;">
+                रीसेट करें
+              </a>
+            <% } %>
           </div>
+        </form>
+      </div>
+    </div>
 
-          <!-- State Filter -->
-          <select name="state" id="filterState" class="form-control" style="height: 38px; width: 160px;">
-            <option value="all" <%= filters.state === 'all' ? 'selected' : '' %>>All States</option>
-            <% if (typeof statesList !== 'undefined' && statesList.length > 0) { %>
-              <% statesList.forEach(function(st) { %>
-                <option value="<%= st %>" <%= filters.state === st ? 'selected' : '' %>><%= st %></option>
-              <% }); %>
-            <% } %>
-          </select>
+    <!-- Photos Table List -->
+    <div class="admin-card" style="margin-top: 20px;">
+      <div class="admin-card-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <h3>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          फ़ोटो सूची (<%= pagination.total %>)
+        </h3>
+        <span style="font-size: 12px; color: var(--admin-text-muted);">
+          Page <%= pagination.page %> of <%= pagination.totalPages || 1 %>
+        </span>
+      </div>
 
-          <!-- District Filter -->
-          <select name="district" id="filterDistrict" class="form-control" style="height: 38px; width: 160px;">
-            <option value="all" <%= filters.district === 'all' ? 'selected' : '' %>>All Districts</option>
-            <% if (districtsList && districtsList.length > 0) { %>
-              <% districtsList.forEach(function(d) { %>
-                <option value="<%= d %>" <%= filters.district === d ? 'selected' : '' %>><%= d %></option>
-              <% }); %>
-            <% } %>
-          </select>
+      <div class="admin-card-body" style="padding: 0;">
+        <% if (photos && photos.length > 0) { %>
+          <div style="overflow-x: auto;">
+            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background: #fafaf9; border-bottom: 1.5px solid var(--admin-border); text-align: left; font-size: 12px; color: var(--admin-text-muted); text-transform: uppercase;">
+                  <th style="padding: 14px 16px; width: 80px;">फ़ोटो</th>
+                  <th style="padding: 14px 16px;">शीर्षक / कार्यक्रम</th>
+                  <th style="padding: 14px 16px;">स्थान</th>
+                  <th style="padding: 14px 16px;">तारीख</th>
+                  <th style="padding: 14px 16px;">स्थिति</th>
+                  <th style="padding: 14px 16px; text-align: right; width: 140px;">कार्रवाई</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% photos.forEach(function(photo) { %>
+                  <tr style="border-bottom: 1px solid var(--admin-border); vertical-align: middle;">
+                    <td style="padding: 12px 16px;">
+                      <a href="<%= photo.imageUrl %>" target="_blank" style="display: block; width: 64px; height: 48px; border-radius: 8px; overflow: hidden; background: #e5e7eb; border: 1px solid #d1d5db;">
+                        <img src="<%= photo.imageUrl %>" alt="<%= photo.name %>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='/images/about/pallavi-pal-hero.jpg'" />
+                      </a>
+                    </td>
 
-          <!-- Status Filter -->
-          <select name="status" class="form-control" style="height: 38px; width: 150px;">
-            <option value="all" <%= filters.status === 'all' ? 'selected' : '' %>>All Statuses</option>
-            <option value="published" <%= filters.status === 'published' ? 'selected' : '' %>>Published Only</option>
-            <option value="unpublished" <%= filters.status === 'unpublished' ? 'selected' : '' %>>Unpublished Only</option>
-          </select>
+                    <td style="padding: 12px 16px;">
+                      <strong style="display: block; font-size: 14px; color: var(--admin-text-dark);"><%= photo.name %></strong>
+                      <% if (photo.caption) { %>
+                        <span style="display: block; font-size: 12px; color: var(--admin-text-muted); margin-top: 3px; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= photo.caption %></span>
+                      <% } %>
+                    </td>
 
-          <button type="submit" class="btn-admin btn-admin-primary btn-admin-sm" style="height: 38px; padding: 0 16px;">
-            Apply Filter
-          </button>
+                    <td style="padding: 12px 16px;">
+                      <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; color: #1e3a29; background: #eef8f2; padding: 4px 10px; border-radius: 20px;">
+                        📍 <%= photo.district || 'उत्तर प्रदेश' %>
+                      </span>
+                    </td>
 
-          <% if (filters.search || filters.state !== 'all' || filters.district !== 'all' || filters.status !== 'all') { %>
-            <a href="/admin/gallery" class="btn-admin btn-admin-outline btn-admin-sm" style="height: 38px; display: inline-flex; align-items: center;">
-              Reset
+                    <td style="padding: 12px 16px; font-size: 13px; color: var(--admin-text-dark); white-space: nowrap;">
+                      <%= photo.formattedDate || (photo.date ? new Date(photo.date).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—') %>
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                      <% if (photo.isPublished) { %>
+                        <span style="display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; background: #dcfce7; color: #15803d;">लाइव</span>
+                      <% } else { %>
+                        <span style="display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; background: #fef3c7; color: #b45309;">छिपा हुआ</span>
+                      <% } %>
+                    </td>
+
+                    <td style="padding: 12px 16px; text-align: right; white-space: nowrap;">
+                      <form action="/admin/gallery/toggle/<%= photo._id %>" method="POST" style="display: inline;">
+                        <button type="submit" title="<%= photo.isPublished ? 'अप्रकाशित करें' : 'लाइव करें' %>" style="border: none; background: none; cursor: pointer; padding: 4px 6px; font-size: 14px; color: #4b5563;">
+                          <%= photo.isPublished ? '👁' : '👁‍🗨' %>
+                        </button>
+                      </form>
+
+                      <a href="/admin/gallery/edit/<%= photo._id %>" title="संपादित करें" style="display: inline-block; padding: 4px 6px; color: var(--admin-primary); text-decoration: none;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      </a>
+
+                      <form action="/admin/gallery/delete/<%= photo._id %>" method="POST" style="display: inline;" onsubmit="return confirm('क्या आप इस फ़ोटो को हटाना चाहते हैं?');">
+                        <button type="submit" title="हटाएं" style="border: none; background: none; cursor: pointer; padding: 4px 6px; color: #dc2626;">
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div style="padding: 50px 20px; text-align: center; color: var(--admin-text-muted);">
+            <div style="font-size: 38px; margin-bottom: 12px;">📷</div>
+            <strong style="display: block; font-size: 16px; color: var(--admin-text-dark);">कोई फ़ोटो नहीं मिली</strong>
+            <p style="margin-top: 6px; font-size: 13px;">नई फ़ोटो जोड़ने के लिए ऊपर दिए गए "Add New Photo" बटन पर क्लिक करें।</p>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Pagination -->
+      <% if (pagination && pagination.totalPages > 1) { %>
+        <div style="padding: 16px 20px; border-top: 1px solid var(--admin-border); display: flex; justify-content: center; gap: 6px;">
+          <% for (let p = 1; p <= pagination.totalPages; p++) { %>
+            <a
+              href="/admin/gallery?page=<%= p %>&search=<%= filters.search || '' %>&status=<%= filters.status || 'all' %>"
+              class="btn-admin <%= pagination.page === p ? 'btn-admin-primary' : 'btn-admin-outline' %>"
+              style="min-width: 36px; padding: 6px 12px; font-size: 13px;"
+            >
+              <%= p %>
             </a>
           <% } %>
         </div>
-      </form>
-    </div>
-
-    <!-- Photos Table & Grid View -->
-    <div class="admin-card">
-      <div class="admin-card-header">
-        <h3>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Available Photos (<%= pagination.total %>)
-        </h3>
-        <span style="font-size: 12px; color: var(--admin-text-muted);">Click status to toggle publish/unpublish</span>
-      </div>
-
-      <div class="admin-table-wrapper">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th style="width: 80px;">Photo</th>
-              <th>Name</th>
-              <th>State & District</th>
-              <th>Date</th>
-              <th>Caption / Pledge Message</th>
-              <th style="width: 120px;">Publication Status</th>
-              <th style="width: 140px; text-align: center;">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if (photos && photos.length > 0) { %>
-              <% photos.forEach(function(photo) { %>
-                <tr>
-                  <td>
-                    <a href="<%= photo.imageUrl %>" target="_blank" title="Click to view full image">
-                      <img
-                        src="<%= photo.imageUrl %>"
-                        alt="<%= photo.name %>"
-                        style="width: 70px; height: 52px; object-fit: cover; border-radius: 8px; border: 1px solid var(--admin-border); transition: transform 0.2s;"
-                        onmouseover="this.style.transform='scale(1.08)'"
-                        onmouseout="this.style.transform='scale(1)'"
-                        onerror="this.src='https://placehold.co/140x100/eadfd7/333?text=Photo'"
-                      />
-                    </a>
-                  </td>
-                  <td>
-                    <strong style="color: var(--admin-text-dark); font-size: 14px;"><%= photo.name %></strong>
-                  </td>
-                  <td>
-                    <span style="display: inline-block; padding: 3px 9px; font-size: 11px; font-weight: 700; background: #fff0ec; color: var(--admin-primary); border-radius: 6px; border: 1px solid #f7c9be;">
-                      📍 <%= photo.district %>
-                    </span>
-                    <% if (photo.state) { %>
-                      <div style="font-size: 11px; color: var(--admin-text-muted); margin-top: 3px; font-weight: 600;">
-                        <%= photo.state %>
-                      </div>
-                    <% } %>
-                  </td>
-                  <td>
-                    <span style="font-size: 12px; color: var(--admin-text-muted);">
-                      <%= photo.formattedDate || (photo.date ? new Date(photo.date).toLocaleDateString('en-US') : '-') %>
-                    </span>
-                  </td>
-                  <td>
-                    <div style="font-size: 12px; color: #555; max-width: 320px; line-height: 1.4;">
-                      <%= photo.caption ? photo.caption : '—' %>
-                    </div>
-                  </td>
-                  <td>
-                    <form action="/admin/gallery/toggle/<%= photo._id %>" method="POST" style="display:inline;">
-                      <button
-                        type="submit"
-                        class="badge-status <%= photo.isPublished ? 'badge-active' : 'badge-inactive' %>"
-                        style="border: none; cursor: pointer; padding: 5px 10px;"
-                        title="Click to toggle publication status"
-                      >
-                        <% if (photo.isPublished) { %>
-                          <span style="color: var(--admin-success); font-weight: 800;">✓ Published</span>
-                        <% } else { %>
-                          <span style="color: #8c7870;">✕ Unpublished</span>
-                        <% } %>
-                      </button>
-                    </form>
-                  </td>
-                  <td style="text-align: center;">
-                    <div class="table-actions">
-                      <a href="/admin/gallery/edit/<%= photo._id %>" class="btn-edit" title="Edit Photo">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                        <span>Edit</span>
-                      </a>
-                      <form action="/admin/gallery/delete/<%= photo._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this photo?');" style="display:inline; margin: 0;">
-                        <button type="submit" class="btn-del" title="Delete Photo">
-                          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                          <span>Delete</span>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-              <% }); %>
-            <% } else { %>
-              <tr>
-                <td colspan="7" style="text-align: center; padding: 48px; color: var(--admin-text-muted);">
-                  <div style="font-size: 32px; margin-bottom: 8px;">📷</div>
-                  <div style="font-size: 14px; font-weight: 700; color: var(--admin-text-dark);">No Sankalp photos found</div>
-                  <p style="font-size: 12px; margin-top: 4px;">Click 'Add New Photo' or 'Bulk Upload' to add photos.</p>
-                  <div style="margin-top: 14px; display: flex; gap: 10px; justify-content: center;">
-                    <a href="/admin/gallery/new" class="btn-admin btn-admin-primary btn-admin-sm">Add New Photo</a>
-                    <a href="/admin/gallery/bulk" class="btn-admin btn-admin-outline btn-admin-sm">Bulk Upload</a>
-                  </div>
-                </td>
-              </tr>
-            <% } %>
-          </tbody>
-        </table>
-        <%- include("../common/pagination", { pagination, paginationPath, paginationQuery }) %>
-      </div>
+      <% } %>
     </div>
   </div>
 </div>
-
-<script src="/js/admin/india-states-districts.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof setupStateDistrictSelectors === "function") {
-      setupStateDistrictSelectors({
-        stateEl: "filterState",
-        districtEl: "filterDistrict",
-        includeAllOption: true,
-        selectedState: "<%= filters.state %>",
-        selectedDistrict: "<%= filters.district %>"
-      });
-    }
-  });
-</script>
 
 <%- include("../common/footer") %>
