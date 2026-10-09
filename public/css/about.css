@@ -1,1039 +1,828 @@
 /* ==========================================================================
-   ABOUT.CSS - निषाद संकल्प अभियान परिचय पेज (ULTRA-COMPACT & RESPONSIVE)
+   PALLAVI PAL - SAMAJWADI PARTY LEADER PROFILE
+   Editorial Prose, Varied Formats & Professional Political UI
    ========================================================================== */
 
 :root {
-  --about-primary: #d71920;
-  --about-primary-dark: #a81218;
-  --about-primary-light: #fef2f2;
-  --about-green: #0b8441;
-  --about-green-dark: #065f2c;
-  --about-green-light: #eef8f2;
-  --about-gold: #0b8441;
-  --about-gold-light: #eef8f2;
-  --about-bg-page: #f6f9f7;
-  --about-bg-alt: #f0f7f2;
-  --about-surface: #ffffff;
-  --about-text-dark: #111d16;
-  --about-text-muted: #5a7263;
-  --about-border: #dce8e0;
-  --about-border-subtle: #e9f2ec;
-  --about-shadow-sm: 0 3px 12px rgba(11, 132, 65, 0.05);
-  --about-shadow-md: 0 8px 24px rgba(11, 132, 65, 0.08);
-  --about-shadow-lg: 0 16px 36px rgba(215, 25, 32, 0.12);
-  --about-radius: 14px;
-  --about-radius-lg: 20px;
+  --sp-red: #dc2626;
+  --sp-red-dark: #b91c1c;
+  --sp-red-light: #fee2e2;
+  --sp-green: #15803d;
+  --sp-green-dark: #166534;
+  --sp-green-light: #dcfce7;
+  
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  --border-light: #e2e8f0;
+  --border-subtle: #cbd5e1;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
-body.about-page-body {
-  background-color: var(--about-bg-page);
-  color: var(--about-text-dark);
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  line-height: 1.65;
-  padding-top: 64px; /* fixed navbar offset */
-}
-
-/* ==========================================================================
-   1. ULTRA-COMPACT HEADER (SLIM & MINIMAL HEIGHT)
-   ========================================================================== */
-.about-hero-compact {
-  background: linear-gradient(135deg, #0d2618 0%, #06401e 48%, #780d12 100%);
-  color: #ffffff;
-  padding: 16px 16px 14px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  position: relative;
-}
-
-.about-hero-compact::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #d71920 0%, #d71920 50%, #0b8441 50%, #0b8441 100%);
-}
-
-.about-hero-compact-inner {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.about-hero-compact h1 {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  line-height: 1.25;
-  margin: 0 0 4px;
-  color: #ffffff;
-  letter-spacing: 0.3px;
-}
-
-.hero-tagline-text {
-  font-size: clamp(0.85rem, 1.4vw, 0.94rem);
-  color: #d1fae5;
+/* Base resets & typography */
+.about-page-body {
   margin: 0;
-  font-weight: 500;
-  line-height: 1.4;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================================================
-   2. STICKY 7-POINT QUICK NAV PILLS (SLEEK)
-   ========================================================================== */
-.about-sticky-nav-wrapper {
-  position: sticky;
-  top: 64px;
-  z-index: 90;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--about-border);
-  box-shadow: 0 2px 10px rgba(11, 132, 65, 0.05);
+.about-page-body *,
+.about-page-body *::before,
+.about-page-body *::after {
+  box-sizing: border-box;
 }
 
-.about-nav-container {
-  max-width: 1140px;
+/* Layout Containers */
+.container-standard {
+  max-width: 1060px;
   margin: 0 auto;
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding: 0 20px;
 }
 
-.about-nav-container::-webkit-scrollbar {
-  display: none;
-}
-
-.nav-pill-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 13px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--about-text-dark);
+/* --------------------------------------------------------------------------
+   1. HERO / PROFILE HEADER (NO BOXES, NATURAL READING FLOW)
+   -------------------------------------------------------------------------- */
+.profile-hero-section {
   background: #ffffff;
-  border: 1px solid var(--about-border);
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-}
-
-.nav-pill-item:hover {
-  background: #f0f7f2;
-  color: var(--about-green);
-  border-color: var(--about-green);
-  transform: translateY(-1px);
-}
-
-.nav-pill-item.active {
-  background: linear-gradient(135deg, var(--about-primary), var(--about-green));
-  color: #ffffff;
-  border-color: var(--about-green);
-  box-shadow: 0 3px 10px rgba(11, 132, 65, 0.25);
-}
-
-.pill-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 19px;
-  height: 19px;
-  border-radius: 50%;
-  background: rgba(11, 132, 65, 0.12);
-  color: var(--about-green);
-  font-size: 0.7rem;
-  font-weight: 800;
-}
-
-.nav-pill-item.active .pill-num {
-  background: #ffffff;
-  color: var(--about-green-dark);
-}
-
-/* ==========================================================================
-   3. COMMON SECTION STYLING & WATERMARK
-   ========================================================================== */
-.about-section {
-  position: relative;
-  padding: 24px 18px 26px;
-  scroll-margin-top: 100px;
-}
-
-.about-section:nth-child(even) {
-  background: #ffffff;
-}
-
-.about-section:nth-child(odd) {
-  background: var(--about-bg-page);
-}
-
-.about-container {
-  max-width: 1120px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Section Header - Clean & Compact Spacing */
-.about-sec-header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 16px;
-}
-
-.about-sec-header h2 {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  color: var(--about-text-dark);
-  margin: 0 0 6px;
-  line-height: 1.25;
-}
-
-.about-sec-header .sec-desc {
-  font-size: clamp(0.9rem, 1.3vw, 0.98rem);
-  color: #554440;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.obj-icon-num {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: var(--about-primary-light);
-  color: var(--about-primary);
-  font-weight: 800;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid #fecaca;
-}
-
-/* ==========================================================================
-   POINT 1: OBJECTIVE (अभियान का उद्देश्य)
-   ========================================================================== */
-.objective-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-bottom: 0;
-}
-
-@media (max-width: 800px) {
-  .objective-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.obj-card {
-  background: var(--about-surface);
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 20px 18px;
-  box-shadow: var(--about-shadow-sm);
-  display: flex;
-  gap: 14px;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border-bottom: 1px solid var(--border-light);
   position: relative;
   overflow: hidden;
+  margin-top: 70px; /* Generous clearance for fixed navbar */
 }
 
-.obj-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, var(--about-primary), var(--about-gold));
-  border-radius: 4px 0 0 4px;
-}
-
-.obj-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--about-shadow-md);
-  border-color: #fca5a5;
-}
-
-.obj-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 9px;
-  background: #fff0ed;
-  color: var(--about-primary);
+.sp-flag-stripe {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 19px;
-  font-weight: 800;
-}
-
-.obj-card-content h3 {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 5px;
-}
-
-.obj-card-content p {
-  font-size: 0.9rem;
-  color: var(--about-text-muted);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.about-quote-box {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border: 1.5px solid #fde68a;
-  border-radius: var(--about-radius);
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: var(--about-shadow-sm);
-}
-
-.quote-icon {
-  font-size: 28px;
-  color: #d97706;
-  line-height: 1;
-}
-
-.about-quote-box blockquote {
-  margin: 0;
-  font-size: 0.96rem;
-  font-weight: 700;
-  color: #78350f;
-  line-height: 1.55;
-  font-style: italic;
-}
-
-/* ==========================================================================
-   POINT 2: MISSION (मिशन)
-   ========================================================================== */
-.mission-pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 0;
-}
-
-@media (max-width: 992px) {
-  .mission-pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 580px) {
-  .mission-pillars-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pillar-card {
-  background: var(--about-surface);
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 16px 14px;
-  box-shadow: var(--about-shadow-sm);
-  text-align: center;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.pillar-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--about-shadow-md);
-  border-color: var(--about-primary);
-}
-
-.pillar-badge-num {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--about-primary), var(--about-primary-dark));
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 8px;
-  box-shadow: 0 2px 6px rgba(185, 28, 28, 0.22);
-}
-
-.pillar-card h3 {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 5px;
-}
-
-.pillar-card p {
-  font-size: 0.84rem;
-  color: var(--about-text-muted);
-  line-height: 1.45;
-  margin: 0;
-  flex: 1;
-}
-
-/* ==========================================================================
-   POINT 3: VISION (दृष्टिकोण)
-   ========================================================================== */
-.vision-layout-wrap {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 18px;
-  align-items: center;
-}
-
-@media (max-width: 900px) {
-  .vision-layout-wrap {
-    grid-template-columns: 1fr;
-  }
-}
-
-.vision-goals-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.vision-goal-item {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 12px 14px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  box-shadow: var(--about-shadow-sm);
-  transition: transform 0.2s, border-color 0.2s;
-}
-
-.vision-goal-item:hover {
-  transform: translateX(2px);
-  border-color: var(--about-gold);
-}
-
-.goal-check-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  background: #ecfdf5;
-  color: #059669;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-weight: 900;
-  font-size: 12px;
-}
-
-.vision-goal-item h4 {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 2px;
-}
-
-.vision-goal-item p {
-  font-size: 0.84rem;
-  color: var(--about-text-muted);
-  line-height: 1.4;
-  margin: 0;
-}
-
-.vision-visual-card {
-  position: relative;
-  border-radius: var(--about-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--about-shadow-md);
-  border: 2px solid #ffffff;
-}
-
-.vision-visual-card img {
+  height: 6px;
   width: 100%;
-  height: 270px;
+}
+
+.sp-stripe-red {
+  flex: 1;
+  background-color: var(--sp-red);
+}
+
+.sp-stripe-green {
+  flex: 1;
+  background-color: var(--sp-green);
+}
+
+.leader-hero-container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 42px 20px 46px;
+}
+
+.leader-hero-grid {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Avatar Frame */
+.leader-photo-column {
+  display: flex;
+  justify-content: center;
+}
+
+.leader-avatar-frame {
+  position: relative;
+  width: 250px;
+  height: 295px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  border: 4px solid #ffffff;
+  background: #f1f5f9;
+}
+
+.leader-avatar-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
 }
 
-.vision-overlay-badge {
+.sp-badge-chip {
   position: absolute;
   bottom: 12px;
-  left: 12px;
-  right: 12px;
-  background: rgba(30, 10, 10, 0.85);
-  backdrop-filter: blur(8px);
-  padding: 10px 14px;
-  border-radius: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(6px);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.vision-overlay-badge p {
-  margin: 0;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fde68a;
-  line-height: 1.4;
-}
-
-/* ==========================================================================
-   POINT 4: BACKGROUND & TIMELINE (अभियान की पृष्ठभूमि)
-   ========================================================================== */
-.background-dual-box {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius-lg);
-  padding: 22px 20px;
-  box-shadow: var(--about-shadow-sm);
-  margin-bottom: 26px;
-}
-
-.background-dual-box h3 {
-  font-size: 1.12rem;
-  font-weight: 800;
-  color: var(--about-primary-dark);
-  margin: 0 0 8px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   gap: 7px;
-}
-
-.background-dual-box p {
-  font-size: 0.92rem;
-  color: #4a3838;
-  line-height: 1.65;
-  margin-bottom: 10px;
-}
-
-.background-dual-box p:last-child {
-  margin-bottom: 0;
-}
-
-/* Timeline */
-.timeline-track-wrap {
-  position: relative;
-  padding: 8px 0;
-}
-
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 900px) {
-  .timeline-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 540px) {
-  .timeline-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.timeline-node {
-  background: #fdfbf9;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 16px 14px;
-  position: relative;
-  transition: transform 0.2s, border-color 0.2s;
-}
-
-.timeline-node:hover {
-  transform: translateY(-2px);
-  border-color: var(--about-primary);
-}
-
-.timeline-phase-tag {
-  display: inline-block;
-  padding: 2px 9px;
-  background: #ffe8e2;
-  color: var(--about-primary-dark);
-  font-size: 0.72rem;
-  font-weight: 800;
-  border-radius: 999px;
-  margin-bottom: 6px;
-}
-
-.timeline-node h4 {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 5px;
-}
-
-.timeline-node p {
-  font-size: 0.84rem;
-  color: var(--about-text-muted);
-  line-height: 1.45;
-  margin: 0;
-}
-
-/* ==========================================================================
-   POINT 5: RESERVATION (आरक्षण संकल्प अभियान से संबंधित जानकारी)
-   ========================================================================== */
-.reservation-hero-card {
-  background: linear-gradient(135deg, #450a0a, #7f1d1d);
-  color: #ffffff;
-  border-radius: var(--about-radius-lg);
-  padding: 24px 20px;
-  margin-bottom: 24px;
-  box-shadow: var(--about-shadow-md);
-  position: relative;
-  overflow: hidden;
-}
-
-.reservation-hero-card h3 {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: #fde68a;
-  margin: 0 0 8px;
-}
-
-.reservation-hero-card p {
-  font-size: 0.92rem;
-  color: #fde8e8;
-  line-height: 1.65;
-  margin: 0 0 10px;
-}
-
-.reservation-hero-card p:last-child {
-  margin-bottom: 0;
-}
-
-/* 4 Demands Grid */
-.demands-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 800px) {
-  .demands-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.demand-card {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 14px 16px;
-  box-shadow: var(--about-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  transition: all 0.2s;
-  position: relative;
-}
-
-.demand-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--about-shadow-md);
-  border-color: var(--about-primary);
-}
-
-.demand-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.demand-tag-pill {
-  padding: 2px 9px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.demand-card h4 {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 4px;
-}
-
-.demand-card p {
-  font-size: 0.85rem;
-  color: var(--about-text-muted);
-  line-height: 1.45;
-  margin: 0;
-}
-
-/* ==========================================================================
-   POINT 6: ACTIVITIES (प्रमुख गतिविधियां)
-   ========================================================================== */
-.activities-showcase-wrap {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 20px;
-  align-items: stretch;
-  margin-bottom: 22px;
-}
-
-@media (max-width: 860px) {
-  .activities-showcase-wrap {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-}
-
-.act-showcase-visual {
-  position: relative;
-  border-radius: var(--about-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--about-shadow-md);
-  border: 2px solid #ffffff;
-  min-height: 290px;
-  background: #1f1414;
-}
-
-@media (max-width: 860px) {
-  .act-showcase-visual {
-    height: 230px;
-    min-height: unset;
-  }
-}
-
-.act-showcase-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.act-showcase-visual:hover img {
-  transform: scale(1.03);
-}
-
-.act-showcase-badge {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #ffffff;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 0.76rem;
+  font-size: 12px;
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.sp-dot-red {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sp-red);
+}
+
+/* Leader Content Column */
+.leader-title-meta {
+  margin-bottom: 8px;
+}
+
+.leader-constituency-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sp-red);
+  background: var(--sp-red-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
 }
 
-.act-showcase-detail {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius-lg);
-  padding: 20px 22px;
-  box-shadow: var(--about-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (max-width: 860px) {
-  .act-showcase-detail {
-    padding: 16px 14px;
-  }
-}
-
-.act-showcase-detail h3 {
-  font-family: 'Noto Sans Devanagari', sans-serif;
+.leader-main-name {
+  font-size: clamp(2.1rem, 4vw, 2.85rem);
   font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
+}
+
+.leader-official-designation {
   font-size: 1.25rem;
-  color: var(--about-primary-dark);
-  margin: 0 0 6px;
+  font-weight: 600;
+  color: var(--sp-green);
+  margin: 0;
+}
+
+/* CURRENT POSITION (SEAMLESS FLOW, NO ENCLOSED BOX) */
+.hero-current-position-flow {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-light);
+}
+
+.hero-pos-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.hero-pos-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sp-green);
+  background: var(--sp-green-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.hero-pos-loc {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.hero-pos-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 4px 0 6px 0;
   line-height: 1.35;
 }
 
-.act-detail-narrative {
-  font-size: 0.88rem;
-  color: var(--about-text-muted);
-  line-height: 1.5;
-  margin: 0 0 14px;
+.hero-pos-org {
+  font-size: 0.94rem;
+  color: #475569;
+  margin: 0 0 8px 0;
 }
 
-.act-detail-points {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
+.hero-pos-org strong {
+  color: #1e293b;
 }
 
-.act-point-item {
+.hero-pos-description {
+  font-size: 0.98rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION COMMONS (CLEAN, NO SMALL RED LABELS)
+   -------------------------------------------------------------------------- */
+.about-section {
+  padding: 52px 0;
+  scroll-margin-top: 80px;
+}
+
+.about-section.bg-subtle {
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-title-wrap {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 36px;
+}
+
+.section-heading {
+  font-size: clamp(1.65rem, 3.2vw, 2.15rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.section-accent-line {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sp-red) 50%, var(--sp-green) 50%);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.section-subtitle-text {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.empty-state-notice {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   1. BIOGRAPHY SECTION (PROSE PARAGRAPHS & EDITORIAL FLOW)
+   -------------------------------------------------------------------------- */
+.biography-editorial-flow {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.biography-lead-paragraph {
+  font-size: 1.18rem;
+  font-weight: 500;
+  color: #0f172a;
+  line-height: 1.8;
+  margin: 0 0 22px 0;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.editorial-narrative-paragraph {
+  font-size: 1.02rem;
+  color: #334155;
+  line-height: 1.8;
+  margin: 0 0 16px 0;
+}
+
+.editorial-narrative-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Core Values Flow (Inline Pills) */
+.biography-values-flow {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+}
+
+.values-flow-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 14px 0;
+}
+
+.values-flow-pills {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  align-items: flex-start;
-  padding: 9px 12px;
-  background: #faf8f5;
-  border: 1px solid #f0e6dc;
-  border-radius: var(--about-radius);
-  transition: transform 0.18s, border-color 0.18s;
 }
 
-.act-point-item:hover {
-  transform: translateX(2px);
-  border-color: var(--about-primary);
+.value-flow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
-.act-point-check {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: #fee2e2;
-  color: #b91c1c;
+.value-flow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sp-red);
+}
+
+/* --------------------------------------------------------------------------
+   2. EDUCATION SECTION (RESUME / NARRATIVE LIST FORMAT)
+   -------------------------------------------------------------------------- */
+.education-editorial-list {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.education-row-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.education-row-item:first-child {
+  padding-top: 0;
+}
+
+.education-row-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.edu-item-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 11px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.act-point-text h4 {
-  font-size: 0.92rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 2px;
-}
-
-.act-point-text p {
-  font-size: 0.82rem;
-  color: var(--about-text-muted);
-  line-height: 1.4;
-  margin: 0;
-}
-
-.activities-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 992px) {
-  .activities-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .activities-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.activity-card {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  overflow: hidden;
-  box-shadow: var(--about-shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-
-.activity-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--about-shadow-md);
-}
-
-.activity-img-wrap {
-  position: relative;
-  width: 100%;
-  height: 155px;
-  overflow: hidden;
-  background: #2b1818;
-}
-
-.activity-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.activity-card:hover .activity-img-wrap img {
-  transform: scale(1.04);
-}
-
-.activity-tag-overlay {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: rgba(185, 28, 28, 0.9);
-  color: #ffffff;
-  padding: 2px 9px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  backdrop-filter: blur(4px);
-}
-
-.activity-content {
-  padding: 16px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.activity-content h3 {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
-  margin: 0 0 6px;
-}
-
-.activity-content p {
-  font-size: 0.86rem;
-  color: var(--about-text-muted);
-  line-height: 1.5;
-  margin: 0;
-  flex: 1;
-}
-
-/* ==========================================================================
-   POINT 7: MESSAGES (महत्वपूर्ण संदेश)
-   ========================================================================== */
-.messages-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-@media (max-width: 992px) {
-  .messages-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.message-card {
-  background: #ffffff;
-  border: 1px solid var(--about-border);
-  border-radius: var(--about-radius);
-  padding: 20px 18px;
-  box-shadow: var(--about-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.message-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--about-shadow-md);
-  border-color: #fca5a5;
-}
-
-.msg-quote-mark {
-  font-size: 28px;
-  color: rgba(185, 28, 28, 0.2);
-  line-height: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 4px;
 }
 
-.msg-text {
-  font-size: 0.9rem;
-  color: #443232;
-  line-height: 1.6;
-  font-style: italic;
-  margin: 0 0 16px;
-  flex: 1;
-}
-
-.msg-author-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-top: 1px solid var(--about-border-subtle);
-  padding-top: 12px;
-}
-
-.msg-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--about-primary);
-  flex-shrink: 0;
-}
-
-.msg-author-info h4 {
-  font-size: 0.92rem;
-  font-weight: 800;
-  color: var(--about-text-dark);
+.edu-item-degree {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
   margin: 0;
 }
 
-.msg-author-info span.role {
-  display: block;
-  font-size: 0.76rem;
+.edu-item-year {
+  font-size: 12px;
   font-weight: 700;
-  color: var(--about-primary);
+  color: var(--sp-red);
+  background: var(--sp-red-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
 }
 
-.msg-author-info span.desig {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--about-text-muted);
+.edu-item-institution {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0 0 8px 0;
 }
 
-/* ==========================================================================
-   FLOATING BACK TO TOP BUTTON
-   ========================================================================== */
-.back-to-top-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
+.edu-item-details-paragraph {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. POLITICAL CAREER TIMELINE
+   -------------------------------------------------------------------------- */
+.career-editorial-timeline {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.career-milestone-entry {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 26px;
+}
+
+.career-milestone-entry:last-child {
+  margin-bottom: 0;
+}
+
+.milestone-indicator-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.milestone-step-number {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: var(--about-primary);
+  background: var(--sp-red);
   color: #ffffff;
-  border: none;
-  box-shadow: 0 3px 12px rgba(185, 28, 28, 0.35);
-  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 80;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.25s;
+  box-shadow: 0 0 0 4px var(--sp-red-light);
 }
 
-.back-to-top-btn.visible {
-  opacity: 1;
-  visibility: visible;
+.milestone-connector-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border-subtle);
+  margin-top: 6px;
 }
 
-.back-to-top-btn:hover {
-  background: var(--about-primary-dark);
+.career-milestone-entry:last-child .milestone-connector-line {
+  display: none;
+}
+
+.milestone-details-body {
+  flex: 1;
+  padding-bottom: 8px;
+}
+
+.milestone-headline-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.milestone-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.milestone-period-pill {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sp-green);
+  background: var(--sp-green-light);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+}
+
+.milestone-narrative-paragraph {
+  font-size: 0.98rem;
+  color: #334155;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. SAMAJWADI PARTY POSTS (ORGANIZATIONAL STREAM)
+   -------------------------------------------------------------------------- */
+.party-posts-editorial-stream {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.party-post-entry {
+  border-left: 4px solid var(--sp-red);
+  padding: 8px 0 8px 18px;
+}
+
+.party-post-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.party-post-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.party-post-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.party-wing-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sp-red);
+  background: var(--sp-red-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.party-post-period {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.party-post-paragraph {
+  font-size: 0.96rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. ACHIEVEMENTS SECTION (DISTINGUISHED MILESTONES PROSE)
+   -------------------------------------------------------------------------- */
+.achievements-editorial-stream {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.achievement-entry-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.achievement-entry-item:first-child {
+  padding-top: 0;
+}
+
+.achievement-entry-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.achievement-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.achievement-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.achievement-star-icon {
+  color: #f59e0b;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.achievement-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.achievement-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.achievement-category-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.achievement-year-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sp-green);
+  background: var(--sp-green-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.achievement-paragraph {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+  padding-left: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SOCIAL WORK SECTION (NARRATIVE STORIES FLOW)
+   -------------------------------------------------------------------------- */
+.social-work-stories-flow {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.social-work-story-item {
+  border-left: 4px solid var(--sp-green);
+  padding: 8px 0 8px 18px;
+}
+
+.social-work-story-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.social-work-story-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.social-work-focus-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sp-green);
+  background: var(--sp-green-light);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+}
+
+.social-work-story-paragraph {
+  font-size: 0.96rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. OFFICIAL SOCIAL MEDIA LINKS
+   -------------------------------------------------------------------------- */
+.official-social-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.social-connect-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  text-decoration: none;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s ease;
+}
+
+.social-connect-card:hover {
+  border-color: var(--sp-red);
   transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.social-connect-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.social-platform-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sp-red-light);
+  color: var(--sp-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.social-connect-card:hover .social-platform-badge {
+  background: var(--sp-red);
+  color: #ffffff;
+}
+
+.social-platform-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 0;
+  color: #0f172a;
+}
+
+.social-handle-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 2px 0 0 0;
+}
+
+.social-connect-arrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sp-red);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .profile-hero-section {
+    margin-top: 64px;
+  }
+
+  .leader-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .leader-avatar-frame {
+    margin: 0 auto;
+    width: 220px;
+    height: 270px;
+  }
+
+  .hero-current-position-flow {
+    text-align: left;
+  }
+
+  .achievement-paragraph {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-hero-section {
+    margin-top: 60px;
+  }
+
+  .leader-hero-container {
+    padding: 24px 16px 32px;
+  }
+
+  .about-section {
+    padding: 38px 0;
+  }
+
+  .career-milestone-entry {
+    gap: 12px;
+  }
+
+  .milestone-step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
 }

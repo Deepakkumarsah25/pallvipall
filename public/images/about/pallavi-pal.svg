@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5f5" />
+      <stop offset="50%" stop-color="#fdfbf7" />
+      <stop offset="100%" stop-color="#f0fdf4" />
+    </linearGradient>
+    <linearGradient id="spRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+    <linearGradient id="spGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fecdd3" />
+      <stop offset="100%" stop-color="#fda4af" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#b91c1c" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="700" fill="url(#bgGrad)" />
+
+  <!-- SP Colors Decorative Stripes at Top and Bottom -->
+  <rect x="0" y="0" width="600" height="10" fill="url(#spRed)" />
+  <rect x="0" y="10" width="600" height="10" fill="url(#spGreen)" />
+
+  <!-- Soft Ambient Circle -->
+  <circle cx="300" cy="300" r="220" fill="#fee2e2" opacity="0.4" />
+  <circle cx="300" cy="300" r="180" fill="#dcfce7" opacity="0.35" />
+
+  <!-- Outer Ring with SP Colors -->
+  <circle cx="300" cy="270" r="150" fill="#ffffff" stroke="url(#spRed)" stroke-width="6" filter="url(#shadow)" />
+  <circle cx="300" cy="270" r="142" fill="none" stroke="url(#spGreen)" stroke-width="4" />
+
+  <!-- Female Political Leader Silhouette / Illustration -->
+  <g transform="translate(150, 120)">
+    <!-- Head and hair -->
+    <ellipse cx="150" cy="115" rx="55" ry="65" fill="#e2b196" />
+    <!-- Hair bun / Traditional hairstyle -->
+    <path d="M 95 110 C 95 60 120 40 150 40 C 180 40 205 60 205 110 C 205 130 195 140 185 135 C 180 90 120 90 115 135 C 105 140 95 130 95 110 Z" fill="#292524" />
+    <circle cx="150" cy="50" r="28" fill="#1c1917" />
+    <!-- Bindi -->
+    <circle cx="150" cy="102" r="3.5" fill="#dc2626" />
+
+    <!-- Shawl / Saree draped over shoulders -->
+    <path d="M 80 250 C 90 180 120 170 150 170 C 180 170 210 180 220 250 L 250 320 C 230 330 70 330 50 320 Z" fill="url(#spRed)" />
+    <!-- Saree green border pallu -->
+    <path d="M 110 178 C 130 205 145 235 155 310 L 175 310 C 165 240 150 190 125 174 Z" fill="url(#spGreen)" />
+    <!-- Saree fold accent -->
+    <path d="M 85 240 C 120 220 180 220 215 240" stroke="#fef08a" stroke-width="3" fill="none" opacity="0.8" />
+  </g>
+
+  <!-- Name Plate Box -->
+  <g transform="translate(60, 480)">
+    <rect x="0" y="0" width="480" height="150" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" filter="url(#shadow)" />
+    <!-- SP Top Red and Green line on card -->
+    <rect x="0" y="0" width="240" height="6" rx="3" fill="#dc2626" />
+    <rect x="240" y="0" width="240" height="6" rx="3" fill="#16a34a" />
+
+    <text x="240" y="48" font-family="'Noto Sans Devanagari', 'Inter', sans-serif" font-size="28" font-weight="800" fill="#1e293b" text-anchor="middle">पल्लवी पाल</text>
+    <text x="240" y="78" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#64748b" text-anchor="middle">PALLAVI PAL</text>
+
+    <!-- Samajwadi Party Badge -->
+    <rect x="140" y="96" width="200" height="32" rx="16" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5" />
+    <circle cx="155" cy="112" r="5" fill="#dc2626" />
+    <text x="245" y="118" font-family="'Noto Sans Devanagari', 'Inter', sans-serif" font-size="13" font-weight="700" fill="#b91c1c" text-anchor="middle">समाजवादी पार्टी नेत्री</text>
+  </g>
+</svg>

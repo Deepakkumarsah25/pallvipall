@@ -3,327 +3,361 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' ? title : 'पल्लवी पाल | नेता, समाजवादी पार्टी' %></title>
+  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'पल्लवी पाल - समाजवादी पार्टी नेत्री, सामाजिक न्याय एवं जनसेवा के प्रति समर्पित राजनीतिक नेतृत्व।' %>" />
 
-  <title><%= typeof title !== 'undefined' ? title : 'परिचय | निषाद संकल्प अभियान' %></title>
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'निषाद संकल्प अभियान: एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन' %>" />
-  <link rel="canonical" href="https://nishadaarakshansankalp.com/about" />
-  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'परिचय | निषाद संकल्प अभियान' %>" />
-  <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'निषाद संकल्प अभियान: एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन' %>" />
-  <meta property="og:url" content="https://nishadaarakshansankalp.com/about" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://nishadaarakshansankalp.com/images/about/nishad-sankalp-hero.jpg" />
-
-  <!-- Google Fonts for authentic Devanagari typography -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Global & Common Styles -->
+  <!-- Common Stylesheets -->
   <link rel="stylesheet" href="/css/index.css" />
   <link rel="stylesheet" href="/css/common/navbar.css" />
+  <link rel="stylesheet" href="/css/common/footer.css" />
 
-  <!-- Dedicated About Page CSS (Ultra-Compact & Responsive) -->
+  <!-- About Leader Stylesheet -->
   <link rel="stylesheet" href="/css/about.css" />
 </head>
 
 <body class="about-page-body">
 
-  <!-- Top Navigation Header -->
   <%- include("common/navbar") %>
 
-  <!-- =====================================================================
-       1. ULTRA-COMPACT HEADER (CLEAN & MINIMAL HEIGHT)
-  ====================================================================== -->
-  <header class="about-hero-compact">
-    <div class="about-hero-compact-inner">
-      <h1><%= about.meta && about.meta.pageTitle ? about.meta.pageTitle : 'निषाद संकल्प अभियान का संपूर्ण परिचय' %></h1>
-      <p class="hero-tagline-text">
-        <%= about.meta && about.meta.pageSubtitle ? about.meta.pageSubtitle : 'संवैधानिक अधिकार, सामाजिक न्याय और एकता का पावन संकल्प' %>
-      </p>
+  <!-- HERO / PROFILE SECTION (CLEAN, NO REDUNDANT BOXES) -->
+  <header class="profile-hero-section" id="profile">
+    <div class="sp-flag-stripe" aria-hidden="true">
+      <span class="sp-stripe-red"></span>
+      <span class="sp-stripe-green"></span>
+    </div>
+
+    <div class="leader-hero-container">
+      <div class="leader-hero-grid">
+        
+        <!-- Leader Photo Column -->
+        <div class="leader-photo-column">
+          <div class="leader-avatar-frame">
+            <img 
+              src="<%= (about && about.profile && about.profile.photo) ? about.profile.photo : '/images/about/pallavi-pal.svg' %>" 
+              alt="<%= (about && about.profile && about.profile.name) ? about.profile.name : 'पल्लवी पाल' %>" 
+              class="leader-avatar-img"
+              id="leaderPhoto"
+              loading="eager"
+            />
+            <div class="sp-badge-chip">
+              <span class="sp-dot-red"></span>
+              <span class="sp-badge-text"><%= (about && about.profile && about.profile.party) ? about.profile.party : 'समाजवादी पार्टी' %></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leader Content Column -->
+        <div class="leader-content-column">
+          <div class="leader-title-meta">
+            <span class="leader-constituency-pill">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <%= (about && about.profile && about.profile.constituency) ? about.profile.constituency : 'उत्तर प्रदेश (Uttar Pradesh)' %>
+            </span>
+
+            <h1 class="leader-main-name">
+              <%= (about && about.profile && about.profile.name) ? about.profile.name : 'पल्लवी पाल' %>
+            </h1>
+
+            <p class="leader-official-designation">
+              <%= (about && about.profile && about.profile.designation) ? about.profile.designation : 'नेता, समाजवादी पार्टी' %>
+            </p>
+          </div>
+
+          <!-- CURRENT POSITION (SEAMLESSLY INTEGRATED INTO HERO FLOW) -->
+          <% if (about && about.currentPosition && (about.currentPosition.title || about.currentPosition.role || about.currentPosition.description)) { %>
+            <div class="hero-current-position-flow">
+              <div class="hero-pos-top-row">
+                <span class="hero-pos-badge">वर्तमान दायित्व (Current Position)</span>
+                <% if (about.currentPosition.location) { %>
+                  <span class="hero-pos-loc">📍 <%= about.currentPosition.location %></span>
+                <% } %>
+              </div>
+
+              <h2 class="hero-pos-title">
+                <%= about.currentPosition.title || 'वरिष्ठ नेत्री, समाजवादी पार्टी' %>
+              </h2>
+
+              <% if (about.currentPosition.role) { %>
+                <p class="hero-pos-org">
+                  <strong>दल / संगठन:</strong> <%= about.currentPosition.role %>
+                </p>
+              <% } %>
+
+              <% if (about.currentPosition.description) { %>
+                <p class="hero-pos-description">
+                  <%= about.currentPosition.description %>
+                </p>
+              <% } %>
+            </div>
+          <% } %>
+
+        </div>
+
+      </div>
     </div>
   </header>
 
-  <!-- =====================================================================
-       2. STICKY 7-POINT QUICK NAVIGATION BAR (CLICK TO SCROLL)
-  ====================================================================== -->
-  <nav class="about-sticky-nav-wrapper" id="aboutStickyNav" aria-label="7 मुख्य बिंदु नेविगेशन">
-    <div class="about-nav-container" id="aboutNavContainer">
-      <a href="#objective" class="nav-pill-item active" id="navPill-1">
-        <span class="pill-num">1</span>
-        <span><%= about.objective && about.objective.navTitle ? about.objective.navTitle : 'अभियान का उद्देश्य' %></span>
-      </a>
+  <main class="about-main-wrapper">
 
-      <a href="#mission" class="nav-pill-item" id="navPill-2">
-        <span class="pill-num">2</span>
-        <span><%= about.mission && about.mission.navTitle ? about.mission.navTitle : 'मिशन' %></span>
-      </a>
+    <!-- 1. BIOGRAPHY / ABOUT (जीवन परिचय एवं विचारधारा) - PROSE PARAGRAPHS -->
+    <section class="about-section" id="biography">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">
+            <%= (about && about.biography && about.biography.heading) ? about.biography.heading : 'जीवन परिचय एवं विचारधारा' %>
+          </h2>
+          <div class="section-accent-line"></div>
+        </div>
 
-      <a href="#vision" class="nav-pill-item" id="navPill-3">
-        <span class="pill-num">3</span>
-        <span><%= about.vision && about.vision.navTitle ? about.vision.navTitle : 'Vision' %></span>
-      </a>
+        <div class="biography-editorial-flow">
+          <% if (about && about.biography && about.biography.summary) { %>
+            <p class="biography-lead-paragraph">
+              <%= about.biography.summary %>
+            </p>
+          <% } %>
 
-      <a href="#background" class="nav-pill-item" id="navPill-4">
-        <span class="pill-num">4</span>
-        <span><%= about.background && about.background.navTitle ? about.background.navTitle : 'अभियान की पृष्ठभूमि' %></span>
-      </a>
+          <% if (about && about.biography && about.biography.paragraphs && about.biography.paragraphs.length > 0) { %>
+            <div class="biography-paragraphs-stream">
+              <% about.biography.paragraphs.forEach((p) => { %>
+                <% if (p && p.trim()) { %>
+                  <p class="editorial-narrative-paragraph"><%= p %></p>
+                <% } %>
+              <% }); %>
+            </div>
+          <% } %>
 
-
-      <a href="#activities" class="nav-pill-item" id="navPill-6">
-        <span class="pill-num">6</span>
-        <span><%= about.activities && about.activities.navTitle ? about.activities.navTitle : 'प्रमुख गतिविधियां' %></span>
-      </a>
-
-      <a href="#messages" class="nav-pill-item" id="navPill-7">
-        <span class="pill-num">7</span>
-        <span><%= about.messages && about.messages.navTitle ? about.messages.navTitle : 'महत्वपूर्ण संदेश' %></span>
-      </a>
-    </div>
-  </nav>
-
-  <!-- =====================================================================
-       POINT 1: अभियान का उद्देश्य (OBJECTIVE)
-  ====================================================================== -->
-  <section class="about-section" id="objective">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.objective.title %></h2>
-        <p class="sec-desc"><%= about.objective.description %></p>
-      </div>
-
-      <% if (about.objective.points && about.objective.points.length > 0) { %>
-        <div class="objective-grid">
-          <% about.objective.points.forEach((pt, idx) => { %>
-            <div class="obj-card">
-              <div class="obj-icon-num"><%= idx + 1 %></div>
-              <div class="obj-card-content">
-                <h3><%= pt.title %></h3>
-                <p><%= pt.desc %></p>
+          <!-- Core Values / Ideological Principles (Tasteful Inline Badge Row) -->
+          <% if (about && about.biography && about.biography.coreValues && about.biography.coreValues.length > 0) { %>
+            <div class="biography-values-flow">
+              <h3 class="values-flow-heading">मूल सिद्धांत एवं जनसरोकार</h3>
+              <div class="values-flow-pills">
+                <% about.biography.coreValues.forEach((val) => { %>
+                  <span class="value-flow-pill">
+                    <span class="value-flow-dot"></span>
+                    <%= val %>
+                  </span>
+                <% }); %>
               </div>
             </div>
-          <% }); %>
-        </div>
-      <% } %>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       POINT 2: मिशन (MISSION)
-  ====================================================================== -->
-  <section class="about-section" id="mission">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.mission.title %></h2>
-        <p class="sec-desc"><%= about.mission.description %></p>
-      </div>
-
-      <% if (about.mission.pillars && about.mission.pillars.length > 0) { %>
-        <div class="mission-pillars-grid">
-          <% about.mission.pillars.forEach((pil, idx) => { %>
-            <div class="pillar-card">
-              <div class="pillar-badge-num"><%= idx + 1 %></div>
-              <h3><%= pil.title %></h3>
-              <p><%= pil.desc %></p>
-            </div>
-          <% }); %>
-        </div>
-      <% } %>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       POINT 3: VISION (दृष्टिकोण)
-  ====================================================================== -->
-  <section class="about-section" id="vision">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.vision.title %></h2>
-        <p class="sec-desc"><%= about.vision.description %></p>
-      </div>
-
-      <div class="vision-layout-wrap">
-        <div class="vision-goals-list">
-          <% if (about.vision.visionPoints && about.vision.visionPoints.length > 0) { %>
-            <% about.vision.visionPoints.forEach((vp) => { %>
-              <div class="vision-goal-item">
-                <div class="goal-check-icon">✓</div>
-                <div>
-                  <h4><%= vp.title %></h4>
-                  <p><%= vp.desc %></p>
-                </div>
-              </div>
-            <% }); %>
           <% } %>
         </div>
+      </div>
+    </section>
 
-        <div class="vision-visual-card">
-          <img src="<%= about.vision.image || '/images/about/nishad-sankalp-heritage.jpg' %>" alt="Vision" loading="lazy" />
+    <!-- 2. EDUCATION (शिक्षा) - RESUME / NARRATIVE LIST FORMAT -->
+    <section class="about-section bg-subtle" id="education">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">शिक्षा (Education)</h2>
+          <div class="section-accent-line"></div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- =====================================================================
-       POINT 4: अभियान की पृष्ठभूमि (BACKGROUND & HISTORY)
-  ====================================================================== -->
-  <section class="about-section" id="background">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.background.title %></h2>
-        <p class="sec-desc"><%= about.background.description %></p>
-      </div>
-
-      <% if (about.background.timeline && about.background.timeline.length > 0) { %>
-        <div class="timeline-track-wrap">
-          <div class="timeline-grid">
-            <% about.background.timeline.forEach((tm, idx) => { %>
-              <div class="timeline-node">
-                <span class="timeline-phase-tag"><%= tm.phase %></span>
-                <h4><%= tm.title %></h4>
-                <p><%= tm.desc %></p>
-              </div>
+        <% if (about && about.education && about.education.length > 0) { %>
+          <div class="education-editorial-list">
+            <% about.education.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((edu) => { %>
+              <article class="education-row-item">
+                <div class="edu-item-header">
+                  <h3 class="edu-item-degree"><%= edu.degree %></h3>
+                  <% if (edu.year) { %>
+                    <span class="edu-item-year"><%= edu.year %></span>
+                  <% } %>
+                </div>
+                <% if (edu.institution) { %>
+                  <p class="edu-item-institution">🏛️ <%= edu.institution %></p>
+                <% } %>
+                <% if (edu.details) { %>
+                  <p class="edu-item-details-paragraph"><%= edu.details %></p>
+                <% } %>
+              </article>
             <% }); %>
           </div>
-        </div>
-      <% } %>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       POINT 5: आरक्षण संकल्प जानकारी (RESERVATION)
-  ====================================================================== -->
-  <section class="about-section" id="reservation">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.reservation.title %></h2>
-        <p class="sec-desc"><%= about.reservation.description %></p>
+        <% } else { %>
+          <p class="empty-state-notice">शैक्षणिक विवरण शीघ्र ही अपडेट किया जाएगा।</p>
+        <% } %>
       </div>
+    </section>
 
-      <% if (about.reservation.keyDemands && about.reservation.keyDemands.length > 0) { %>
-        <div class="demands-grid">
-          <% about.reservation.keyDemands.forEach((dem) => { %>
-            <div class="demand-card">
-              <div class="demand-top-bar">
-                <span class="demand-tag-pill"><%= dem.tag || 'संवैधानिक मांग' %></span>
-              </div>
-              <h4><%= dem.title %></h4>
-              <p><%= dem.desc %></p>
-            </div>
-          <% }); %>
-        </div>
-      <% } %>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       POINT 6: प्रमुख गतिविधियां (ACTIVITIES)
-  ====================================================================== -->
-  <section class="about-section" id="activities">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.activities.title %></h2>
-        <p class="sec-desc"><%= about.activities.description %></p>
-      </div>
-
-      <!-- Activities Showcase: Photo Left, Details Right in Laptop / Underneath in Phone -->
-      <div class="activities-showcase-wrap">
-        <div class="act-showcase-visual">
-          <img src="<%= about.activities.image || '/images/about/nishad-sankalp-chaupal.jpg' %>" alt="<%= about.activities.detailTitle || about.activities.title %>" loading="lazy" />
-          <div class="act-showcase-badge">
-            <span class="badge-dot"></span> जमीनी अभियान झलक
-          </div>
+    <!-- 3. POLITICAL CAREER (राजनीतिक यात्रा) - MILESTONE TIMELINE PARAGRAPHS -->
+    <section class="about-section" id="career">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">राजनीतिक सफर एवं महत्वपूर्ण पड़ाव</h2>
+          <div class="section-accent-line"></div>
         </div>
 
-        <div class="act-showcase-detail">
-          <h3><%= about.activities.detailTitle || 'जमीनी गतिविधियां एवं जनसंपर्क विस्तार' %></h3>
-          <p class="act-detail-narrative"><%= about.activities.detailDescription || 'अभियान के अंतर्गत प्रत्येक गांव, पंचायत और ब्लॉक स्तर पर चौपालों और जनसंवाद कार्यक्रमों का निरंतर आयोजन किया जा रहा है, जिससे समाज के प्रत्येक व्यक्ति तक अधिकार और एकता का संदेश पहुंचे।' %></p>
-
-          <% 
-            const actShowcasePoints = (about.activities.detailPoints && about.activities.detailPoints.length > 0) 
-              ? about.activities.detailPoints 
-              : [
-                  { title: "गांव-गांव चौपाल व जनसंवाद", desc: "बुजुर्गों, युवाओं और महिलाओं के साथ बैठकर स्थानीय समस्याओं व संवैधानिक अधिकारों पर संवाद।" },
-                  { title: "संकल्प हस्ताक्षर अभियान", desc: "आरक्षण के समर्थन में लाखों परिवारों से संकल्प पत्र भरकर संगठित शक्ति का प्रदर्शन।" },
-                  { title: "विधिक व सामाजिक मार्गदर्शन", desc: "जाति प्रमाण पत्र, छात्रवृत्ति व सरकारी योजनाओं के लाभ हेतु युवाओं को मार्गदर्शन।" }
-                ];
-          %>
-          <div class="act-detail-points">
-            <% actShowcasePoints.forEach((pt) => { %>
-              <div class="act-point-item">
-                <div class="act-point-check">✓</div>
-                <div class="act-point-text">
-                  <h4><%= pt.title %></h4>
-                  <p><%= pt.desc %></p>
+        <% if (about && about.politicalCareer && about.politicalCareer.length > 0) { %>
+          <div class="career-editorial-timeline">
+            <% about.politicalCareer.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((milestone, idx) => { %>
+              <article class="career-milestone-entry">
+                <div class="milestone-indicator-side">
+                  <span class="milestone-step-number"><%= idx + 1 %></span>
+                  <div class="milestone-connector-line"></div>
                 </div>
-              </div>
+                <div class="milestone-details-body">
+                  <div class="milestone-headline-wrap">
+                    <h3 class="milestone-title"><%= milestone.title %></h3>
+                    <% if (milestone.period) { %>
+                      <span class="milestone-period-pill"><%= milestone.period %></span>
+                    <% } %>
+                  </div>
+                  <% if (milestone.description) { %>
+                    <p class="milestone-narrative-paragraph"><%= milestone.description %></p>
+                  <% } %>
+                </div>
+              </article>
             <% }); %>
           </div>
-        </div>
+        <% } else { %>
+          <p class="empty-state-notice">राजनीतिक यात्रा विवरण शीघ्र ही उपलब्ध होगा।</p>
+        <% } %>
       </div>
+    </section>
 
-      <% if (about.activities.activityList && about.activities.activityList.length > 0) { %>
-        <div class="activities-grid">
-          <% about.activities.activityList.forEach((act) => { %>
-            <div class="activity-card">
-              <div class="activity-img-wrap">
-                <img src="<%= act.image || '/images/about/nishad-sankalp-hero.jpg' %>" alt="<%= act.name %>" loading="lazy" />
-                <span class="activity-tag-overlay"><%= act.tag %></span>
-              </div>
-              <div class="activity-content">
-                <h3><%= act.name %></h3>
-                <p><%= act.desc %></p>
-              </div>
-            </div>
-          <% }); %>
+    <!-- 4. SAMAJWADI PARTY POSTS (समाजवादी पार्टी दायित्व) - ORGANIZATIONAL SUMMARY LIST -->
+    <section class="about-section bg-subtle" id="party-posts">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">समाजवादी पार्टी में संगठनात्मक भूमिका</h2>
+          <div class="section-accent-line"></div>
         </div>
-      <% } %>
-    </div>
-  </section>
 
-  <!-- =====================================================================
-       POINT 7: महत्वपूर्ण संदेश (IMPORTANT MESSAGES)
-  ====================================================================== -->
-  <section class="about-section" id="messages">
-    <div class="about-container">
-      <div class="about-sec-header">
-        <h2><%= about.messages.title %></h2>
-        <p class="sec-desc"><%= about.messages.description %></p>
-      </div>
-
-      <% if (about.messages.messagesList && about.messages.messagesList.length > 0) { %>
-        <div class="messages-grid">
-          <% about.messages.messagesList.forEach((msg) => { %>
-            <div class="message-card">
-              <div class="msg-quote-mark">“</div>
-              <p class="msg-text"><%= msg.message %></p>
-              <div class="msg-author-row">
-                <img src="<%= msg.photo || '/images/about/nishad-sankalp-hero.jpg' %>" alt="<%= msg.senderName %>" class="msg-avatar" loading="lazy" />
-                <div class="msg-author-info">
-                  <h4><%= msg.senderName %></h4>
-                  <span class="role"><%= msg.role %></span>
-                  <span class="desig"><%= msg.designation %></span>
+        <% if (about && about.partyPosts && about.partyPosts.length > 0) { %>
+          <div class="party-posts-editorial-stream">
+            <% about.partyPosts.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((post) => { %>
+              <article class="party-post-entry">
+                <div class="party-post-header">
+                  <div class="party-post-title-group">
+                    <h3 class="party-post-title"><%= post.postTitle %></h3>
+                    <% if (post.wing) { %>
+                      <span class="party-wing-tag"><%= post.wing %></span>
+                    <% } %>
+                  </div>
+                  <% if (post.period) { %>
+                    <span class="party-post-period"><%= post.period %></span>
+                  <% } %>
                 </div>
-              </div>
-            </div>
-          <% }); %>
+                <% if (post.description) { %>
+                  <p class="party-post-paragraph"><%= post.description %></p>
+                <% } %>
+              </article>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <p class="empty-state-notice">पार्टी दायित्व विवरण शीघ्र ही अपडेट किया जाएगा।</p>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- 5. ACHIEVEMENTS (उपलब्धियां) - DISTINGUISHED MILESTONES PROSE -->
+    <section class="about-section" id="achievements">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">सफलताएं एवं जनहित कार्य (Achievements)</h2>
+          <div class="section-accent-line"></div>
         </div>
-      <% } %>
-    </div>
-  </section>
 
-  <!-- =====================================================================
-       FLOATING BACK TO TOP BUTTON
-  ====================================================================== -->
-  <button class="back-to-top-btn" id="backToTopBtn" aria-label="पेज के शीर्ष पर जाएं">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
+        <% if (about && about.achievements && about.achievements.length > 0) { %>
+          <div class="achievements-editorial-stream">
+            <% about.achievements.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((ach) => { %>
+              <article class="achievement-entry-item">
+                <div class="achievement-header-row">
+                  <div class="achievement-title-area">
+                    <span class="achievement-star-icon">★</span>
+                    <h3 class="achievement-title"><%= ach.title %></h3>
+                  </div>
+                  <div class="achievement-meta-badges">
+                    <% if (ach.category) { %>
+                      <span class="achievement-category-tag"><%= ach.category %></span>
+                    <% } %>
+                    <% if (ach.year) { %>
+                      <span class="achievement-year-tag"><%= ach.year %></span>
+                    <% } %>
+                  </div>
+                </div>
+                <% if (ach.description) { %>
+                  <p class="achievement-paragraph"><%= ach.description %></p>
+                <% } %>
+              </article>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <p class="empty-state-notice">उपलब्धियों का विवरण शीघ्र ही उपलब्ध होगा।</p>
+        <% } %>
+      </div>
+    </section>
 
-  <!-- Common Footer -->
+    <!-- 6. SOCIAL WORK (सामाजिक कार्य) - NARRATIVE STORIES & PUBLIC WELFARE PROSE -->
+    <section class="about-section bg-subtle" id="social-work">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">जनसेवा एवं समाज कल्याण (Social Work)</h2>
+          <div class="section-accent-line"></div>
+        </div>
+
+        <% if (about && about.socialWork && about.socialWork.length > 0) { %>
+          <div class="social-work-stories-flow">
+            <% about.socialWork.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((work) => { %>
+              <article class="social-work-story-item">
+                <div class="social-work-story-header">
+                  <h3 class="social-work-story-title"><%= work.title %></h3>
+                  <% if (work.focusArea) { %>
+                    <span class="social-work-focus-pill"><%= work.focusArea %></span>
+                  <% } %>
+                </div>
+                <% if (work.description) { %>
+                  <p class="social-work-story-paragraph"><%= work.description %></p>
+                <% } %>
+              </article>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <p class="empty-state-notice">सामाजिक कार्यों का विवरण शीघ्र ही उपलब्ध होगा।</p>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- 7. OFFICIAL SOCIAL MEDIA LINKS (सोशल मीडिया संपर्क) -->
+    <section class="about-section" id="connect">
+      <div class="container-standard">
+        <div class="section-title-wrap">
+          <h2 class="section-heading">सोशल मीडिया एवं संपर्क सूत्र</h2>
+          <div class="section-accent-line"></div>
+          <p class="section-subtitle-text">पल्लवी पाल जी से सीधे जुड़ें एवं समाजवादी पार्टी के विचारों व गतिविधियों से अपडेट रहें:</p>
+        </div>
+
+        <% if (about && about.socialLinks && about.socialLinks.length > 0) { %>
+          <div class="official-social-grid">
+            <% about.socialLinks.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach((social) => { %>
+              <a href="<%= social.url %>" target="_blank" rel="noopener noreferrer" class="social-connect-card">
+                <div class="social-connect-left">
+                  <div class="social-platform-badge">
+                    <span><%= social.platform ? social.platform.charAt(0).toUpperCase() : '🔗' %></span>
+                  </div>
+                  <div class="social-connect-text">
+                    <h3 class="social-platform-name"><%= social.platform %></h3>
+                    <p class="social-handle-text"><%= social.handle || 'Official Profile' %></p>
+                  </div>
+                </div>
+                <div class="social-connect-arrow">
+                  <span>फ़ॉलो करें ↗</span>
+                </div>
+              </a>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <p class="empty-state-notice">सोशल मीडिया लिंक शीघ्र ही उपलब्ध होंगे।</p>
+        <% } %>
+      </div>
+    </section>
+
+  </main>
+
   <%- include("common/footer") %>
-
-  <!-- Dedicated About Page JS -->
-  <script src="/js/about.js"></script>
 
 </body>
 </html>

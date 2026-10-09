@@ -1,39 +1,40 @@
 const AboutPage = require("../../models/AboutPage");
 const { uploadBuffer } = require("../../config/cloudinary");
 
-const uploadAboutFiles = async (files = []) => {
-  const urls = new Map();
-  for (const file of files) {
-    const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/about");
-    urls.set(file.fieldname, uploaded.secure_url);
-  }
-  return urls;
-};
+// Helper to resolve uploaded file buffer or URL text
+const resolveImageInput = async (req, fileFieldName, textFieldName, fallback = "") => {
+  try {
+    const file = req.file?.fieldname === fileFieldName
+      ? req.file
+      : Array.isArray(req.files)
+        ? req.files.find((f) => f.fieldname === fileFieldName)
+        : null;
 
-const resolveImagePath = async (req, fieldName, fallback) => {
-  const file = req.file?.fieldname === fieldName
-    ? req.file
-    : Array.isArray(req.files)
-      ? req.files.find((entry) => entry.fieldname === fieldName)
-      : null;
-  if (file?.buffer) {
-    const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/about");
-    return uploaded.secure_url;
+    if (file?.buffer) {
+      const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/about");
+      if (uploaded?.secure_url) {
+        return uploaded.secure_url;
+      }
+    }
+  } catch (err) {
+    console.error("Cloudinary upload failed, checking text fallback:", err.message);
   }
-  if (req.body && req.body[fieldName] && req.body[fieldName].trim() !== "") {
-    return req.body[fieldName].trim();
+
+  if (req.body && req.body[textFieldName] && req.body[textFieldName].trim() !== "") {
+    return req.body[textFieldName].trim();
   }
-  return fallback || "";
+
+  return fallback;
 };
 
 // 1. Render About Manager View
 exports.getAboutManager = async (req, res) => {
   try {
     const about = await AboutPage.getOrSeed();
-    const activeTab = req.query.tab || "meta";
+    const activeTab = req.query.tab || "profile";
 
     res.render("admin/about/index", {
-      title: "About Page Manager",
+      title: "About Page Manager - Pallavi Pal",
       admin: req.session.admin,
       about,
       activeTab,
@@ -47,415 +48,510 @@ exports.getAboutManager = async (req, res) => {
   }
 };
 
-// 2. Update Meta (Page Title & Subtitle only)
-exports.postUpdateMeta = async (req, res) => {
+// 2. Update Profile & Hero Section
+exports.postUpdateProfile = async (req, res) => {
   try {
     const doc = await AboutPage.getOrSeed();
-    const { pageTitle, pageSubtitle } = req.body;
+    const { name, englishName, designation, party, shortIntro, constituency } = req.body;
 
-    if (pageTitle) doc.meta.pageTitle = pageTitle.trim();
-    if (pageSubtitle) doc.meta.pageSubtitle = pageSubtitle.trim();
+    if (name) doc.profile.name = name.trim();
+    if (englishName !== undefined) doc.profile.englishName = englishName.trim();
+    if (designation) doc.profile.designation = designation.trim();
+    if (party) doc.profile.party = party.trim();
+    if (shortIntro !== undefined) doc.profile.shortIntro = shortIntro.trim();
+    if (constituency !== undefined) doc.profile.constituency = constituency.trim();
+
+    // Photo (File or URL)
+    const photoUrl = await resolveImageInput(req, "photoFile", "photo", doc.profile.photo);
+    if (photoUrl) doc.profile.photo = photoUrl;
+
+    // Banner (File or URL)
+    const bannerUrl = await resolveImageInput(req, "bannerFile", "bannerImage", doc.profile.bannerImage);
+    if (bannerUrl !== undefined) doc.profile.bannerImage = bannerUrl;
 
     await doc.save();
-    res.redirect("/admin/about?tab=meta&msg=" + encodeURIComponent("Header settings updated successfully."));
+    res.redirect("/admin/about?tab=profile&msg=" + encodeURIComponent("Profile updated successfully."));
   } catch (error) {
-    console.error("Update Meta error:", error);
-    res.redirect("/admin/about?tab=meta&err=" + encodeURIComponent(error.message));
+    console.error("Update Profile error:", error);
+    res.redirect("/admin/about?tab=profile&err=" + encodeURIComponent(error.message));
   }
 };
 
-// 3. Update Point 1: Objective (अभियान का उद्देश्य)
-exports.postUpdateObjective = async (req, res) => {
+// 3. Update Biography Section
+exports.postUpdateBio = async (req, res) => {
   try {
     const doc = await AboutPage.getOrSeed();
-    const { navTitle, title, description } = req.body;
+    const { heading, summary, paragraphsText, coreValuesText } = req.body;
 
-    if (navTitle) doc.objective.navTitle = navTitle.trim();
-    if (title) doc.objective.title = title.trim();
-    if (description) doc.objective.description = description.trim();
+    if (heading) doc.biography.heading = heading.trim();
+    if (summary) doc.biography.summary = summary.trim();
 
-    const points = [];
-    if (req.body.point_title && Array.isArray(req.body.point_title)) {
-      for (let i = 0; i < req.body.point_title.length; i++) {
-        if (req.body.point_title[i] && req.body.point_title[i].trim()) {
-          points.push({
-            title: req.body.point_title[i].trim(),
-            desc: (req.body.point_desc && req.body.point_desc[i]) ? req.body.point_desc[i].trim() : "",
-          });
-        }
-      }
-    } else if (req.body.point_title && typeof req.body.point_title === "string") {
-      points.push({
-        title: req.body.point_title.trim(),
-        desc: req.body.point_desc ? req.body.point_desc.trim() : "",
-      });
+    if (paragraphsText !== undefined) {
+      doc.biography.paragraphs = paragraphsText
+        .split("\n")
+        .map((p) => p.trim())
+        .filter((p) => p.length > 0);
     }
-    if (points.length > 0) doc.objective.points = points;
+
+    if (coreValuesText !== undefined) {
+      doc.biography.coreValues = coreValuesText
+        .split(/[\n,]/)
+        .map((v) => v.trim())
+        .filter((v) => v.length > 0);
+    }
 
     await doc.save();
-    res.redirect("/admin/about?tab=objective&msg=" + encodeURIComponent("Objective section updated successfully."));
+    res.redirect("/admin/about?tab=bio&msg=" + encodeURIComponent("Biography updated successfully."));
   } catch (error) {
-    console.error("Update Objective error:", error);
-    res.redirect("/admin/about?tab=objective&err=" + encodeURIComponent(error.message));
+    console.error("Update Bio error:", error);
+    res.redirect("/admin/about?tab=bio&err=" + encodeURIComponent(error.message));
   }
 };
 
-// 4. Update Point 2: Mission (मिशन)
-exports.postUpdateMission = async (req, res) => {
+// 4. Update Current Position
+exports.postUpdatePosition = async (req, res) => {
   try {
     const doc = await AboutPage.getOrSeed();
-    const { navTitle, title, description } = req.body;
+    const { title, role, location, description } = req.body;
 
-    if (navTitle) doc.mission.navTitle = navTitle.trim();
-    if (title) doc.mission.title = title.trim();
-    if (description) doc.mission.description = description.trim();
-
-    const pillars = [];
-    if (req.body.pillar_title && Array.isArray(req.body.pillar_title)) {
-      for (let i = 0; i < req.body.pillar_title.length; i++) {
-        if (req.body.pillar_title[i] && req.body.pillar_title[i].trim()) {
-          pillars.push({
-            title: req.body.pillar_title[i].trim(),
-            desc: (req.body.pillar_desc && req.body.pillar_desc[i]) ? req.body.pillar_desc[i].trim() : "",
-          });
-        }
-      }
-    } else if (req.body.pillar_title && typeof req.body.pillar_title === "string") {
-      pillars.push({
-        title: req.body.pillar_title.trim(),
-        desc: req.body.pillar_desc ? req.body.pillar_desc.trim() : "",
-      });
-    }
-    if (pillars.length > 0) doc.mission.pillars = pillars;
+    if (title) doc.currentPosition.title = title.trim();
+    if (role !== undefined) doc.currentPosition.role = role.trim();
+    if (location !== undefined) doc.currentPosition.location = location.trim();
+    if (description !== undefined) doc.currentPosition.description = description.trim();
 
     await doc.save();
-    res.redirect("/admin/about?tab=mission&msg=" + encodeURIComponent("Mission section updated successfully."));
+    res.redirect("/admin/about?tab=position&msg=" + encodeURIComponent("Current position updated successfully."));
   } catch (error) {
-    console.error("Update Mission error:", error);
-    res.redirect("/admin/about?tab=mission&err=" + encodeURIComponent(error.message));
+    console.error("Update Position error:", error);
+    res.redirect("/admin/about?tab=position&err=" + encodeURIComponent(error.message));
   }
 };
 
-// 5. Update Point 3: Vision (दृष्टिकोण - UI Displays Photo)
-exports.postUpdateVision = async (req, res) => {
+// 5. EDUCATION CRUD
+exports.postAddEducation = async (req, res) => {
   try {
     const doc = await AboutPage.getOrSeed();
-    const { navTitle, title, description, image } = req.body;
+    const { degree, institution, year, details, order } = req.body;
 
-    if (navTitle) doc.vision.navTitle = navTitle.trim();
-    if (title) doc.vision.title = title.trim();
-    if (description) doc.vision.description = description.trim();
-
-    // Photo: Uploaded file takes precedence, then entered URL, then fallback
-    if (req.file && req.file.buffer) {
-      const uploaded = await uploadBuffer(req.file.buffer, "nishad-yatra/about");
-      doc.vision.image = uploaded.secure_url;
-    } else if (image && image.trim()) {
-      doc.vision.image = image.trim();
+    if (!degree || degree.trim() === "") {
+      return res.redirect("/admin/about?tab=education&err=" + encodeURIComponent("Degree/Qualification title is required."));
     }
 
-    const visionPoints = [];
-    if (req.body.vp_title && Array.isArray(req.body.vp_title)) {
-      for (let i = 0; i < req.body.vp_title.length; i++) {
-        if (req.body.vp_title[i] && req.body.vp_title[i].trim()) {
-          visionPoints.push({
-            title: req.body.vp_title[i].trim(),
-            desc: (req.body.vp_desc && req.body.vp_desc[i]) ? req.body.vp_desc[i].trim() : "",
-          });
-        }
-      }
-    } else if (req.body.vp_title && typeof req.body.vp_title === "string") {
-      visionPoints.push({
-        title: req.body.vp_title.trim(),
-        desc: req.body.vp_desc ? req.body.vp_desc.trim() : "",
-      });
-    }
-    if (visionPoints.length > 0) doc.vision.visionPoints = visionPoints;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=vision&msg=" + encodeURIComponent("Vision section updated successfully."));
-  } catch (error) {
-    console.error("Update Vision error:", error);
-    res.redirect("/admin/about?tab=vision&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 6. Update Point 4: Background (अभियान की पृष्ठभूमि)
-exports.postUpdateBackground = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const { navTitle, title, description } = req.body;
-
-    if (navTitle) doc.background.navTitle = navTitle.trim();
-    if (title) doc.background.title = title.trim();
-    if (description) doc.background.description = description.trim();
-
-    const timeline = [];
-    if (req.body.time_phase && Array.isArray(req.body.time_phase)) {
-      for (let i = 0; i < req.body.time_phase.length; i++) {
-        if (req.body.time_title && req.body.time_title[i]) {
-          timeline.push({
-            phase: req.body.time_phase[i].trim(),
-            title: req.body.time_title[i].trim(),
-            desc: (req.body.time_desc && req.body.time_desc[i]) ? req.body.time_desc[i].trim() : "",
-          });
-        }
-      }
-    } else if (req.body.time_phase && typeof req.body.time_phase === "string") {
-      timeline.push({
-        phase: req.body.time_phase.trim(),
-        title: req.body.time_title ? req.body.time_title.trim() : "",
-        desc: req.body.time_desc ? req.body.time_desc.trim() : "",
-      });
-    }
-    if (timeline.length > 0) doc.background.timeline = timeline;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=background&msg=" + encodeURIComponent("Background section updated successfully."));
-  } catch (error) {
-    console.error("Update Background error:", error);
-    res.redirect("/admin/about?tab=background&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 7. Update Point 5: Reservation (आरक्षण संकल्प अभियान)
-exports.postUpdateReservation = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const { navTitle, title, description } = req.body;
-
-    if (navTitle) doc.reservation.navTitle = navTitle.trim();
-    if (title) doc.reservation.title = title.trim();
-    if (description) doc.reservation.description = description.trim();
-
-    const keyDemands = [];
-    if (req.body.demand_title && Array.isArray(req.body.demand_title)) {
-      for (let i = 0; i < req.body.demand_title.length; i++) {
-        if (req.body.demand_title[i] && req.body.demand_title[i].trim()) {
-          keyDemands.push({
-            title: req.body.demand_title[i].trim(),
-            desc: (req.body.demand_desc && req.body.demand_desc[i]) ? req.body.demand_desc[i].trim() : "",
-            tag: (req.body.demand_tag && req.body.demand_tag[i]) ? req.body.demand_tag[i].trim() : "मांग",
-          });
-        }
-      }
-    } else if (req.body.demand_title && typeof req.body.demand_title === "string") {
-      keyDemands.push({
-        title: req.body.demand_title.trim(),
-        desc: req.body.demand_desc ? req.body.demand_desc.trim() : "",
-        tag: req.body.demand_tag ? req.body.demand_tag.trim() : "मांग",
-      });
-    }
-    if (keyDemands.length > 0) doc.reservation.keyDemands = keyDemands;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=reservation&msg=" + encodeURIComponent("Reservation info updated successfully."));
-  } catch (error) {
-    console.error("Update Reservation error:", error);
-    res.redirect("/admin/about?tab=reservation&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 8. Update Point 6: Activities (प्रमुख गतिविधियां - UI Displays Activity Photos)
-exports.postUpdateActivities = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const uploadedUrls = await uploadAboutFiles(req.files);
-    const { navTitle, title, description } = req.body;
-
-    if (navTitle) doc.activities.navTitle = navTitle.trim();
-    if (title) doc.activities.title = title.trim();
-    if (description) doc.activities.description = description.trim();
-
-    // Showcase photo (URL or uploaded file)
-    if (req.body.image) {
-      doc.activities.image = req.body.image.trim();
-    }
-    if (req.files && Array.isArray(req.files)) {
-      doc.activities.image = uploadedUrls.get("imageFile") || uploadedUrls.get("image") || doc.activities.image;
-    }
-
-    // Detail section beside/below photo
-    if (req.body.detailTitle !== undefined) {
-      doc.activities.detailTitle = req.body.detailTitle.trim();
-    }
-    if (req.body.detailDescription !== undefined) {
-      doc.activities.detailDescription = req.body.detailDescription.trim();
-    }
-
-    // Detail points (3 highlights)
-    const detailPoints = [];
-    if (req.body.detail_point_title && Array.isArray(req.body.detail_point_title)) {
-      for (let i = 0; i < req.body.detail_point_title.length; i++) {
-        if (req.body.detail_point_title[i] && req.body.detail_point_title[i].trim()) {
-          detailPoints.push({
-            title: req.body.detail_point_title[i].trim(),
-            desc: (req.body.detail_point_desc && req.body.detail_point_desc[i]) ? req.body.detail_point_desc[i].trim() : "",
-          });
-        }
-      }
-    } else if (req.body.detail_point_title && typeof req.body.detail_point_title === "string" && req.body.detail_point_title.trim()) {
-      detailPoints.push({
-        title: req.body.detail_point_title.trim(),
-        desc: req.body.detail_point_desc ? req.body.detail_point_desc.trim() : "",
-      });
-    }
-    if (detailPoints.length > 0) {
-      doc.activities.detailPoints = detailPoints;
-    }
-
-    const activityList = [];
-    if (req.body.act_name && Array.isArray(req.body.act_name)) {
-      for (let i = 0; i < req.body.act_name.length; i++) {
-        if (req.body.act_name[i] && req.body.act_name[i].trim()) {
-          let itemImage = (req.body.act_image && req.body.act_image[i]) ? req.body.act_image[i].trim() : "/images/about/nishad-sankalp-hero.jpg";
-
-          // Check if a file was uploaded for this card
-          if (req.files && Array.isArray(req.files)) {
-            itemImage = uploadedUrls.get(`act_file_${i}`) || itemImage;
-          }
-
-          activityList.push({
-            name: req.body.act_name[i].trim(),
-            tag: (req.body.act_tag && req.body.act_tag[i]) ? req.body.act_tag[i].trim() : "",
-            desc: (req.body.act_desc && req.body.act_desc[i]) ? req.body.act_desc[i].trim() : "",
-            image: itemImage,
-          });
-        }
-      }
-    } else if (req.body.act_name && typeof req.body.act_name === "string") {
-      let itemImage = req.body.act_image ? req.body.act_image.trim() : "/images/about/nishad-sankalp-hero.jpg";
-      if (req.files && Array.isArray(req.files)) {
-        itemImage = uploadedUrls.get("act_file_0") || itemImage;
-      }
-      activityList.push({
-        name: req.body.act_name.trim(),
-        tag: req.body.act_tag ? req.body.act_tag.trim() : "",
-        desc: req.body.act_desc ? req.body.act_desc.trim() : "",
-        image: itemImage,
-      });
-    }
-    if (activityList.length > 0) doc.activities.activityList = activityList;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=activities&msg=" + encodeURIComponent("Key activities updated successfully."));
-  } catch (error) {
-    console.error("Update Activities error:", error);
-    res.redirect("/admin/about?tab=activities&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 9. Update Point 7: Messages (महत्वपूर्ण संदेश - UI Displays Author Photos)
-exports.postUpdateMessages = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const uploadedUrls = await uploadAboutFiles(req.files);
-    const { navTitle, title, description } = req.body;
-
-    if (navTitle) doc.messages.navTitle = navTitle.trim();
-    if (title) doc.messages.title = title.trim();
-    if (description) doc.messages.description = description.trim();
-
-    const messagesList = [];
-    if (req.body.msg_sender && Array.isArray(req.body.msg_sender)) {
-      for (let i = 0; i < req.body.msg_sender.length; i++) {
-        if (req.body.msg_sender[i] && req.body.msg_sender[i].trim()) {
-          let itemPhoto = (req.body.msg_photo && req.body.msg_photo[i]) ? req.body.msg_photo[i].trim() : "/images/about/nishad-sankalp-hero.jpg";
-
-          // Check if a file was uploaded for this message card
-          if (req.files && Array.isArray(req.files)) {
-            itemPhoto = uploadedUrls.get(`msg_file_${i}`) || itemPhoto;
-          }
-
-          messagesList.push({
-            senderName: req.body.msg_sender[i].trim(),
-            role: (req.body.msg_role && req.body.msg_role[i]) ? req.body.msg_role[i].trim() : "",
-            designation: (req.body.msg_desig && req.body.msg_desig[i]) ? req.body.msg_desig[i].trim() : "",
-            message: (req.body.msg_text && req.body.msg_text[i]) ? req.body.msg_text[i].trim() : "",
-            photo: itemPhoto,
-          });
-        }
-      }
-    } else if (req.body.msg_sender && typeof req.body.msg_sender === "string") {
-      let itemPhoto = req.body.msg_photo ? req.body.msg_photo.trim() : "/images/about/nishad-sankalp-hero.jpg";
-      if (req.files && Array.isArray(req.files)) {
-        itemPhoto = uploadedUrls.get("msg_file_0") || itemPhoto;
-      }
-      messagesList.push({
-        senderName: req.body.msg_sender.trim(),
-        role: req.body.msg_role ? req.body.msg_role.trim() : "",
-        designation: req.body.msg_desig ? req.body.msg_desig.trim() : "",
-        message: req.body.msg_text ? req.body.msg_text.trim() : "",
-        photo: itemPhoto,
-      });
-    }
-    if (messagesList.length > 0) doc.messages.messagesList = messagesList;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=messages&msg=" + encodeURIComponent("Important messages updated successfully."));
-  } catch (error) {
-    console.error("Update Messages error:", error);
-    res.redirect("/admin/about?tab=messages&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 10. Update Gallery Info / Settings
-exports.postUpdateGalleryInfo = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const { galleryTitle, galleryTagline } = req.body;
-
-    doc.gallery.title = galleryTitle || doc.gallery.title;
-    doc.gallery.tagline = galleryTagline || doc.gallery.tagline;
-
-    await doc.save();
-    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("गैलरी शीर्षक व विवरण अपडेट हो गया।"));
-  } catch (error) {
-    console.error("Update Gallery Info error:", error);
-    res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent(error.message));
-  }
-};
-
-// 11. Add Photo to Gallery
-exports.postAddGalleryPhoto = async (req, res) => {
-  try {
-    const doc = await AboutPage.getOrSeed();
-    const { title, caption, category, imageUrl } = req.body;
-
-    const finalImage = await resolveImagePath(req, "photoFile", imageUrl);
-
-    if (!finalImage) {
-      return res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent("कृपया फोटो अपलोड करें या फोटो URL दर्ज करें।"));
-    }
-
-    doc.gallery.photos.unshift({
-      title: title || "ऐतिहासिक क्षण",
-      caption: caption || "",
-      category: category || "सामान्य",
-      imageUrl: finalImage,
-      createdAt: new Date(),
+    doc.education.push({
+      degree: degree.trim(),
+      institution: institution ? institution.trim() : "",
+      year: year ? year.trim() : "",
+      details: details ? details.trim() : "",
+      order: order ? parseInt(order, 10) : doc.education.length + 1,
     });
 
     await doc.save();
-    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("नई फोटो सफलतापूर्वक गैलरी में जुड़ गई।"));
+    res.redirect("/admin/about?tab=education&msg=" + encodeURIComponent("Education entry added successfully."));
+  } catch (error) {
+    console.error("Add Education error:", error);
+    res.redirect("/admin/about?tab=education&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditEducation = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.education.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=education&err=" + encodeURIComponent("Education item not found."));
+    }
+
+    const { degree, institution, year, details, order } = req.body;
+    if (degree) item.degree = degree.trim();
+    if (institution !== undefined) item.institution = institution.trim();
+    if (year !== undefined) item.year = year.trim();
+    if (details !== undefined) item.details = details.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=education&msg=" + encodeURIComponent("Education entry updated successfully."));
+  } catch (error) {
+    console.error("Edit Education error:", error);
+    res.redirect("/admin/about?tab=education&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeleteEducation = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.education.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=education&msg=" + encodeURIComponent("Education entry removed."));
+  } catch (error) {
+    console.error("Delete Education error:", error);
+    res.redirect("/admin/about?tab=education&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 6. POLITICAL CAREER CRUD
+exports.postAddCareer = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { title, period, description, order } = req.body;
+
+    if (!title || title.trim() === "") {
+      return res.redirect("/admin/about?tab=career&err=" + encodeURIComponent("Career milestone title is required."));
+    }
+
+    doc.politicalCareer.push({
+      title: title.trim(),
+      period: period ? period.trim() : "",
+      description: description ? description.trim() : "",
+      order: order ? parseInt(order, 10) : doc.politicalCareer.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=career&msg=" + encodeURIComponent("Career milestone added successfully."));
+  } catch (error) {
+    console.error("Add Career error:", error);
+    res.redirect("/admin/about?tab=career&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditCareer = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.politicalCareer.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=career&err=" + encodeURIComponent("Career milestone not found."));
+    }
+
+    const { title, period, description, order } = req.body;
+    if (title) item.title = title.trim();
+    if (period !== undefined) item.period = period.trim();
+    if (description !== undefined) item.description = description.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=career&msg=" + encodeURIComponent("Career milestone updated successfully."));
+  } catch (error) {
+    console.error("Edit Career error:", error);
+    res.redirect("/admin/about?tab=career&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeleteCareer = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.politicalCareer.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=career&msg=" + encodeURIComponent("Career milestone removed."));
+  } catch (error) {
+    console.error("Delete Career error:", error);
+    res.redirect("/admin/about?tab=career&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 7. SAMAJWADI PARTY POSTS CRUD
+exports.postAddPartyPost = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { postTitle, wing, period, description, order } = req.body;
+
+    if (!postTitle || postTitle.trim() === "") {
+      return res.redirect("/admin/about?tab=party_posts&err=" + encodeURIComponent("Party post title is required."));
+    }
+
+    doc.partyPosts.push({
+      postTitle: postTitle.trim(),
+      wing: wing ? wing.trim() : "समाजवादी पार्टी",
+      period: period ? period.trim() : "",
+      description: description ? description.trim() : "",
+      order: order ? parseInt(order, 10) : doc.partyPosts.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=party_posts&msg=" + encodeURIComponent("Party post added successfully."));
+  } catch (error) {
+    console.error("Add Party Post error:", error);
+    res.redirect("/admin/about?tab=party_posts&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditPartyPost = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.partyPosts.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=party_posts&err=" + encodeURIComponent("Party post not found."));
+    }
+
+    const { postTitle, wing, period, description, order } = req.body;
+    if (postTitle) item.postTitle = postTitle.trim();
+    if (wing !== undefined) item.wing = wing.trim();
+    if (period !== undefined) item.period = period.trim();
+    if (description !== undefined) item.description = description.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=party_posts&msg=" + encodeURIComponent("Party post updated successfully."));
+  } catch (error) {
+    console.error("Edit Party Post error:", error);
+    res.redirect("/admin/about?tab=party_posts&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeletePartyPost = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.partyPosts.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=party_posts&msg=" + encodeURIComponent("Party post removed."));
+  } catch (error) {
+    console.error("Delete Party Post error:", error);
+    res.redirect("/admin/about?tab=party_posts&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 8. ACHIEVEMENTS CRUD
+exports.postAddAchievement = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { title, category, year, description, order } = req.body;
+
+    if (!title || title.trim() === "") {
+      return res.redirect("/admin/about?tab=achievements&err=" + encodeURIComponent("Achievement title is required."));
+    }
+
+    doc.achievements.push({
+      title: title.trim(),
+      category: category ? category.trim() : "उपलब्धि",
+      year: year ? year.trim() : "",
+      description: description ? description.trim() : "",
+      order: order ? parseInt(order, 10) : doc.achievements.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=achievements&msg=" + encodeURIComponent("Achievement added successfully."));
+  } catch (error) {
+    console.error("Add Achievement error:", error);
+    res.redirect("/admin/about?tab=achievements&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditAchievement = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.achievements.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=achievements&err=" + encodeURIComponent("Achievement not found."));
+    }
+
+    const { title, category, year, description, order } = req.body;
+    if (title) item.title = title.trim();
+    if (category !== undefined) item.category = category.trim();
+    if (year !== undefined) item.year = year.trim();
+    if (description !== undefined) item.description = description.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=achievements&msg=" + encodeURIComponent("Achievement updated successfully."));
+  } catch (error) {
+    console.error("Edit Achievement error:", error);
+    res.redirect("/admin/about?tab=achievements&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeleteAchievement = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.achievements.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=achievements&msg=" + encodeURIComponent("Achievement removed."));
+  } catch (error) {
+    console.error("Delete Achievement error:", error);
+    res.redirect("/admin/about?tab=achievements&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 9. SOCIAL WORK CRUD
+exports.postAddSocialWork = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { title, focusArea, description, order } = req.body;
+
+    if (!title || title.trim() === "") {
+      return res.redirect("/admin/about?tab=social_work&err=" + encodeURIComponent("Social work initiative title is required."));
+    }
+
+    doc.socialWork.push({
+      title: title.trim(),
+      focusArea: focusArea ? focusArea.trim() : "जनसेवा",
+      description: description ? description.trim() : "",
+      order: order ? parseInt(order, 10) : doc.socialWork.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=social_work&msg=" + encodeURIComponent("Social work initiative added successfully."));
+  } catch (error) {
+    console.error("Add Social Work error:", error);
+    res.redirect("/admin/about?tab=social_work&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditSocialWork = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.socialWork.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=social_work&err=" + encodeURIComponent("Social work initiative not found."));
+    }
+
+    const { title, focusArea, description, order } = req.body;
+    if (title) item.title = title.trim();
+    if (focusArea !== undefined) item.focusArea = focusArea.trim();
+    if (description !== undefined) item.description = description.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=social_work&msg=" + encodeURIComponent("Social work initiative updated successfully."));
+  } catch (error) {
+    console.error("Edit Social Work error:", error);
+    res.redirect("/admin/about?tab=social_work&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeleteSocialWork = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.socialWork.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=social_work&msg=" + encodeURIComponent("Social work initiative removed."));
+  } catch (error) {
+    console.error("Delete Social Work error:", error);
+    res.redirect("/admin/about?tab=social_work&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 10. GALLERY CRUD
+exports.postAddGalleryPhoto = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { title, caption, order } = req.body;
+
+    const imageUrl = await resolveImageInput(req, "photoFile", "imageUrl", "");
+    if (!imageUrl || imageUrl.trim() === "") {
+      return res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent("Please choose a photo file or provide an Image URL."));
+    }
+
+    doc.gallery.push({
+      title: title ? title.trim() : "",
+      caption: caption ? caption.trim() : "",
+      imageUrl: imageUrl.trim(),
+      order: order ? parseInt(order, 10) : doc.gallery.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("Photo added to gallery successfully."));
   } catch (error) {
     console.error("Add Gallery Photo error:", error);
     res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent(error.message));
   }
 };
 
-// 12. Delete Photo from Gallery
+exports.postEditGalleryPhoto = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.gallery.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent("Photo not found in gallery."));
+    }
+
+    const { title, caption, order } = req.body;
+    if (title !== undefined) item.title = title.trim();
+    if (caption !== undefined) item.caption = caption.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    const newImageUrl = await resolveImageInput(req, "photoFile", "imageUrl", item.imageUrl);
+    if (newImageUrl) item.imageUrl = newImageUrl;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("Gallery photo updated successfully."));
+  } catch (error) {
+    console.error("Edit Gallery Photo error:", error);
+    res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent(error.message));
+  }
+};
+
 exports.postDeleteGalleryPhoto = async (req, res) => {
   try {
-    const { photoId } = req.params;
     const doc = await AboutPage.getOrSeed();
-
-    doc.gallery.photos = doc.gallery.photos.filter((p) => p._id.toString() !== photoId);
+    doc.gallery.pull({ _id: req.params.id });
     await doc.save();
-
-    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("फोटो गैलरी से हटा दी गई।"));
+    res.redirect("/admin/about?tab=gallery&msg=" + encodeURIComponent("Gallery photo removed."));
   } catch (error) {
     console.error("Delete Gallery Photo error:", error);
     res.redirect("/admin/about?tab=gallery&err=" + encodeURIComponent(error.message));
+  }
+};
+
+// 11. SOCIAL MEDIA LINKS CRUD
+exports.postAddSocialLink = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const { platform, url, handle, order } = req.body;
+
+    if (!platform || !url || url.trim() === "") {
+      return res.redirect("/admin/about?tab=social_links&err=" + encodeURIComponent("Platform name and URL are required."));
+    }
+
+    doc.socialLinks.push({
+      platform: platform.trim(),
+      url: url.trim(),
+      handle: handle ? handle.trim() : "",
+      order: order ? parseInt(order, 10) : doc.socialLinks.length + 1,
+    });
+
+    await doc.save();
+    res.redirect("/admin/about?tab=social_links&msg=" + encodeURIComponent("Social media link added successfully."));
+  } catch (error) {
+    console.error("Add Social Link error:", error);
+    res.redirect("/admin/about?tab=social_links&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postEditSocialLink = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    const item = doc.socialLinks.id(req.params.id);
+
+    if (!item) {
+      return res.redirect("/admin/about?tab=social_links&err=" + encodeURIComponent("Social link not found."));
+    }
+
+    const { platform, url, handle, order } = req.body;
+    if (platform) item.platform = platform.trim();
+    if (url) item.url = url.trim();
+    if (handle !== undefined) item.handle = handle.trim();
+    if (order !== undefined) item.order = parseInt(order, 10) || 0;
+
+    await doc.save();
+    res.redirect("/admin/about?tab=social_links&msg=" + encodeURIComponent("Social media link updated successfully."));
+  } catch (error) {
+    console.error("Edit Social Link error:", error);
+    res.redirect("/admin/about?tab=social_links&err=" + encodeURIComponent(error.message));
+  }
+};
+
+exports.postDeleteSocialLink = async (req, res) => {
+  try {
+    const doc = await AboutPage.getOrSeed();
+    doc.socialLinks.pull({ _id: req.params.id });
+    await doc.save();
+    res.redirect("/admin/about?tab=social_links&msg=" + encodeURIComponent("Social link removed."));
+  } catch (error) {
+    console.error("Delete Social Link error:", error);
+    res.redirect("/admin/about?tab=social_links&err=" + encodeURIComponent(error.message));
   }
 };
