@@ -802,3 +802,222 @@
 .ak-social-card.helpline .ak-social-btn {
   background: var(--ak-primary);
 }
+
+/* ==========================================================================
+   ACHIEVEMENT CARDS (Text-Only, No Images)
+   ========================================================================== */
+.ak-achievement-card {
+  background: var(--ak-card-bg);
+  border-radius: var(--ak-radius-lg);
+  border: 1.5px solid var(--ak-border-light);
+  border-top: 4.5px solid var(--ak-primary);
+  box-shadow: var(--ak-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 26px 22px 22px;
+  position: relative;
+}
+
+.ak-achievement-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ak-shadow-lg);
+  border-top-color: var(--ak-secondary);
+}
+
+.ak-achievement-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ak-achievement-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--ak-primary-light);
+  color: var(--ak-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ak-achievement-card:hover .ak-achievement-icon-box {
+  background: var(--ak-secondary-light);
+  color: var(--ak-secondary);
+  transform: scale(1.08);
+}
+
+.ak-achievement-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--ak-radius-full);
+  background: rgba(215, 25, 32, 0.08);
+  color: var(--ak-primary);
+  border: 1px solid rgba(215, 25, 32, 0.15);
+  letter-spacing: 0.2px;
+}
+
+.ak-achievement-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--ak-text-dark);
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.ak-achievement-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ak-text-body);
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.ak-achievement-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--ak-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ak-achievement-metric {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ak-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   HORIZONTAL SCROLL RAILS FOR ACHIEVEMENTS & GALLERY (PHONE / MOBILE)
+   Right-to-left swipe with snap, matching Social Media rails
+   ========================================================================== */
+.ak-section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.ak-section-header-row .ak-section-header {
+  margin-bottom: 0;
+}
+
+.ak-cards-scroll-wrap {
+  width: 100%;
+}
+
+/* Desktop default: 4 columns in 1 grid row, controls hidden */
+@media (min-width: 769px) {
+  .ak-rail-controls {
+    display: none;
+  }
+}
+
+/* Phone / Mobile layout: Smooth Horizontal Swipe Rail */
+@media (max-width: 768px) {
+  .ak-rail-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .ak-cards-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 4px 18px;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+
+  .ak-cards-scroll-wrap::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .ak-cards-scroll-wrap::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 999px;
+  }
+
+  .ak-cards-scroll-wrap::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+  }
+
+  .ak-cards-scroll-wrap::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Force cards track into horizontal flex row */
+  .ak-cards-scroll-wrap .ak-cards-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    gap: 16px !important;
+    padding: 4px 2px !important;
+    margin: 0 !important;
+  }
+
+  /* Fixed-width swipeable cards with snap-align */
+  .ak-cards-scroll-wrap .ak-achievement-card {
+    width: 290px !important;
+    max-width: 290px !important;
+    min-width: 290px !important;
+    flex: 0 0 290px !important;
+    scroll-snap-align: start !important;
+    margin: 0 !important;
+  }
+
+  .ak-cards-scroll-wrap .ak-card {
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    flex: 0 0 280px !important;
+    scroll-snap-align: start !important;
+    margin: 0 !important;
+  }
+}
+
+/* Compact phones (iPhone SE, smaller screens) */
+@media (max-width: 480px) {
+  .ak-section-header-row {
+    margin-bottom: 16px;
+  }
+
+  .ak-cards-scroll-wrap .ak-achievement-card {
+    width: 265px !important;
+    max-width: 265px !important;
+    min-width: 265px !important;
+    flex: 0 0 265px !important;
+  }
+
+  .ak-cards-scroll-wrap .ak-card {
+    width: 255px !important;
+    max-width: 255px !important;
+    min-width: 255px !important;
+    flex: 0 0 255px !important;
+  }
+
+  .ak-rail-controls .rail-arrow-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+}
+
+

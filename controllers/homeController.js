@@ -14,11 +14,12 @@ const {
   defaultQuickInfo,
 } = require("../scripts/seedHomeData");
 const { defaultGalleryPhotos } = require("../scripts/seedGalleryData");
+const socialSyncService = require("../services/socialSyncService");
 
 // Public Home Page
 exports.getHomePage = async (req, res) => {
   try {
-    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, homeAboutDoc] =
+    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, homeAboutDoc, socialRails] =
       await Promise.all([
         HeroSlide.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(10),
         Initiative.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(24),
@@ -27,6 +28,10 @@ exports.getHomePage = async (req, res) => {
         HomeQuickInfo.findOne(),
         SankalpPhoto.find({ isPublished: true }).sort({ order: 1, date: -1 }).limit(10),
         HomeAbout.findOne(),
+        socialSyncService.getAllPlatformRails().catch((e) => {
+          console.warn("Notice: could not load social rails for home page:", e.message);
+          return { instagram: [], facebook: [], twitter: [] };
+        }),
       ]);
 
     // Fallbacks if database is completely empty or just initialized
@@ -41,6 +46,10 @@ exports.getHomePage = async (req, res) => {
     const finalHomeAbout = homeAboutDoc || (HomeAbout.defaultData || {});
     const finalGalleryPhotos =
       galleryPhotos && galleryPhotos.length > 0 ? galleryPhotos : defaultGalleryPhotos.slice(0, 10);
+
+    const finalInstagramPosts = (socialRails && socialRails.instagram) || [];
+    const finalFacebookPosts = (socialRails && socialRails.facebook) || [];
+    const finalTwitterPosts = (socialRails && socialRails.twitter) || [];
 
     // Convert initiatives to client-side modal dictionary
     const initiativesModalMap = {};
@@ -71,6 +80,9 @@ exports.getHomePage = async (req, res) => {
       quickInfo: finalQuickInfo,
       galleryPhotos: finalGalleryPhotos,
       homeAbout: finalHomeAbout,
+      instagramPosts: finalInstagramPosts,
+      facebookPosts: finalFacebookPosts,
+      twitterPosts: finalTwitterPosts,
       latestVideos: [],
       highlightVideo: null,
       highlightNews: null,
@@ -89,6 +101,9 @@ exports.getHomePage = async (req, res) => {
       quickInfo: defaultQuickInfo,
       galleryPhotos: defaultGalleryPhotos.slice(0, 10),
       homeAbout: HomeAbout.defaultData || {},
+      instagramPosts: [],
+      facebookPosts: [],
+      twitterPosts: [],
       latestVideos: [],
       highlightVideo: null,
       highlightNews: null,

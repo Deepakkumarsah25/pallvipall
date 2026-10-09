@@ -1,90 +1,115 @@
 <!-- ==========================================================================
-     ARVIND KEJRIWAL AAP STYLE KEY ACHIEVEMENTS SECTION
-     Section Header with Trophy Icon + 4-Column Card Grid with Metric Badges
+     KEY ACHIEVEMENTS SECTION (TEXT-ONLY CARDS, NO IMAGES)
+     Section Header with Trophy Icon + 4-Column Text-Only Card Grid
      ========================================================================== -->
-<%
-  const pillarsList = (typeof whyChoose !== 'undefined' && whyChoose && whyChoose.pillars && whyChoose.pillars.length > 0)
-    ? whyChoose.pillars
-    : [
-        {
-          yearBadge: "संवैधानिक मंच",
-          title: "सामाजिक न्याय व जनहित की पैरवी",
-          description: "विधानसभा और संवैधानिक मंचों पर सर्वसमाज, किसानों, महिलाओं और वंचितों के अधिकारों की सशक्त और निरंतर पैरवी।",
-          image: "/images/democratic-pledge-featured.jpg"
-        },
-        {
-          yearBadge: "जन-सम्पर्क",
-          title: "अखंड जन-एकता व विकास भागीदारी",
-          description: "क्षेत्र के सैकड़ों गांवों और परिवारों को सीधे जोड़कर जनसमस्याओं के समाधान व विकास की मुख्यधारा में सशक्त भागीदारी।",
-          image: "/images/democratic-pledge-varanasi.jpg"
-        },
-        {
-          yearBadge: "शिक्षा व युवा",
-          title: "युवा मार्गदर्शन व छात्र सहायता नेटवर्क",
-          description: "मेधावी छात्र-छात्राओं को उच्च शिक्षा, प्रतियोगी परीक्षाओं और कौशल विकास के लिए निरंतर मार्गदर्शन व सहयोग।",
-          image: "/images/democratic-pledge-patna.jpg"
-        },
-        {
-          yearBadge: "किसान व कामगार",
-          title: "किसान, महिला व कामगार अधिकार सुरक्षा",
-          description: "किसानों, ग्रामीण महिलाओं, मजदूरों और पारंपरिक कामगारों के अधिकारों व आजीविका सुरक्षा हेतु निरंतर जमीनी संघर्ष।",
-          image: "/images/democratic-pledge-bhopal.jpg"
-        }
-      ];
-
-  const fallbackImgs = [
-    "/images/democratic-pledge-featured.jpg",
-    "/images/democratic-pledge-varanasi.jpg",
-    "/images/democratic-pledge-patna.jpg",
-    "/images/democratic-pledge-bhopal.jpg"
-  ];
-%>
-
 <section class="ak-section ak-bg-white" id="achievements">
   <div class="ak-container">
 
-    <!-- Signature Section Header -->
-    <div class="ak-section-header">
-      <div class="ak-header-icon-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-          <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
-        </svg>
+    <!-- Signature Section Header with Rail Navigation Controls -->
+    <div class="ak-section-header-row">
+      <div class="ak-section-header">
+        <div class="ak-header-icon-box">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+          </svg>
+        </div>
+        <h2 class="ak-header-title">
+          मुख्य उपलब्धियां <span class="ak-highlight">Key Achievements</span>
+        </h2>
       </div>
-      <h2 class="ak-header-title">
-        मुख्य उपलब्धियां <span class="ak-highlight">Key Achievements</span>
-      </h2>
+
+      <!-- Arrow Controls (Matching Social Media rail) -->
+      <div class="rail-controls ak-rail-controls">
+        <button type="button" class="rail-arrow-btn rail-prev" data-target="achievementsRail" aria-label="Previous Achievement">‹</button>
+        <button type="button" class="rail-arrow-btn rail-next" data-target="achievementsRail" aria-label="Next Achievement">›</button>
+      </div>
     </div>
 
     <p class="ak-header-sub">
-      जनसेवा, समर्पित संघर्ष और पल्लवी पाल जी के कुशल नेतृत्व में क्षेत्र व समाज के लिए हासिल किए गए प्रमुख मील के पत्थर।
+      जनसेवा, समर्पित संघर्ष और डॉ. पल्लवी पटेल (पल्लवी पाल) जी के कुशल नेतृत्व में जनहित व क्षेत्र के लिए हासिल किए गए प्रमुख मील के पत्थर।
     </p>
 
-    <!-- 4-Column Card Grid -->
-    <div class="ak-cards-grid ak-grid-4">
-      <% pillarsList.forEach(function(item, idx) { %>
-        <article class="ak-card">
-          <div class="ak-card-img-wrap">
-            <img 
-              src="<%= item.image || fallbackImgs[idx % fallbackImgs.length] %>" 
-              alt="<%= item.title %>" 
-              loading="lazy" 
-              onerror="this.src='/images/kalash-yatra-featured.jpg'"
-            />
-            <span class="ak-card-badge">
-              <%= item.yearBadge || item.tag || ('उपलब्धि ' + (idx + 1)) %>
-            </span>
-          </div>
+    <!-- Horizontal Scroll Track Wrapper -->
+    <div class="social-track-wrap ak-cards-scroll-wrap" id="achievementsRail">
+      <div class="ak-cards-grid ak-grid-4 ak-cards-track">
 
-          <div class="ak-card-body">
-            <span class="ak-card-meta">
-              <span>★</span> Milestone Impact
-            </span>
-            <h3 class="ak-card-title"><%= item.title %></h3>
-            <p class="ak-card-desc"><%= item.description %></p>
-            <span class="ak-card-link-text">विस्तार से जानें →</span>
+        <!-- Card 1: Assembly Representation -->
+        <article class="ak-achievement-card">
+          <div class="ak-achievement-top">
+            <div class="ak-achievement-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+              </svg>
+            </div>
+            <span class="ak-achievement-tag">विधानसभा प्रतिनिधित्व</span>
+          </div>
+          <h3 class="ak-achievement-title">सिराथू से ऐतिहासिक जनादेश एवं सदन में जनहित की पैरवी</h3>
+          <p class="ak-achievement-desc">
+            उत्तर प्रदेश विधानसभा में सिराथू का प्रतिनिधित्व करते हुए क्षेत्र के समग्र विकास, पक्की सड़कों, बिजली, स्वास्थ्य और जनकल्याण के मुद्दों को पूरी निर्भीकता और मजबूती से उठाया।
+          </p>
+          <div class="ak-achievement-footer">
+            <span class="ak-achievement-metric">★ ऐतिहासिक जनविश्वास</span>
           </div>
         </article>
-      <% }); %>
+
+        <!-- Card 2: Social Justice & Constitutional Rights -->
+        <article class="ak-achievement-card">
+          <div class="ak-achievement-top">
+            <div class="ak-achievement-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+              </svg>
+            </div>
+            <span class="ak-achievement-tag">संवैधानिक अधिकार</span>
+          </div>
+          <h3 class="ak-achievement-title">सामाजिक न्याय व वंचित वर्गों के संवैधानिक अधिकारों की रक्षा</h3>
+          <p class="ak-achievement-desc">
+            कमेरा समाज, पिछड़ों, दलितों और समाज के अंतिम पायदान पर खड़े नागरिकों को सामाजिक न्याय, संवैधानिक आरक्षण और सम्मान दिलाने हेतु सड़क से लेकर सदन तक निरंतर संघर्ष।
+          </p>
+          <div class="ak-achievement-footer">
+            <span class="ak-achievement-metric">★ सामाजिक न्याय संकल्प</span>
+          </div>
+        </article>
+
+        <!-- Card 3: Farmers & Workers Welfare -->
+        <article class="ak-achievement-card">
+          <div class="ak-achievement-top">
+            <div class="ak-achievement-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.49 9.49 0 0 0 12 21a9.5 9.5 0 0 0 9-6.44l-2.09-.76A7.54 7.54 0 0 1 17 8z"/>
+              </svg>
+            </div>
+            <span class="ak-achievement-tag">किसान व कामगार</span>
+          </div>
+          <h3 class="ak-achievement-title">अन्नदाता किसान, मजदूर एवं ग्रामीण कल्याण महाअभियान</h3>
+          <p class="ak-achievement-desc">
+            किसानों की फसलों के उचित मूल्य, सिंचाई की सुलभता, समय पर खाद-बीज और ग्रामीण कामगारों के अधिकारों व आर्थिक स्वावलंबन के लिए सतत जनसंवाद व प्रशासनिक पैरवी।
+          </p>
+          <div class="ak-achievement-footer">
+            <span class="ak-achievement-metric">★ किसान-मजदूर हित</span>
+          </div>
+        </article>
+
+        <!-- Card 4: Youth & Women Empowerment -->
+        <article class="ak-achievement-card">
+          <div class="ak-achievement-top">
+            <div class="ak-achievement-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.5l-6-3.27V17c0 3.31 2.69 6 6 6s6-2.69 6-6v-3.77l-6 3.27z"/>
+              </svg>
+            </div>
+            <span class="ak-achievement-tag">शिक्षा व युवा</span>
+          </div>
+          <h3 class="ak-achievement-title">युवा स्वावलंबन, उच्च शिक्षा एवं महिला सुरक्षा अभियान</h3>
+          <p class="ak-achievement-desc">
+            मेधावी छात्र-छात्राओं को उच्च शिक्षा व प्रतियोगी परीक्षाओं में मार्गदर्शन, युवाओं के रोजगार अवसरों का सृजन और महिलाओं के स्वावलंबन व सम्मान हेतु जमीनी पहलों का क्रियान्वयन।
+          </p>
+          <div class="ak-achievement-footer">
+            <span class="ak-achievement-metric">★ युवा-महिला सशक्तिकरण</span>
+          </div>
+        </article>
+
+      </div>
     </div>
 
   </div>

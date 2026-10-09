@@ -3,50 +3,60 @@
      Section Header with Camera Icon + 4-Column Cards Grid + View Gallery CTA
      ========================================================================== -->
 <%
-  const photos = (typeof galleryPhotos !== 'undefined' && Array.isArray(galleryPhotos)) ? galleryPhotos.slice(0, 4) : [];
+  const photos = (typeof galleryPhotos !== 'undefined' && Array.isArray(galleryPhotos)) ? galleryPhotos.slice(0, 6) : [];
 %>
 
 <section class="ak-section ak-bg-white" id="gallery">
   <div class="ak-container">
 
-    <!-- Signature Section Header -->
-    <div class="ak-section-header">
-      <div class="ak-header-icon-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-          <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-        </svg>
+    <!-- Signature Section Header with Rail Navigation Controls -->
+    <div class="ak-section-header-row">
+      <div class="ak-section-header">
+        <div class="ak-header-icon-box">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+          </svg>
+        </div>
+        <h2 class="ak-header-title">
+          फोटो <span class="ak-highlight">Gallery</span>
+        </h2>
       </div>
-      <h2 class="ak-header-title">
-        फोटो <span class="ak-highlight">Gallery</span>
-      </h2>
+
+      <!-- Arrow Controls (Matching Social Media rail) -->
+      <div class="rail-controls ak-rail-controls">
+        <button type="button" class="rail-arrow-btn rail-prev" data-target="galleryRail" aria-label="Previous Photo">‹</button>
+        <button type="button" class="rail-arrow-btn rail-next" data-target="galleryRail" aria-label="Next Photo">›</button>
+      </div>
     </div>
 
     <p class="ak-header-sub">
       जनसभाओं, विकास कार्यक्रमों, जनसंपर्क अभियानों एवं सामाजिक आयोजनों के जीवंत दृश्य व तस्वीरें।
     </p>
 
-    <!-- 4-Column Media Grid (Campaign Photos) -->
-    <div class="ak-cards-grid ak-grid-4">
-      <% photos.forEach(function(photo) { %>
-        <article class="ak-card">
-          <div class="ak-card-img-wrap">
-            <img 
-              src="<%= photo.imageUrl || '/images/kalash-yatra-featured.jpg' %>" 
-              alt="<%= photo.name %>" 
-              loading="lazy"
-              onerror="this.src='/images/kalash-yatra-featured.jpg'"
-            />
-            <span class="ak-card-badge green">📷 Photo</span>
-          </div>
-          <div class="ak-card-body">
-            <span class="ak-card-meta">
-              <span>📍</span> <%= photo.district || 'Campaign District' %>
-            </span>
-            <h3 class="ak-card-title"><%= photo.name %></h3>
-            <a href="/gallery" class="ak-card-link-text">गैलरी में देखें →</a>
-          </div>
-        </article>
-      <% }); %>
+    <!-- Horizontal Scroll Track Wrapper -->
+    <div class="social-track-wrap ak-cards-scroll-wrap" id="galleryRail">
+      <div class="ak-cards-grid ak-grid-4 ak-cards-track">
+        <% photos.forEach(function(photo) { %>
+          <article class="ak-card">
+            <div class="ak-card-img-wrap">
+              <img 
+                src="<%= photo.imageUrl || '/images/kalash-yatra-featured.jpg' %>" 
+                alt="<%= photo.name %>" 
+                loading="lazy"
+                onerror="this.src='/images/kalash-yatra-featured.jpg'"
+              />
+              <span class="ak-card-badge green">📷 Photo</span>
+            </div>
+            <div class="ak-card-body">
+              <span class="ak-card-meta">
+                <span>📍</span> <%= photo.district || 'Campaign District' %>
+              </span>
+              <h3 class="ak-card-title"><%= photo.name %></h3>
+              <a href="/gallery" class="ak-card-link-text">गैलरी में देखें →</a>
+            </div>
+          </article>
+        <% }); %>
+      </div>
     </div>
 
     <div class="ak-section-cta">
