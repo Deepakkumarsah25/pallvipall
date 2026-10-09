@@ -25,17 +25,17 @@
           <% 
             const mainImg = (aboutData.images && aboutData.images.length > 0) 
               ? aboutData.images[0] 
-              : (aboutData.imageUrl || '/images/about/nishad-sankalp-rally.jpg');
+              : (aboutData.imageUrl || '/images/about/pallavi-pal-rally.jpg');
           %>
           <img 
             src="<%= mainImg %>" 
-            alt="Nishad Sankalp Campaign Leader Highlight" 
+            alt="पल्लवी पाल - जनसेवा एवं सामाजिक न्याय" 
             loading="lazy"
-            onerror="this.src='/images/about/nishad-sankalp-rally.jpg'"
+            onerror="this.src='/images/about/pallavi-pal-rally.jpg'"
           />
           <div class="ak-about-badge">
             <span style="font-size: 1.1rem;">🔥</span>
-            <span><%= aboutData.floatingBadgeText || 'स्वाभिमान व सामाजिक चेतना' %></span>
+            <span><%= aboutData.floatingBadgeText || 'जनसेवा व सामाजिक न्याय' %></span>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <h3 class="ak-about-heading">
           <%= (aboutData.quoteText && aboutData.quoteText.trim()) 
               ? aboutData.quoteText 
-              : 'जब समाज का एक-एक हाथ साथ जुड़ता है, तो इतिहास की दिशा बदल जाती है। निषाद संकल्प अभियान आपकी आवाज है।' %>
+              : 'जब समाज का एक-एक हाथ साथ जुड़ता है, तो इतिहास की दिशा बदल जाती है। पल्लवी पाल जी का यह संकल्प आपकी आवाज़ है।' %>
         </h3>
 
         <% if (aboutData.tagline && aboutData.tagline.trim()) { %>
@@ -64,7 +64,7 @@
             const pointsList = (aboutData.points && aboutData.points.length > 0) ? aboutData.points : [
               { title: 'निःशुल्क सदस्यता एवं पारदर्शी भागीदारी' },
               { title: 'गांव व ब्लॉक स्तर पर प्रत्यक्ष संवाद व लोक-पंचायत' },
-              { title: 'संवैधानिक आरक्षण व कानूनी अधिकारों की सशक्त पैरवी' },
+              { title: 'संवैधानिक अधिकारों व सामाजिक न्याय की सशक्त पैरवी' },
               { title: 'युवाओं के लिए शिक्षा, कौशल विकास व रोजगार मार्गदर्शन' }
             ];
           %>

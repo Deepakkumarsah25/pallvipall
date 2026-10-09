@@ -10,7 +10,7 @@ exports.getContactPage = async (req, res) => {
     const contact = await ContactInfo.getOrSeed();
 
     res.render("contact", {
-      title: "संपर्क करें | निषाद संकल्प अभियान",
+      title: "संपर्क करें | पल्लवी पाल - जनसेवा कार्यालय",
       currentUrl: "/contact",
       contact,
       message: req.query.msg || null,
@@ -19,7 +19,7 @@ exports.getContactPage = async (req, res) => {
   } catch (error) {
     console.error("Error loading contact page:", error);
     res.status(500).render("contact", {
-      title: "संपर्क करें | निषाद संकल्प अभियान",
+      title: "संपर्क करें | पल्लवी पाल - जनसेवा कार्यालय",
       currentUrl: "/contact",
       contact: ContactInfo.defaultData,
       message: null,
@@ -88,7 +88,7 @@ exports.submitContactForm = async (req, res) => {
       ipAddress,
     });
 
-    // Send email notification to nishadaarakshansankalp@gmail.com asynchronously
+    // Send email notification to official email asynchronously
     sendContactNotification({
       name: newMessage.name,
       phone: newMessage.phone,

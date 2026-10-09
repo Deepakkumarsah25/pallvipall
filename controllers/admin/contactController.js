@@ -131,7 +131,7 @@ exports.updateContactSettings = async (req, res) => {
     // Assign banner image (file upload priority, then URL input)
     const previousBannerPublicId = contact.bannerImagePublicId || "";
     if (req.file) {
-      const uploaded = await uploadBuffer(req.file.buffer, "nishad-yatra/contact");
+      const uploaded = await uploadBuffer(req.file.buffer, "pallavi-pal/contact");
       contact.bannerImage = uploaded.secure_url;
       contact.bannerImagePublicId = uploaded.public_id;
     } else if (bannerImage !== undefined && bannerImage.trim() !== "") {

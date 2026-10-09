@@ -32,7 +32,7 @@ router.all("/login", (req, res) => {
 });
 
 // ========================================
-// Secret Admin Login Page: /admin/nishadaarakshansankalp/main/login
+// Secret Admin Login Page: /admin/pallavipal/main/login
 // ========================================
 
 router.get(
@@ -40,6 +40,11 @@ router.get(
   guestMiddleware,
   showLogin
 );
+
+// Compatibility alias for legacy admin route
+router.get("/nishadaarakshansankalp/main/login", (req, res) => {
+  res.redirect(`/admin${ADMIN_LOGIN_PATH}`);
+});
 
 // ========================================
 // Secret Admin Login Submit (POST)

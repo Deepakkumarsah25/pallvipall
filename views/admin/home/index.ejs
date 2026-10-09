@@ -377,21 +377,21 @@
       <div class="module-card">
         <div>
           <div class="module-header">
-            <div class="module-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l5 5v11a2 2 0 0 1-2 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <div class="module-icon" style="background: linear-gradient(135deg, #e1306c, #f77737);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
             </div>
             <div class="module-title">
-              <h3>7. News & Media Coverage (समाचार एवं प्रेस)</h3>
-              <p>Manage home page news, edit press releases, mark Highlight News (मुख्य समाचार), and manage digital/print coverage.</p>
+              <h3>7. Social Media Wall &amp; Accounts (सोशल मीडिया)</h3>
+              <p>Manage Instagram, Facebook, and Twitter feeds. Publish multi-platform posts at once and link account credentials for auto-fetching.</p>
             </div>
           </div>
         </div>
         <div class="module-actions">
-          <a href="/admin/video_news" class="btn-admin btn-admin-primary" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-            <span>Manage News &amp; Highlights (<%= typeof stats.newsCount !== 'undefined' ? stats.newsCount : 0 %>)</span>
+          <a href="/admin/social" class="btn-admin btn-admin-primary" style="background: linear-gradient(135deg, #e1306c, #833ab4);">
+            <span>Manage Social Wall (<%= typeof stats.socialCount !== 'undefined' ? stats.socialCount : 0 %>)</span>
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="/admin/video_news/add" class="btn-admin btn-admin-outline">Add Article</a>
+          <a href="/admin/social#compose" class="btn-admin btn-admin-outline">New Post</a>
         </div>
       </div>
     </div>

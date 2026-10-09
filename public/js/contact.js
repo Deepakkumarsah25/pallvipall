@@ -1,5 +1,5 @@
 /**
- * Nishad Sankalp Campaign - Contact Page Client JavaScript
+ * Pallavi Pal Official - Contact Page Client JavaScript
  */
 document.addEventListener("DOMContentLoaded", function () {
   // 1. Textarea Character Counter

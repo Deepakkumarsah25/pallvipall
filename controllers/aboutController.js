@@ -6,16 +6,16 @@ exports.getAboutPage = async (req, res) => {
     const about = await AboutPage.getOrSeed();
 
     res.render("about", {
-      title: about.meta.pageTitle || "अभियान का संपूर्ण परिचय | निषाद संकल्प अभियान",
-      metaDescription: about.meta.pageSubtitle || "एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन",
+      title: about.meta.pageTitle || "जीवन परिचय एवं जनसेवा यात्रा | पल्लवी पाल",
+      metaDescription: about.meta.pageSubtitle || "जनप्रतिनिधि, जनसेवा और सामाजिक न्याय का निरंतर संघर्ष",
       about,
       currentUrl: "/about",
     });
   } catch (error) {
     console.error("Public About Page render error:", error);
     res.render("about", {
-      title: "अभियान का संपूर्ण परिचय | निषाद संकल्प अभियान",
-      metaDescription: "एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन",
+      title: "जीवन परिचय एवं जनसेवा यात्रा | पल्लवी पाल",
+      metaDescription: "जनप्रतिनिधि, जनसेवा और सामाजिक न्याय का निरंतर संघर्ष",
       about: AboutPage.defaultData,
       currentUrl: "/about",
     });

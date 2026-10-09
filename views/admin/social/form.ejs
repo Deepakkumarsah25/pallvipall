@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <%- include('../common/header', { title: 'Edit Social Post' }) %>
+  <style>
+    .form-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .form-control, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #0f172a;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus, .form-textarea:focus {
+      border-color: #d71920;
+      outline: none;
+    }
+
+    .btn-submit {
+      padding: 11px 24px;
+      background: #d71920;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-cancel {
+      padding: 11px 20px;
+      background: #f1f5f9;
+      color: #334155;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-layout">
+    <%- include('../common/sidebar', { currentPath: '/admin/social' }) %>
+
+    <main class="admin-main">
+      <div class="form-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
+          <h1 style="font-size: 20px; font-weight: 800; margin: 0; color: #0f172a;">
+            Edit <%= post.platform.toUpperCase() %> Post
+          </h1>
+          <a href="/admin/social" class="btn-cancel">← Back to Social Hub</a>
+        </div>
+
+        <form action="/admin/social/edit/<%= post._id %>" method="POST">
+          <div class="form-group">
+            <label class="form-label">Platform</label>
+            <input type="text" class="form-control" value="<%= post.platform %>" disabled />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Title / Heading</label>
+            <input type="text" name="title" class="form-control" value="<%= post.title || '' %>" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Caption / Message Text *</label>
+            <textarea name="caption" class="form-textarea" style="min-height: 120px;" required><%= post.caption %></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Media URL</label>
+            <input type="text" name="mediaUrl" class="form-control" value="<%= post.mediaUrl || '' %>" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label class="form-label">Media Type</label>
+              <select name="mediaType" class="form-select">
+                <option value="image" <%= post.mediaType === 'image' ? 'selected' : '' %>>Image</option>
+                <option value="video" <%= post.mediaType === 'video' ? 'selected' : '' %>>Video</option>
+                <option value="text" <%= post.mediaType === 'text' ? 'selected' : '' %>>Text</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Display Date Pill</label>
+              <input type="text" name="formattedDate" class="form-control" value="<%= post.formattedDate || '' %>" placeholder="e.g. 25 May 2026" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Likes</label>
+              <input type="number" name="likesCount" class="form-control" value="<%= post.likesCount || 0 %>" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Comments</label>
+              <input type="number" name="commentsCount" class="form-control" value="<%= post.commentsCount || 0 %>" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Shares</label>
+              <input type="number" name="sharesCount" class="form-control" value="<%= post.sharesCount || 0 %>" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Post URL</label>
+            <input type="text" name="url" class="form-control" value="<%= post.url || '' %>" />
+          </div>
+
+          <div style="display: flex; gap: 14px; margin-top: 24px;">
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <a href="/admin/social" class="btn-cancel">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
+

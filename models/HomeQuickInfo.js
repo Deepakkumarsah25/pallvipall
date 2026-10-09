@@ -4,22 +4,22 @@ const homeQuickInfoSchema = new mongoose.Schema(
   {
     sidebarTitle: {
       type: String,
-      default: "Nishad Sankalp Campaign",
+      default: "पल्लवी पाल",
       trim: true,
     },
     sidebarSubtitle: {
       type: String,
-      default: "Quick Service & Support Center",
+      default: "जनसेवा एवं संपर्क केंद्र",
       trim: true,
     },
     pledgeBoxTitle: {
       type: String,
-      default: "Join the Campaign by Taking a Pledge",
+      default: "जनसेवा व सामाजिक सरोकार से जुड़ें",
       trim: true,
     },
     pledgeBoxDesc: {
       type: String,
-      default: "Register your online pledge for the upliftment and empowerment of our community.",
+      default: "शिक्षा, सामाजिक न्याय एवं जनहित के कार्यों में अपनी सहभागिता दर्ज करें।",
       trim: true,
     },
     helplineText: {
@@ -34,12 +34,12 @@ const homeQuickInfoSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      default: "nishadaarakshansankalp@gmail.com",
+      default: "pallvipal.official@gmail.com",
       trim: true,
     },
     sidebarFooterText: {
       type: String,
-      default: "Public service is our true pledge",
+      default: "जनसेवा ही हमारा संकल्प है",
       trim: true,
     },
   },

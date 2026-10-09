@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <%- include('../common/header', { title: 'Social Media Management' }) %>
+  <style>
+    .social-admin-container {
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .social-admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .social-admin-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 1024px) {
+      .social-admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .admin-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .admin-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .admin-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .form-control, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #0f172a;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #d71920;
+      box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.12);
+    }
+
+    .form-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-help {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-admin-primary {
+      background: #d71920;
+      color: #ffffff;
+    }
+
+    .btn-admin-primary:hover {
+      background: #b8141a;
+      transform: translateY(-1px);
+    }
+
+    .btn-admin-sync {
+      background: linear-gradient(135deg, #0b8441, #065f2c);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(11, 132, 65, 0.25);
+    }
+
+    .btn-admin-sync:hover {
+      background: #065f2c;
+      transform: translateY(-1px);
+    }
+
+    .btn-admin-secondary {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .btn-admin-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* Stats Banner */
+    .social-stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-box-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .stat-box-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* Table styles */
+    .posts-table-wrap {
+      overflow-x: auto;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .posts-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .posts-table th {
+      background: #f8fafc;
+      padding: 14px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #475569;
+      border-bottom: 1.5px solid #e2e8f0;
+    }
+
+    .posts-table td {
+      padding: 14px 16px;
+      font-size: 13.5px;
+      color: #1e293b;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+
+    .posts-table tr:hover td {
+      background: #fbfdfc;
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .badge-ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+    .badge-fb { background: #1877f2; }
+    .badge-tw { background: #111111; }
+
+    .thumb-preview {
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .status-active { background: #ecfdf5; color: #047857; }
+    .status-inactive { background: #fee2e2; color: #b91c1c; }
+
+    .alert {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .alert-success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .alert-error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+  </style>
+</head>
+
+<body>
+  <div class="admin-layout">
+    <%- include('../common/sidebar', { currentPath: '/admin/social' }) %>
+
+    <main class="admin-main">
+      <div class="social-admin-container">
+
+        <!-- Flash messages -->
+        <% if (success) { %>
+          <div class="alert alert-success">✓ <%= success %></div>
+        <% } %>
+        <% if (error) { %>
+          <div class="alert alert-error">⚠ <%= error %></div>
+        <% } %>
+
+        <!-- Header -->
+        <div class="social-admin-header">
+          <div>
+            <h1 class="social-admin-title">🌐 Social Media Wall Management</h1>
+            <p style="margin: 4px 0 0; color: #64748b; font-size: 13.5px;">
+              Manage Instagram, Facebook & Twitter posts, auto-fetch updates, and link accounts.
+            </p>
+          </div>
+
+          <form action="/admin/social/autofetch" method="POST" style="display: inline-block;">
+            <button type="submit" class="btn-admin btn-admin-sync">
+              <span>🔄 Auto-Fetch Now (Sync Posts)</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Stats Strip -->
+        <div class="social-stats-strip">
+          <div class="stat-box">
+            <div>
+              <div class="stat-box-num"><%= stats.total || 0 %></div>
+              <div class="stat-box-lbl">Total Posts</div>
+            </div>
+            <span style="font-size: 24px;">📱</span>
+          </div>
+
+          <div class="stat-box">
+            <div>
+              <div class="stat-box-num"><%= stats.instagram || 0 %></div>
+              <div class="stat-box-lbl">Instagram Posts</div>
+            </div>
+            <span style="font-size: 24px;">📷</span>
+          </div>
+
+          <div class="stat-box">
+            <div>
+              <div class="stat-box-num"><%= stats.facebook || 0 %></div>
+              <div class="stat-box-lbl">Facebook Posts</div>
+            </div>
+            <span style="font-size: 24px;">📘</span>
+          </div>
+
+          <div class="stat-box">
+            <div>
+              <div class="stat-box-num"><%= stats.twitter || 0 %></div>
+              <div class="stat-box-lbl">X / Twitter Posts</div>
+            </div>
+            <span style="font-size: 24px;">𝕏</span>
+          </div>
+        </div>
+
+        <!-- 2 Column Grid: Add Post & Link Accounts -->
+        <div class="social-admin-grid">
+
+          <!-- FORM 1: ADD POST FOR ALL SECTIONS AT ONCE -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-title">
+                <span>➕ Add Post (All Sections or Single)</span>
+              </h2>
+              <span style="font-size: 12px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 999px; font-weight: 700;">
+                Quick Publish
+              </span>
+            </div>
+
+            <form action="/admin/social/create" method="POST">
+              <div class="form-group">
+                <label class="form-label" for="targetPlatform">Target Section / Platform *</label>
+                <select name="targetPlatform" id="targetPlatform" class="form-select" required>
+                  <option value="all" selected>🌟 All 3 Sections at Once (Instagram + Facebook + Twitter)</option>
+                  <option value="instagram">📷 Instagram Rail Only</option>
+                  <option value="facebook">📘 Facebook Rail Only</option>
+                  <option value="twitter">𝕏 Twitter / X Rail Only</option>
+                </select>
+                <small class="form-help">Select "All 3 Sections" to publish this post across Instagram, Facebook, and Twitter simultaneously!</small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="postCaption">Caption / Message Text *</label>
+                <textarea name="caption" id="postCaption" class="form-textarea" placeholder="Enter post caption or tweet text..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="postMediaUrl">Media Image or Video URL</label>
+                <input type="text" name="mediaUrl" id="postMediaUrl" class="form-control" placeholder="/images/kalash-yatra-featured.jpg or https://..." value="/images/kalash-yatra-featured.jpg" />
+                <small class="form-help">Shortcut: Use <code>/images/kalash-yatra-featured.jpg</code>, <code>/images/democratic-pledge-featured.jpg</code>, or hosted image link.</small>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="form-group">
+                  <label class="form-label" for="postMediaType">Media Type</label>
+                  <select name="mediaType" id="postMediaType" class="form-select">
+                    <option value="image">Image / Photo</option>
+                    <option value="video">Video (With Play Icon)</option>
+                    <option value="text">Text Only</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="postDate">Display Date Pill</label>
+                  <input type="text" name="formattedDate" id="postDate" class="form-control" placeholder="e.g. 25 May 2026" />
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                  <label class="form-label">Likes</label>
+                  <input type="number" name="likesCount" class="form-control" placeholder="10500" value="1250" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Comments</label>
+                  <input type="number" name="commentsCount" class="form-control" placeholder="450" value="180" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Shares</label>
+                  <input type="number" name="sharesCount" class="form-control" placeholder="320" value="340" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="postUrl">External Link (Optional)</label>
+                <input type="text" name="url" id="postUrl" class="form-control" placeholder="https://instagram.com/p/... or leave blank for official profile" />
+              </div>
+
+              <button type="submit" class="btn-admin btn-admin-primary" style="width: 100%;">
+                <span>Publish Post to Social Wall</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- FORM 2: LINK INSTA & FACEBOOK ACCOUNTS (AUTOFETCH) -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-title">
+                <span>🔗 Link Accounts &amp; Auto-Fetch</span>
+              </h2>
+              <span style="font-size: 11.5px; background: #ecfdf5; color: #047857; padding: 3px 8px; border-radius: 999px; font-weight: 700;">
+                <%= config.lastSyncStatus || 'Configured' %>
+              </span>
+            </div>
+
+            <form action="/admin/social/config" method="POST">
+              <!-- Instagram Link -->
+              <div style="margin-bottom: 20px; padding: 14px; background: #fdf4f7; border-radius: 12px; border: 1px solid #f9d8e4;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                  <span class="platform-badge badge-ig">📷 Instagram</span>
+                  <strong style="font-size: 13.5px; color: #831843;">Account Credentials</strong>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Instagram User ID / Business ID</label>
+                  <input type="text" name="igUserId" class="form-control" value="<%= config.instagram?.userId || '' %>" placeholder="e.g. 17841400000000000" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Instagram Graph API Token (Long-Lived)</label>
+                  <input type="password" name="igAccessToken" class="form-control" value="<%= config.instagram?.accessToken || '' %>" placeholder="IGQV..." />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Instagram Username / Handle</label>
+                  <input type="text" name="igHandle" class="form-control" value="<%= config.instagram?.handle || 'nishadsankalp' %>" placeholder="nishadsankalp" />
+                </div>
+              </div>
+
+              <!-- Facebook Link -->
+              <div style="margin-bottom: 20px; padding: 14px; background: #eff6ff; border-radius: 12px; border: 1px solid #bfdbfe;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                  <span class="platform-badge badge-fb">📘 Facebook</span>
+                  <strong style="font-size: 13.5px; color: #1e3a8a;">Page Credentials</strong>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Facebook Page ID</label>
+                  <input type="text" name="fbPageId" class="form-control" value="<%= config.facebook?.pageId || '' %>" placeholder="e.g. 1048291029102" />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Facebook Page Access Token</label>
+                  <input type="password" name="fbPageAccessToken" class="form-control" value="<%= config.facebook?.pageAccessToken || '' %>" placeholder="EAA..." />
+                </div>
+              </div>
+
+              <!-- Twitter / X Link -->
+              <div style="margin-bottom: 20px; padding: 14px; background: #f8fafc; border-radius: 12px; border: 1px solid #cbd5e1;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                  <span class="platform-badge badge-tw">𝕏 Twitter / X</span>
+                  <strong style="font-size: 13.5px; color: #0f172a;">API Credentials</strong>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">X Bearer Token</label>
+                  <input type="password" name="twBearerToken" class="form-control" value="<%= config.twitter?.bearerToken || '' %>" placeholder="AAAAAAAAAAAAAAAAAAAAA..." />
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <button type="submit" class="btn-admin btn-admin-secondary" style="flex: 1;">
+                  <span>💾 Save Account Settings</span>
+                </button>
+              </div>
+            </form>
+
+            <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #f1f5f9; font-size: 12.5px; color: #64748b;">
+              Last auto-fetch: <strong><%= config.lastSyncedAt ? new Date(config.lastSyncedAt).toLocaleString('en-IN') : 'Never' %></strong>
+              <% if (config.lastSyncMessage) { %>
+                <div><%= config.lastSyncMessage %></div>
+              <% } %>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LIST SECTION: MANAGE POSTS -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2 class="admin-card-title">
+              <span>📋 All Social Posts (<%= posts.length %>)</span>
+            </h2>
+
+            <div style="display: flex; gap: 8px;">
+              <a href="/admin/social" class="btn-admin btn-admin-secondary <%= selectedPlatform === 'all' ? 'active' : '' %>" style="font-size: 12px; padding: 6px 12px;">All</a>
+              <a href="/admin/social?platform=instagram" class="btn-admin btn-admin-secondary <%= selectedPlatform === 'instagram' ? 'active' : '' %>" style="font-size: 12px; padding: 6px 12px;">Instagram</a>
+              <a href="/admin/social?platform=facebook" class="btn-admin btn-admin-secondary <%= selectedPlatform === 'facebook' ? 'active' : '' %>" style="font-size: 12px; padding: 6px 12px;">Facebook</a>
+              <a href="/admin/social?platform=twitter" class="btn-admin btn-admin-secondary <%= selectedPlatform === 'twitter' ? 'active' : '' %>" style="font-size: 12px; padding: 6px 12px;">Twitter</a>
+            </div>
+          </div>
+
+          <div class="posts-table-wrap">
+            <table class="posts-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Media</th>
+                  <th style="width: 120px;">Platform</th>
+                  <th>Caption / Text</th>
+                  <th style="width: 140px;">Metrics</th>
+                  <th style="width: 100px;">Status</th>
+                  <th style="width: 160px; text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (posts.length > 0) { %>
+                  <% posts.forEach(function(post) { %>
+                    <tr>
+                      <td>
+                        <% if (post.mediaUrl) { %>
+                          <img src="<%= post.mediaUrl %>" alt="" class="thumb-preview" onerror="this.src='/images/kalash-yatra-featured.jpg'" />
+                        <% } else { %>
+                          <div class="thumb-preview" style="display: flex; align-items: center; justify-content: center; font-size: 18px;">📝</div>
+                        <% } %>
+                      </td>
+
+                      <td>
+                        <span class="platform-badge badge-<%= post.platform === 'instagram' ? 'ig' : post.platform === 'facebook' ? 'fb' : 'tw' %>">
+                          <%= post.platform === 'instagram' ? '📷 Instagram' : post.platform === 'facebook' ? '📘 Facebook' : '𝕏 Twitter' %>
+                        </span>
+                        <div style="font-size: 11px; color: #64748b; margin-top: 3px;">
+                          <%= post.formattedDate || (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-GB') : '') %>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div style="font-weight: 700; color: #0f172a; margin-bottom: 3px; max-width: 480px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                          <%= post.caption %>
+                        </div>
+                        <a href="<%= post.url %>" target="_blank" style="font-size: 11.5px; color: #0d6efd; text-decoration: none;">View original post ↗</a>
+                      </td>
+
+                      <td>
+                        <div style="font-size: 12px; font-weight: 700; color: #475569;">
+                          ❤️ <%= (post.likesCount || 0).toLocaleString() %> <br/>
+                          💬 <%= (post.commentsCount || 0).toLocaleString() %>
+                        </div>
+                      </td>
+
+                      <td>
+                        <form action="/admin/social/toggle/<%= post._id %>" method="POST" style="display: inline;">
+                          <button type="submit" style="background: none; border: none; cursor: pointer; padding: 0;">
+                            <span class="status-pill <%= post.isActive ? 'status-active' : 'status-inactive' %>">
+                              <%= post.isActive ? '✓ Active' : '✕ Hidden' %>
+                            </span>
+                          </button>
+                        </form>
+                      </td>
+
+                      <td style="text-align: right;">
+                        <div style="display: inline-flex; gap: 6px;">
+                          <a href="/admin/social/edit/<%= post._id %>" class="btn-admin btn-admin-secondary" style="font-size: 12px; padding: 6px 10px;">
+                            Edit
+                          </a>
+                          <form action="/admin/social/delete/<%= post._id %>" method="POST" onsubmit="return confirm('Delete this post?');" style="display: inline;">
+                            <button type="submit" class="btn-admin btn-admin-secondary" style="font-size: 12px; padding: 6px 10px; color: #dc2626;">
+                              Delete
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: #64748b;">
+                      No posts found in this section. Add a post above or click Auto-Fetch!
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
+

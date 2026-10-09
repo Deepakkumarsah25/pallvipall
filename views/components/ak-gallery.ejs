@@ -1,19 +1,9 @@
 <!-- ==========================================================================
-     ARVIND KEJRIWAL AAP STYLE GALLERY SECTION (PHOTOS & VIDEOS)
+     ARVIND KEJRIWAL AAP STYLE GALLERY SECTION (CAMPAIGN PHOTOS)
      Section Header with Camera Icon + 4-Column Cards Grid + View Gallery CTA
      ========================================================================== -->
 <%
   const photos = (typeof galleryPhotos !== 'undefined' && Array.isArray(galleryPhotos)) ? galleryPhotos.slice(0, 4) : [];
-  const videos = (typeof latestVideos !== 'undefined' && Array.isArray(latestVideos)) ? latestVideos.slice(0, 4) : [];
-
-  function getVidThumb(v) {
-    if (v.thumbnail && v.thumbnail.trim()) return v.thumbnail.trim();
-    if (v.image && v.image.trim()) return v.image.trim();
-    const url = v.videoUrl || '';
-    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
-    if (m && m[1]) return 'https://img.youtube.com/vi/' + m[1] + '/hqdefault.jpg';
-    return '/images/kalash-yatra-featured.jpg';
-  }
 %>
 
 <section class="ak-section ak-bg-white" id="gallery">
@@ -27,59 +17,33 @@
         </svg>
       </div>
       <h2 class="ak-header-title">
-        फोटो व वीडियो <span class="ak-highlight">Gallery</span>
+        फोटो <span class="ak-highlight">Gallery</span>
       </h2>
     </div>
 
     <p class="ak-header-sub">
-      जन-आंदोलन, विशाल जनसभाओं, संकल्प यात्रा एवं सामाजिक सम्मेलनों के जीवंत दृश्य व वीडियो संकलन।
+      जनसभाओं, विकास कार्यक्रमों, जनसंपर्क अभियानों एवं सामाजिक आयोजनों के जीवंत दृश्य व तस्वीरें।
     </p>
 
-    <!-- 4-Column Media Grid (Photos & Featured Videos) -->
+    <!-- 4-Column Media Grid (Campaign Photos) -->
     <div class="ak-cards-grid ak-grid-4">
-      <!-- 2 Featured Videos -->
-      <% videos.slice(0, 2).forEach(function(vid) { %>
+      <% photos.forEach(function(photo) { %>
         <article class="ak-card">
           <div class="ak-card-img-wrap">
             <img 
-              src="<%= getVidThumb(vid) %>" 
-              alt="<%= vid.title %>" 
-              loading="lazy"
-              onerror="this.src='/images/kalash-yatra-featured.jpg'"
-            />
-            <span class="ak-card-badge">▶ Video</span>
-            <div class="ak-play-badge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-          </div>
-          <div class="ak-card-body">
-            <span class="ak-card-meta">
-              <span>📹</span> <%= vid.category || vid.tag || 'Campaign Video' %>
-            </span>
-            <h3 class="ak-card-title"><%= vid.title %></h3>
-            <a href="/video" class="ak-card-link-text">वीडियो देखें →</a>
-          </div>
-        </article>
-      <% }); %>
-
-      <!-- 2 Featured Campaign Photos -->
-      <% photos.slice(0, 2).forEach(function(photo) { %>
-        <article class="ak-card">
-          <div class="ak-card-img-wrap">
-            <img 
-              src="<%= photo.imageUrl || '/images/about/nishad-sankalp-rally.jpg' %>" 
+              src="<%= photo.imageUrl || '/images/kalash-yatra-featured.jpg' %>" 
               alt="<%= photo.name %>" 
               loading="lazy"
-              onerror="this.src='/images/about/nishad-sankalp-rally.jpg'"
+              onerror="this.src='/images/kalash-yatra-featured.jpg'"
             />
             <span class="ak-card-badge green">📷 Photo</span>
           </div>
           <div class="ak-card-body">
             <span class="ak-card-meta">
-              <span>📍</span> <%= photo.district || 'राष्ट्रीय अभियान' %>
+              <span>📍</span> <%= photo.district || 'Campaign District' %>
             </span>
             <h3 class="ak-card-title"><%= photo.name %></h3>
-            <a href="/gallery" class="ak-card-link-text">पूरी तस्वीर देखें →</a>
+            <a href="/gallery" class="ak-card-link-text">गैलरी में देखें →</a>
           </div>
         </article>
       <% }); %>
@@ -87,7 +51,7 @@
 
     <div class="ak-section-cta">
       <a href="/gallery" class="ak-pill-btn">
-        <span>View Gallery</span>
+        <span>View Full Photo Gallery</span>
         <span>→</span>
       </a>
     </div>

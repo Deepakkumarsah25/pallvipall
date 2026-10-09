@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= typeof title !== 'undefined' ? title : 'परिचय | निषाद संकल्प अभियान' %></title>
+  <title><%= typeof title !== 'undefined' ? title : 'जीवन परिचय एवं विजन | पल्लवी पाल' %></title>
   <link rel="icon" type="image/png" href="/images/logo.png" />
-  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'निषाद संकल्प अभियान: एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन' %>" />
-  <link rel="canonical" href="https://nishadaarakshansankalp.com/about" />
-  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'परिचय | निषाद संकल्प अभियान' %>" />
-  <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'निषाद संकल्प अभियान: एकता, आरक्षण, स्वाभिमान और सामाजिक न्याय का ऐतिहासिक राष्ट्रीय आंदोलन' %>" />
-  <meta property="og:url" content="https://nishadaarakshansankalp.com/about" />
+  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'पल्लवी पाल - जनसेवा, सामाजिक न्याय, महिला सशक्तिकरण और विकास को समर्पित जननेता का संपूर्ण जीवन परिचय एवं विचार' %>" />
+  <link rel="canonical" href="https://pallavipal.com/about" />
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'जीवन परिचय एवं विजन | पल्लवी पाल' %>" />
+  <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'पल्लवी पाल - जनसेवा, सामाजिक न्याय, महिला सशक्तिकरण और विकास को समर्पित जननेता का संपूर्ण जीवन परिचय एवं विचार' %>" />
+  <meta property="og:url" content="https://pallavipal.com/about" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://nishadaarakshansankalp.com/images/about/nishad-sankalp-hero.jpg" />
+  <meta property="og:image" content="https://pallavipal.com/images/logo.png" />
 
   <!-- Google Fonts for authentic Devanagari typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,9 +37,9 @@
   ====================================================================== -->
   <header class="about-hero-compact">
     <div class="about-hero-compact-inner">
-      <h1><%= about.meta && about.meta.pageTitle ? about.meta.pageTitle : 'निषाद संकल्प अभियान का संपूर्ण परिचय' %></h1>
+      <h1><%= about.meta && about.meta.pageTitle ? about.meta.pageTitle : 'पल्लवी पाल: जनसेवा, संघर्ष और विजन का संपूर्ण परिचय' %></h1>
       <p class="hero-tagline-text">
-        <%= about.meta && about.meta.pageSubtitle ? about.meta.pageSubtitle : 'संवैधानिक अधिकार, सामाजिक न्याय और एकता का पावन संकल्प' %>
+        <%= about.meta && about.meta.pageSubtitle ? about.meta.pageSubtitle : 'संवैधानिक अधिकार, सामाजिक न्याय, विकास और जनसेवा का पावन संकल्प' %>
       </p>
     </div>
   </header>
@@ -69,6 +69,10 @@
         <span><%= about.background && about.background.navTitle ? about.background.navTitle : 'अभियान की पृष्ठभूमि' %></span>
       </a>
 
+      <a href="#reservation" class="nav-pill-item" id="navPill-5">
+        <span class="pill-num">5</span>
+        <span><%= about.reservation && about.reservation.navTitle ? about.reservation.navTitle : 'नीतिगत पहल' %></span>
+      </a>
 
       <a href="#activities" class="nav-pill-item" id="navPill-6">
         <span class="pill-num">6</span>
@@ -158,7 +162,7 @@
         </div>
 
         <div class="vision-visual-card">
-          <img src="<%= about.vision.image || '/images/about/nishad-sankalp-heritage.jpg' %>" alt="Vision" loading="lazy" />
+          <img src="<%= about.vision.image || '/images/kalash-yatra-featured.jpg' %>" alt="Vision" loading="lazy" />
         </div>
       </div>
     </div>
@@ -229,7 +233,7 @@
       <!-- Activities Showcase: Photo Left, Details Right in Laptop / Underneath in Phone -->
       <div class="activities-showcase-wrap">
         <div class="act-showcase-visual">
-          <img src="<%= about.activities.image || '/images/about/nishad-sankalp-chaupal.jpg' %>" alt="<%= about.activities.detailTitle || about.activities.title %>" loading="lazy" />
+          <img src="<%= about.activities.image || '/images/democratic-pledge-featured.jpg' %>" alt="<%= about.activities.detailTitle || about.activities.title %>" loading="lazy" />
           <div class="act-showcase-badge">
             <span class="badge-dot"></span> जमीनी अभियान झलक
           </div>
@@ -237,15 +241,15 @@
 
         <div class="act-showcase-detail">
           <h3><%= about.activities.detailTitle || 'जमीनी गतिविधियां एवं जनसंपर्क विस्तार' %></h3>
-          <p class="act-detail-narrative"><%= about.activities.detailDescription || 'अभियान के अंतर्गत प्रत्येक गांव, पंचायत और ब्लॉक स्तर पर चौपालों और जनसंवाद कार्यक्रमों का निरंतर आयोजन किया जा रहा है, जिससे समाज के प्रत्येक व्यक्ति तक अधिकार और एकता का संदेश पहुंचे।' %></p>
+          <p class="act-detail-narrative"><%= about.activities.detailDescription || 'प्रत्येक गांव, पंचायत और ब्लॉक स्तर पर चौपालों और जनसंवाद कार्यक्रमों का निरंतर आयोजन किया जा रहा है, जिससे आम जनता तक अधिकार और विकास का संदेश पहुंचे।' %></p>
 
           <% 
             const actShowcasePoints = (about.activities.detailPoints && about.activities.detailPoints.length > 0) 
               ? about.activities.detailPoints 
               : [
-                  { title: "गांव-गांव चौपाल व जनसंवाद", desc: "बुजुर्गों, युवाओं और महिलाओं के साथ बैठकर स्थानीय समस्याओं व संवैधानिक अधिकारों पर संवाद।" },
-                  { title: "संकल्प हस्ताक्षर अभियान", desc: "आरक्षण के समर्थन में लाखों परिवारों से संकल्प पत्र भरकर संगठित शक्ति का प्रदर्शन।" },
-                  { title: "विधिक व सामाजिक मार्गदर्शन", desc: "जाति प्रमाण पत्र, छात्रवृत्ति व सरकारी योजनाओं के लाभ हेतु युवाओं को मार्गदर्शन।" }
+                  { title: "गांव-गांव चौपाल व जनसंवाद", desc: "बुजुर्गों, युवाओं और महिलाओं के साथ बैठकर स्थानीय समस्याओं व विकास योजनाओं पर संवाद।" },
+                  { title: "जन-सहयोग एवं सदस्यता", desc: "लाखों परिवारों को सीधे जोड़कर संगठित जन-आंदोलन का निर्माण।" },
+                  { title: "विधिक व सामाजिक मार्गदर्शन", desc: "छात्रवृत्ति, किसान योजनाएं व सरकारी योजनाओं के लाभ हेतु युवाओं और जरूरतमंदों को मार्गदर्शन।" }
                 ];
           %>
           <div class="act-detail-points">
@@ -267,7 +271,7 @@
           <% about.activities.activityList.forEach((act) => { %>
             <div class="activity-card">
               <div class="activity-img-wrap">
-                <img src="<%= act.image || '/images/about/nishad-sankalp-hero.jpg' %>" alt="<%= act.name %>" loading="lazy" />
+                <img src="<%= act.image || '/images/democratic-pledge-varanasi.jpg' %>" alt="<%= act.name %>" loading="lazy" />
                 <span class="activity-tag-overlay"><%= act.tag %></span>
               </div>
               <div class="activity-content">
@@ -298,7 +302,7 @@
               <div class="msg-quote-mark">“</div>
               <p class="msg-text"><%= msg.message %></p>
               <div class="msg-author-row">
-                <img src="<%= msg.photo || '/images/about/nishad-sankalp-hero.jpg' %>" alt="<%= msg.senderName %>" class="msg-avatar" loading="lazy" />
+                <img src="<%= msg.photo || '/images/democratic-pledge-patna.jpg' %>" alt="<%= msg.senderName %>" class="msg-avatar" loading="lazy" />
                 <div class="msg-author-info">
                   <h4><%= msg.senderName %></h4>
                   <span class="role"><%= msg.role %></span>

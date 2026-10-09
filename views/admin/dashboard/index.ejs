@@ -904,8 +904,8 @@
         </div>
 
         <div class="dash-hero-actions">
-          <a href="/admin/kalash-yatra" class="dash-hero-btn dash-hero-btn-glass">
-            <span>संकल्प यात्रा हब 🚩</span>
+          <a href="/admin/social" class="dash-hero-btn dash-hero-btn-glass">
+            <span>सोशल मीडिया हब 🌐</span>
           </a>
           <a href="/admin/gallery/bulk" class="dash-hero-btn dash-hero-btn-glass">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -994,25 +994,25 @@
         </div>
       </a>
 
-      <!-- 4. Video News & Stories -->
-      <a href="/admin/video_news" class="dash-stat-card card-accent-sky" title="Manage Video News & Media">
+      <!-- 4. Social Media Wall Posts -->
+      <a href="/admin/social" class="dash-stat-card card-accent-sky" title="Manage Social Media Wall">
         <div class="dash-stat-top">
           <div class="dash-stat-label-wrap">
-            <span class="dash-stat-label">News &amp; Media</span>
+            <span class="dash-stat-label">Social Media Wall</span>
             <span class="dash-stat-arrow">→</span>
           </div>
           <div class="dash-stat-icon" style="background: #e0f2fe; color: #0284c7;">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </div>
         </div>
         <div class="dash-stat-main">
-          <strong class="dash-stat-number"><%= typeof stats.totalNews !== 'undefined' ? stats.totalNews : 0 %></strong>
+          <strong class="dash-stat-number"><%= typeof stats.socialPostsTotal !== 'undefined' ? stats.socialPostsTotal : 0 %></strong>
           <span class="dash-stat-pill" style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
-            <%= typeof stats.publishedNews !== 'undefined' ? stats.publishedNews : 0 %> live
+            <%= typeof stats.socialPostsActive !== 'undefined' ? stats.socialPostsActive : 0 %> live
           </span>
         </div>
         <div class="dash-stat-sub">
-          Video reports &amp; media stories
+          Instagram, Facebook &amp; X / Twitter
         </div>
       </a>
 
@@ -1373,14 +1373,14 @@
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
 
-            <!-- Video News -->
-            <a href="/admin/video_news" class="dash-quick-action" style="background: #f0fdf4; color: #166534; border-color: #bbf7d0;">
-              <div class="dash-quick-icon" style="background: #dcfce7; color: #15803d;">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <!-- Social Media Wall -->
+            <a href="/admin/social" class="dash-quick-action" style="background: #fdf2f8; color: #9d174d; border-color: #fbcfe8;">
+              <div class="dash-quick-icon" style="background: #fce7f3; color: #be185d;">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
               </div>
               <div style="flex: 1;">
-                <div style="font-size: 13px; font-weight: 800;">News &amp; Video Media</div>
-                <div style="font-size: 11px; color: #14532d; font-weight: 500;">Publish video updates &amp; coverage</div>
+                <div style="font-size: 13px; font-weight: 800;">Social Media Wall</div>
+                <div style="font-size: 11px; color: #831843; font-weight: 500;">Post to Insta/FB/X &amp; auto-sync</div>
               </div>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
@@ -1440,7 +1440,7 @@
               </div>
               <div>
                 <span style="display: block; font-size: 11px; color: var(--admin-text-muted); font-weight: 600;">Email Support</span>
-                <strong style="font-size: 12px; color: var(--admin-text-dark); word-break: break-all;"><%= quickInfo.helplineEmail || 'info@nishadyatra.org' %></strong>
+                <strong style="font-size: 12px; color: var(--admin-text-dark); word-break: break-all;"><%= quickInfo.helplineEmail || 'pallvipal.official@gmail.com' %></strong>
               </div>
             </div>
 

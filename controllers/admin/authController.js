@@ -173,7 +173,7 @@ exports.logout = (req, res) => {
     }
 
     // Clear session cookie
-    res.clearCookie("nishad_admin_session", {
+    res.clearCookie("pallavi_pal_admin_session", {
       httpOnly: true,
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",

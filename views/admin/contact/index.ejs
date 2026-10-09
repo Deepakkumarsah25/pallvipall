@@ -204,7 +204,7 @@
 
                         <!-- WhatsApp Direct Link -->
                         <% const waTarget = (msg.phone || '').replace(/[^0-9]/g, ''); %>
-                        <a href="https://wa.me/91<%= waTarget %>?text=<%= encodeURIComponent('नमस्ते ' + msg.name + ' जी, निषाद संकल्प अभियान कार्यालय से संपर्क कर रहे हैं।') %>"
+                        <a href="https://wa.me/91<%= waTarget %>?text=<%= encodeURIComponent('नमस्ते ' + msg.name + ' जी, पल्लवी पाल जनसेवा कार्यालय से संपर्क कर रहे हैं।') %>"
                            target="_blank" rel="noopener noreferrer" class="comm-btn comm-wa" title="WhatsApp चैट शुरू करें">
                           <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.79 14.12c-.24.68-1.39 1.3-1.93 1.38-.49.07-1.13.1-3.28-.79-2.58-1.07-4.22-3.69-4.35-3.86-.13-.17-1.05-1.4-1.05-2.67 0-1.27.67-1.89.91-2.14.24-.25.53-.31.71-.31.18 0 .36 0 .52.01.17.01.4.06.6.53.22.52.74 1.82.81 1.95.07.13.11.29.02.47-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.27-.12.53.15.26.68 1.12 1.46 1.81 1 .89 1.84 1.17 2.1 1.3.26.13.41.11.56-.06.15-.17.65-.76.82-1.02.17-.26.35-.22.59-.13.24.09 1.52.72 1.78.85.26.13.43.2.49.31.06.11.06.66-.18 1.34z"/></svg>
                           <span>WhatsApp</span>
@@ -419,7 +419,7 @@
                   <span class="label-title">Full Office Address (मुख्यालय का संपूर्ण डाक पता)</span>
                   <span class="label-badge label-required">आवश्यक</span>
                 </label>
-                <textarea id="officeAddress" name="officeAddress" class="form-control form-control-textarea" rows="3" required placeholder="उदा. निषाद संकल्प अभियान भवन, निकट सरयू तट मार्ग, अयोध्या / लखनऊ, उत्तर प्रदेश"><%= contact.officeAddress || '' %></textarea>
+                <textarea id="officeAddress" name="officeAddress" class="form-control form-control-textarea" rows="3" required placeholder="उदा. विधायक जनसेवा कार्यालय, लखनऊ / सिराथू (कौशाम्बी), उत्तर प्रदेश"><%= contact.officeAddress || '' %></textarea>
                 <span class="field-hint">पूरा आधिकारिक पता जो वेबसाइट के संपर्क बॉक्स में दिखेगा</span>
               </div>
 
@@ -499,7 +499,7 @@
                   <span class="input-icon-slot">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                   </span>
-                  <input type="email" id="primaryEmail" name="primaryEmail" class="form-control has-icon-left" value="<%= contact.primaryEmail || '' %>" placeholder="nishadaarakshansankalp@gmail.com" required />
+                  <input type="email" id="primaryEmail" name="primaryEmail" class="form-control has-icon-left" value="<%= contact.primaryEmail || '' %>" placeholder="pallvipal.official@gmail.com" required />
                 </div>
                 <span class="field-hint">मुख्य ईमेल (वेबसाइट पर डायरेक्ट mailto लिंक)</span>
               </div>
@@ -512,7 +512,7 @@
                   <span class="input-icon-slot">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                   </span>
-                  <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control has-icon-left" value="<%= contact.secondaryEmail || '' %>" placeholder="nishadaarakshansankalp@gmail.com" />
+                  <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control has-icon-left" value="<%= contact.secondaryEmail || '' %>" placeholder="pallvipal.official@gmail.com" />
                 </div>
                 <span class="field-hint">सहायक व पूछताछ हेतु वैकल्पिक ईमेल</span>
               </div>
@@ -552,7 +552,7 @@
                 <label class="admin-form-label" for="whatsappMessage">
                   <span class="label-title">Pre-filled Greeting Message (अभिवादन संदेश)</span>
                 </label>
-                <input type="text" id="whatsappMessage" name="whatsappMessage" class="form-control" value="<%= contact.whatsappMessage || '' %>" placeholder="उदा. नमस्ते, मैं निषाद संकल्प अभियान से संपर्क करना चाहता हूँ।" oninput="updateWhatsappPreview()" />
+                <input type="text" id="whatsappMessage" name="whatsappMessage" class="form-control" value="<%= contact.whatsappMessage || '' %>" placeholder="उदा. नमस्ते, मैं पल्लवी पाल जनसेवा कार्यालय से संपर्क करना चाहता हूँ।" oninput="updateWhatsappPreview()" />
                 <span class="field-hint">उपयोगकर्ता द्वारा चैट शुरू करने पर यह टेक्स्ट पहले से लिखा रहेगा</span>
               </div>
 
@@ -600,7 +600,7 @@
                   <span class="social-brand-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </span>
-                  <input type="url" id="facebookUrl" name="facebookUrl" class="form-control social-field" value="<%= contact.facebookUrl || '' %>" placeholder="https://facebook.com/nishadsankalp" />
+                  <input type="url" id="facebookUrl" name="facebookUrl" class="form-control social-field" value="<%= contact.facebookUrl || '' %>" placeholder="https://facebook.com/pallvipall" />
                 </div>
               </div>
 
@@ -612,7 +612,7 @@
                   <span class="social-brand-icon">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   </span>
-                  <input type="url" id="twitterUrl" name="twitterUrl" class="form-control social-field" value="<%= contact.twitterUrl || '' %>" placeholder="https://x.com/nishadsankalp" />
+                  <input type="url" id="twitterUrl" name="twitterUrl" class="form-control social-field" value="<%= contact.twitterUrl || '' %>" placeholder="https://x.com/pallvipall" />
                 </div>
               </div>
 
@@ -624,7 +624,7 @@
                   <span class="social-brand-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                   </span>
-                  <input type="url" id="instagramUrl" name="instagramUrl" class="form-control social-field" value="<%= contact.instagramUrl || '' %>" placeholder="https://instagram.com/nishadsankalp" />
+                  <input type="url" id="instagramUrl" name="instagramUrl" class="form-control social-field" value="<%= contact.instagramUrl || '' %>" placeholder="https://instagram.com/pallvipall" />
                 </div>
               </div>
 
@@ -636,7 +636,7 @@
                   <span class="social-brand-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                   </span>
-                  <input type="url" id="youtubeUrl" name="youtubeUrl" class="form-control social-field" value="<%= contact.youtubeUrl || '' %>" placeholder="https://youtube.com/@nishadsankalp" />
+                  <input type="url" id="youtubeUrl" name="youtubeUrl" class="form-control social-field" value="<%= contact.youtubeUrl || '' %>" placeholder="https://youtube.com/@pallvipall" />
                 </div>
               </div>
 
@@ -648,7 +648,7 @@
                   <span class="social-brand-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/></svg>
                   </span>
-                  <input type="url" id="telegramUrl" name="telegramUrl" class="form-control social-field" value="<%= contact.telegramUrl || '' %>" placeholder="https://t.me/nishadsankalp" />
+                  <input type="url" id="telegramUrl" name="telegramUrl" class="form-control social-field" value="<%= contact.telegramUrl || '' %>" placeholder="https://t.me/pallvipall" />
                 </div>
               </div>
             </div>
@@ -2041,7 +2041,7 @@
 
     const waLink = document.getElementById("modalWaLink");
     const waClean = phone.replace(/[^0-9]/g, "");
-    waLink.href = "https://wa.me/91" + waClean + "?text=" + encodeURIComponent("नमस्ते " + name + " जी, निषाद संकल्प अभियान कार्यालय से संपर्क कर रहे हैं।");
+    waLink.href = "https://wa.me/91" + waClean + "?text=" + encodeURIComponent("नमस्ते " + name + " जी, पल्लवी पाल जनसेवा कार्यालय से संपर्क कर रहे हैं।");
 
     const emailLink = document.getElementById("modalEmailLink");
     emailLink.textContent = email;

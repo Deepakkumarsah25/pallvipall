@@ -17,7 +17,7 @@ if (configured) {
   });
 }
 
-function uploadBuffer(buffer, folder = "nishad-yatra/uploads", options = {}) {
+function uploadBuffer(buffer, folder = "pallavi-pal/uploads", options = {}) {
   if (!configured) {
     throw new Error("Cloudinary is not configured. Add the CLOUDINARY_* values to .env.");
   }
@@ -36,7 +36,7 @@ function uploadBuffer(buffer, folder = "nishad-yatra/uploads", options = {}) {
   });
 }
 
-async function uploadFilePath(filePath, folder = "nishad-yatra/uploads", options = {}) {
+async function uploadFilePath(filePath, folder = "pallavi-pal/uploads", options = {}) {
   if (!configured) throw new Error("Cloudinary is not configured. Add CLOUDINARY_* values to .env.");
   const { removeLocal = true, ...uploadOptions } = options;
   const result = await cloudinary.uploader.upload(filePath, {
@@ -51,7 +51,7 @@ async function uploadFilePath(filePath, folder = "nishad-yatra/uploads", options
   return result;
 }
 
-async function uploadToCloudinary(file, folder = "nishad-yatra/uploads", options = {}) {
+async function uploadToCloudinary(file, folder = "pallavi-pal/uploads", options = {}) {
   if (!file) return "";
   if (Buffer.isBuffer(file)) return (await uploadBuffer(file, folder, options)).secure_url;
   if (typeof file === "string") {

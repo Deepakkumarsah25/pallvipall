@@ -4,7 +4,7 @@ const { uploadBuffer } = require("../../config/cloudinary");
 const uploadAboutFiles = async (files = []) => {
   const urls = new Map();
   for (const file of files) {
-    const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/about");
+    const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/about");
     urls.set(file.fieldname, uploaded.secure_url);
   }
   return urls;
@@ -17,7 +17,7 @@ const resolveImagePath = async (req, fieldName, fallback) => {
       ? req.files.find((entry) => entry.fieldname === fieldName)
       : null;
   if (file?.buffer) {
-    const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/about");
+    const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/about");
     return uploaded.secure_url;
   }
   if (req.body && req.body[fieldName] && req.body[fieldName].trim() !== "") {
@@ -308,7 +308,7 @@ exports.postUpdateActivities = async (req, res) => {
     if (req.body.act_name && Array.isArray(req.body.act_name)) {
       for (let i = 0; i < req.body.act_name.length; i++) {
         if (req.body.act_name[i] && req.body.act_name[i].trim()) {
-          let itemImage = (req.body.act_image && req.body.act_image[i]) ? req.body.act_image[i].trim() : "/images/about/nishad-sankalp-hero.jpg";
+          let itemImage = (req.body.act_image && req.body.act_image[i]) ? req.body.act_image[i].trim() : "/images/about/pallavi-pal-hero.jpg";
 
           // Check if a file was uploaded for this card
           if (req.files && Array.isArray(req.files)) {
@@ -324,7 +324,7 @@ exports.postUpdateActivities = async (req, res) => {
         }
       }
     } else if (req.body.act_name && typeof req.body.act_name === "string") {
-      let itemImage = req.body.act_image ? req.body.act_image.trim() : "/images/about/nishad-sankalp-hero.jpg";
+      let itemImage = req.body.act_image ? req.body.act_image.trim() : "/images/about/pallavi-pal-hero.jpg";
       if (req.files && Array.isArray(req.files)) {
         itemImage = uploadedUrls.get("act_file_0") || itemImage;
       }
@@ -360,7 +360,7 @@ exports.postUpdateMessages = async (req, res) => {
     if (req.body.msg_sender && Array.isArray(req.body.msg_sender)) {
       for (let i = 0; i < req.body.msg_sender.length; i++) {
         if (req.body.msg_sender[i] && req.body.msg_sender[i].trim()) {
-          let itemPhoto = (req.body.msg_photo && req.body.msg_photo[i]) ? req.body.msg_photo[i].trim() : "/images/about/nishad-sankalp-hero.jpg";
+          let itemPhoto = (req.body.msg_photo && req.body.msg_photo[i]) ? req.body.msg_photo[i].trim() : "/images/about/pallavi-pal-hero.jpg";
 
           // Check if a file was uploaded for this message card
           if (req.files && Array.isArray(req.files)) {
@@ -377,7 +377,7 @@ exports.postUpdateMessages = async (req, res) => {
         }
       }
     } else if (req.body.msg_sender && typeof req.body.msg_sender === "string") {
-      let itemPhoto = req.body.msg_photo ? req.body.msg_photo.trim() : "/images/about/nishad-sankalp-hero.jpg";
+      let itemPhoto = req.body.msg_photo ? req.body.msg_photo.trim() : "/images/about/pallavi-pal-hero.jpg";
       if (req.files && Array.isArray(req.files)) {
         itemPhoto = uploadedUrls.get("msg_file_0") || itemPhoto;
       }

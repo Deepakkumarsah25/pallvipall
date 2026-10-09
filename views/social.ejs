@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' ? title : 'Social Media Wall | पल्लवी पाल' %></title>
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <meta name="description" content="पल्लवी पाल का आधिकारिक सोशल वॉल: इंस्टाग्राम, फेसबुक और ट्विटर (X) की ताज़ा पोस्ट, भाषण और जनसेवा गतिविधियाँ।" />
+  <link rel="canonical" href="https://pallavipal.com/social" />
+  <meta property="og:title" content="Social Media Wall | पल्लवी पाल" />
+  <meta property="og:description" content="पल्लवी पाल - इंस्टाग्राम, फेसबुक और ट्विटर (X) की ताज़ा पोस्ट और गतिविधियाँ।" />
+  <meta property="og:url" content="https://pallavipal.com/social" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://pallavipal.com/images/contact-banner.jpg" />
+
+  <!-- Google Fonts: Noto Sans Devanagari & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Global & Navbar CSS -->
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/common/navbar.css" />
+  <link rel="stylesheet" href="/css/sidebar.css" />
+  <link rel="stylesheet" href="/css/social.css" />
+</head>
+
+<body class="social-wall-body">
+  <!-- Top Navigation Header -->
+  <%- include("common/navbar") %>
+
+  <!-- Quick Action Sidebar Drawer -->
+  <%- include("components/sidebar") %>
+
+  <!-- Main Social Wall Page -->
+  <main class="social-wall-main">
+    
+    <!-- Top Breadcrumb Bar -->
+    <div class="social-breadcrumb-bar">
+      <div class="social-wall-container">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <a href="/" class="crumb-link">Home</a>
+          <span class="crumb-sep">&gt;</span>
+          <span class="crumb-active">Social Wall</span>
+        </nav>
+      </div>
+    </div>
+
+    <div class="social-wall-container">
+
+      <!-- ================================================================
+           SECTION 1: INSTAGRAM RAIL (FIRST)
+           ================================================================ -->
+      <section class="social-rail-section rail-section-ig" id="section-instagram">
+        <div class="rail-header">
+          <div class="rail-title-group">
+            <div class="platform-icon-circle icon-ig" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div class="rail-title-meta">
+              <div class="rail-title-row">
+                <h2 class="rail-title title-ig">Instagram</h2>
+                <span class="rail-tag-pill tag-ig">Reels &amp; Feed</span>
+                <span class="rail-count-badge count-ig"><%= (instagramPosts || []).length %> Posts</span>
+              </div>
+              <p class="rail-subtitle">अभियान की मुख्य तस्वीरें, वीडियो रील्स और जन-जागरूकता पोस्ट्स</p>
+            </div>
+          </div>
+
+          <!-- Rail Navigation Buttons -->
+          <div class="rail-controls">
+            <button type="button" class="rail-arrow-btn rail-prev" data-target="instagramRail" aria-label="Previous Instagram posts">‹</button>
+            <button type="button" class="rail-arrow-btn rail-next" data-target="instagramRail" aria-label="Next Instagram posts">›</button>
+          </div>
+        </div>
+
+        <!-- Horizontal Scroll Rail -->
+        <div class="social-track-wrap" id="instagramRail">
+          <div class="social-cards-track">
+            <% (instagramPosts || []).forEach(function(post) { %>
+              <article class="rail-card rail-card-instagram">
+                <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-card-media-box" aria-label="View on Instagram: <%= post.title %>">
+                  <% if (post.mediaUrl) { %>
+                    <img src="<%= post.mediaUrl %>" alt="<%= post.title %>" class="rail-media-img" loading="lazy" onerror="this.onerror=null; this.src='/images/kalash-yatra-featured.jpg';" />
+                  <% } else { %>
+                    <div class="rail-media-fallback"></div>
+                  <% } %>
+
+                  <% if (post.mediaType === 'video') { %>
+                    <div class="rail-video-play-badge">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                    </div>
+                  <% } %>
+
+                  <span class="rail-corner-icon corner-ig" title="Instagram">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/></svg>
+                  </span>
+                </a>
+
+                <div class="rail-card-body">
+                  <div class="rail-body-top">
+                    <div class="rail-date-pill">
+                      <span class="pill-cal-icon">📅</span>
+                      <span class="pill-date-text"><%= post.formattedDate || (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }) : '25 May 2026') %></span>
+                    </div>
+                    <span class="rail-platform-chip chip-ig">Instagram</span>
+                  </div>
+
+                  <% if (post.title) { %>
+                    <h3 class="rail-card-heading"><%= post.title %></h3>
+                  <% } %>
+
+                  <% if (post.caption && post.caption !== post.title) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } else if (!post.title && post.caption) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } %>
+
+                  <div class="rail-card-footer">
+                    <div class="rail-metrics-group">
+                      <span class="rail-metric metric-likes" title="Likes">
+                        <span class="metric-icon">❤️</span>
+                        <span class="metric-num"><%= (post.likesCount || 0).toLocaleString() %></span>
+                      </span>
+                      <span class="rail-metric metric-comments" title="Comments">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-num"><%= (post.commentsCount || 0).toLocaleString() %></span>
+                      </span>
+                    </div>
+                    <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-view-link link-ig">View Post ↗</a>
+                  </div>
+                </div>
+              </article>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SECTION 2: FACEBOOK RAIL (SECOND)
+           ================================================================ -->
+      <section class="social-rail-section rail-section-fb" id="section-facebook">
+        <div class="rail-header">
+          <div class="rail-title-group">
+            <div class="platform-icon-circle icon-fb" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="rail-title-meta">
+              <div class="rail-title-row">
+                <h2 class="rail-title title-fb">Facebook</h2>
+                <span class="rail-tag-pill tag-fb">Official Page</span>
+                <span class="rail-count-badge count-fb"><%= (facebookPosts || []).length %> Posts</span>
+              </div>
+              <p class="rail-subtitle">जनसंवाद, क्षेत्रीय कार्यक्रम एवं आधिकारिक प्रेस सूचनाएं</p>
+            </div>
+          </div>
+
+          <div class="rail-controls">
+            <button type="button" class="rail-arrow-btn rail-prev" data-target="facebookRail" aria-label="Previous Facebook posts">‹</button>
+            <button type="button" class="rail-arrow-btn rail-next" data-target="facebookRail" aria-label="Next Facebook posts">›</button>
+          </div>
+        </div>
+
+        <div class="social-track-wrap" id="facebookRail">
+          <div class="social-cards-track">
+            <% (facebookPosts || []).forEach(function(post) { %>
+              <article class="rail-card rail-card-facebook">
+                <% if (post.mediaUrl) { %>
+                  <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-card-media-box" aria-label="View on Facebook: <%= post.title || 'Facebook Post' %>">
+                    <img src="<%= post.mediaUrl %>" alt="<%= post.title || 'Facebook Post' %>" class="rail-media-img" loading="lazy" onerror="this.onerror=null; this.src='/images/democratic-pledge-featured.jpg';" />
+                    <span class="rail-corner-icon corner-fb" title="Facebook">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </span>
+                  </a>
+                <% } %>
+
+                <div class="rail-card-body">
+                  <div class="rail-body-top">
+                    <div class="rail-date-pill">
+                      <span class="pill-cal-icon">📅</span>
+                      <span class="pill-date-text"><%= post.formattedDate || (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }) : '24 May 2026') %></span>
+                    </div>
+                    <span class="rail-platform-chip chip-fb">Facebook</span>
+                  </div>
+
+                  <% if (post.title) { %>
+                    <h3 class="rail-card-heading"><%= post.title %></h3>
+                  <% } %>
+
+                  <% if (post.caption && post.caption !== post.title) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } else if (!post.title && post.caption) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } %>
+
+                  <div class="rail-card-footer">
+                    <div class="rail-metrics-group">
+                      <span class="rail-metric metric-likes" title="Likes">
+                        <span class="metric-icon">👍</span>
+                        <span class="metric-num"><%= (post.likesCount || 0).toLocaleString() %></span>
+                      </span>
+                      <span class="rail-metric metric-comments" title="Comments">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-num"><%= (post.commentsCount || 0).toLocaleString() %></span>
+                      </span>
+                      <span class="rail-metric metric-shares" title="Shares">
+                        <span class="metric-icon">🔁</span>
+                        <span class="metric-num"><%= (post.sharesCount || 0).toLocaleString() %></span>
+                      </span>
+                    </div>
+                    <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-view-link link-fb">View Post ↗</a>
+                  </div>
+                </div>
+              </article>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SECTION 3: X (TWITTER) RAIL (THIRD)
+           ================================================================ -->
+      <section class="social-rail-section rail-section-tw" id="section-twitter">
+        <div class="rail-header">
+          <div class="rail-title-group">
+            <div class="platform-icon-circle icon-tw" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <div class="rail-title-meta">
+              <div class="rail-title-row">
+                <h2 class="rail-title title-tw">X (Twitter)</h2>
+                <span class="rail-tag-pill tag-tw">Live Feed</span>
+                <span class="rail-count-badge count-tw"><%= (twitterPosts || []).length %> Posts</span>
+              </div>
+              <p class="rail-subtitle">ताजा ट्वीट्स, राष्ट्रीय मुद्दे एवं आधिकारिक त्वरित घोषणाएं</p>
+            </div>
+          </div>
+
+          <div class="rail-controls">
+            <button type="button" class="rail-arrow-btn rail-prev" data-target="twitterRail" aria-label="Previous X/Twitter posts">‹</button>
+            <button type="button" class="rail-arrow-btn rail-next" data-target="twitterRail" aria-label="Next X/Twitter posts">›</button>
+          </div>
+        </div>
+
+        <div class="social-track-wrap" id="twitterRail">
+          <div class="social-cards-track">
+            <% (twitterPosts || []).forEach(function(post) { %>
+              <article class="rail-card rail-card-twitter">
+                <% if (post.mediaUrl) { %>
+                  <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-card-media-box" aria-label="View on X: <%= post.title || 'X Post' %>">
+                    <img src="<%= post.mediaUrl %>" alt="<%= post.title || 'X Post' %>" class="rail-media-img" loading="lazy" onerror="this.onerror=null; this.src='/images/ranchi-kalash-procession.jpg';" />
+                    <span class="rail-corner-icon corner-tw" title="X (Twitter)">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="#ffffff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </span>
+                  </a>
+                <% } %>
+
+                <div class="rail-card-body">
+                  <div class="rail-body-top">
+                    <div class="rail-date-pill">
+                      <span class="pill-cal-icon">📅</span>
+                      <span class="pill-date-text"><%= post.formattedDate || (post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }) : '22 May 2026') %></span>
+                    </div>
+                    <span class="rail-platform-chip chip-tw">X (Twitter)</span>
+                  </div>
+
+                  <% if (post.title) { %>
+                    <h3 class="rail-card-heading"><%= post.title %></h3>
+                  <% } %>
+
+                  <% if (post.caption && post.caption !== post.title) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } else if (!post.title && post.caption) { %>
+                    <p class="rail-card-caption"><%= post.caption %></p>
+                  <% } %>
+
+                  <div class="rail-card-footer">
+                    <div class="rail-metrics-group">
+                      <span class="rail-metric metric-likes" title="Likes">
+                        <span class="metric-icon">❤️</span>
+                        <span class="metric-num"><%= (post.likesCount || 0).toLocaleString() %></span>
+                      </span>
+                      <span class="rail-metric metric-comments" title="Replies">
+                        <span class="metric-icon">💬</span>
+                        <span class="metric-num"><%= (post.commentsCount || 0).toLocaleString() %></span>
+                      </span>
+                      <span class="rail-metric metric-shares" title="Reposts">
+                        <span class="metric-icon">🔁</span>
+                        <span class="metric-num"><%= (post.sharesCount || 0).toLocaleString() %></span>
+                      </span>
+                    </div>
+                    <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-view-link link-tw">View on X ↗</a>
+                  </div>
+                </div>
+              </article>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <%- include("common/footer") %>
+
+  <!-- Rail Interaction Script -->
+  <script src="/js/social.js"></script>
+</body>
+
+</html>

@@ -36,24 +36,24 @@ const whyChooseSchema = new mongoose.Schema(
     },
     highlightText: {
       type: String,
-      default: "Nishad Sankalp Campaign?",
+      default: "पल्लवी पाल?",
       trim: true,
     },
     sectionSubtitle: {
       type: String,
       default:
-        "Our objective is not political ambition, but ensuring that education, self-respect, legal protection, and economic progress reach the last person in society.",
+        "हमारा उद्देश्य केवल राजनीति नहीं, बल्कि समाज के अंतिम व्यक्ति तक शिक्षा, न्याय, स्वाभिमान और सर्वांगीण विकास पहुंचाना है।",
       trim: true,
     },
     introHeading: {
       type: String,
-      default: "A Foundation Built on Ground Realities & Unwavering Dedication",
+      default: "जनसेवा, समर्पण और जमीनी बदलाव की एक अटूट पहचान",
       trim: true,
     },
     introDesc: {
       type: String,
       default:
-        "Through relentless struggle and dedicated public service, we have earned the lasting trust of our community. Standing by your side at every step is our highest calling.",
+        "वर्षों के अनवरत संघर्ष और जनसरोकार के माध्यम से हमने जनता का विश्वास अर्जित किया है। हर कदम पर आपके साथ खड़े रहना ही हमारी सर्वोच्च प्राथमिकता है।",
       trim: true,
     },
     pillars: {
@@ -63,7 +63,7 @@ const whyChooseSchema = new mongoose.Schema(
     quoteText: {
       type: String,
       default:
-        "When each hand in the community joins together in purpose, the course of history transforms. Nishad Sankalp Campaign is your voice.",
+        "जब समाज का हर वर्ग एकजुट होकर प्रगति के पथ पर बढ़ता है, तब वास्तविक बदलाव आता है। जनसेवा ही हमारा जीवन और संकल्प है। - पल्लवी पाल",
       trim: true,
     },
     pledgePoints: {

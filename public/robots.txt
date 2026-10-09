@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://nishadaarakshansankalp.com/sitemap.xml
+Sitemap: https://pallavipal.com/sitemap.xml

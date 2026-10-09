@@ -399,10 +399,10 @@
   <div class="admin-sidebar-logo">
     <div style="display: flex; align-items: center; gap: 11px; flex: 1; min-width: 0;">
       <div class="admin-logo-mark">
-        <img src="/images/logo.png" alt="चुनाव चिन्ह - Nishad Sankalp" />
+        <img src="/images/logo.png" alt="पल्लवी पाल - Pallavi Pal" />
       </div>
       <div class="admin-logo-text">
-        <strong>Nishad Sankalp</strong>
+        <strong>पल्लवी पाल</strong>
         <small>Admin Management Hub</small>
       </div>
     </div>
@@ -412,10 +412,11 @@
   </div>
 
   <% const path=typeof currentPath !=='undefined' ? currentPath : '' ; const tab=typeof activeTab !=='undefined' ?
-    activeTab : '' ; // Group active checks (auto-open active module on page load) const
-    isHomeActive=path==='/admin/home' || path.startsWith('/admin/home/'); const
-    isKalashActive=path.startsWith('/admin/kalash-yatra'); const isContactActive=path.startsWith('/admin/contact');
-    const isGalleryActive=path.startsWith('/admin/gallery'); const isNewsActive=path.startsWith('/admin/video_news');
+    activeTab : '' ; // Group active checks (auto-open active module on page load)
+    const isHomeActive=path==='/admin/home' || path.startsWith('/admin/home/');
+    const isContactActive=path.startsWith('/admin/contact');
+    const isGalleryActive=path.startsWith('/admin/gallery'); 
+    const isSocialActive=path.startsWith('/admin/social');
     const isAboutActive=path.startsWith('/admin/about'); %>
 
     <!-- 2. NAVIGATION MENU -->
@@ -437,16 +438,18 @@
         <span class="nav-item-label">Dashboard</span>
       </a>
 
-      <!-- News & Press (Direct Link) -->
-      <a href="/admin/video_news" class="admin-nav-item <%= isNewsActive ? 'active' : '' %>">
+      <!-- Social Media Wall (Direct Link) -->
+      <a href="/admin/social" class="admin-nav-item <%= isSocialActive ? 'active' : '' %>">
         <span class="nav-item-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M4 5h16v14H4z" />
-            <path d="M8 9h8M8 13h8M8 17h5" />
-            <path d="m4 5 3 3" />
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
           </svg>
         </span>
-        <span class="nav-item-label">News &amp; Press</span>
+        <span class="nav-item-label">Social Media Wall</span>
       </a>
 
       <!-- ==================== MODULES ==================== -->
@@ -505,34 +508,6 @@
               class="admin-sub-item <%= path.startsWith('/admin/home/inquiries') ? 'active' : '' %>">
               <span class="sub-bullet"></span>
               <span>5. Pledges &amp; Inquiries</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. KALASH YATRA MANAGEMENT (Collapsible Accordion) -->
-      <div class="admin-nav-group <%= isKalashActive ? 'open active-group' : '' %>" id="group-kalash">
-        <button type="button" class="admin-nav-item admin-nav-toggle" onclick="toggleNavGroup(this)"
-          aria-expanded="<%= isKalashActive ? 'true' : 'false' %>">
-          <span class="nav-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-          </span>
-          <span class="nav-item-label">Sankalp Yatra</span>
-          <span class="nav-item-chevron">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </span>
-        </button>
-
-        <div class="admin-sub-menu">
-          <div class="admin-sub-menu-inner">
-            <a href="/admin/kalash-yatra"
-              class="admin-sub-item <%= path.startsWith('/admin/kalash-yatra') ? 'active' : '' %>">
-              <span class="sub-bullet"></span>
-              <span>📹 Video Gallery</span>
             </a>
           </div>
         </div>
