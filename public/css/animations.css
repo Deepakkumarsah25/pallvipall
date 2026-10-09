@@ -1,0 +1,171 @@
+/* ==========================================================================
+   ANIMATIONS.CSS - Modern, Responsive Scroll-Reveal & Interactive Layer
+   - Smooth easing & staggered entry for all sections (Hero section excluded)
+   - Zero horizontal overflow on mobile devices
+   - Graceful fallback if JavaScript is disabled
+   ========================================================================== */
+
+/* Animation Timing & Distance Tokens */
+:root {
+  --rv-distance-y: 44px;
+  --rv-distance-x: 52px;
+  --rv-duration: 0.8s;
+  --rv-ease: cubic-bezier(0.16, 1, 0.3, 1); /* Elegant spring-out ease */
+}
+
+/* Mobile responsive adjustments: compact distances to avoid horizontal overflow */
+@media (max-width: 768px) {
+  :root {
+    --rv-distance-y: 26px;
+    --rv-distance-x: 24px;
+    --rv-duration: 0.65s;
+  }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL INITIAL (HIDDEN) STATES
+   Only active when .rv-active is added to <html> by animations.js
+   ========================================================================== */
+.rv-active .rv-item {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity var(--rv-duration) var(--rv-ease),
+              transform var(--rv-duration) var(--rv-ease);
+  transition-delay: var(--rv-delay, 0ms);
+}
+
+/* Directional variants */
+.rv-active .rv-item[data-rv="up"] {
+  transform: translateY(var(--rv-distance-y));
+}
+
+.rv-active .rv-item[data-rv="down"] {
+  transform: translateY(calc(var(--rv-distance-y) * -0.75));
+}
+
+.rv-active .rv-item[data-rv="left"] {
+  transform: translateX(calc(var(--rv-distance-x) * -1));
+}
+
+.rv-active .rv-item[data-rv="right"] {
+  transform: translateX(var(--rv-distance-x));
+}
+
+.rv-active .rv-item[data-rv="zoom"] {
+  transform: scale(0.9) translateY(15px);
+}
+
+.rv-active .rv-item[data-rv="fade"] {
+  transform: none;
+}
+
+/* ==========================================================================
+   REVEAL TRIGGERED (VISIBLE) STATE
+   ========================================================================== */
+.rv-active .rv-item.rv-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* After animation finishes, .rv-complete is added and styles allow normal hover transforms */
+.rv-active .rv-item.rv-complete {
+  opacity: 1;
+  transform: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  will-change: auto;
+}
+
+/* ==========================================================================
+   INTERACTIVE AMBIENT MICRO-ANIMATIONS
+   ========================================================================== */
+
+/* Floating badge in About Section */
+@keyframes akFloatBadge {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.ak-about-badge {
+  animation: akFloatBadge 3.5s ease-in-out infinite;
+}
+
+/* Pulse animation for header icon box */
+@keyframes akHeaderPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.ak-section-header:hover .ak-header-icon-box {
+  animation: akHeaderPulse 1.2s ease-in-out infinite;
+}
+
+/* Button arrow nudge on hover */
+.ak-pill-btn span:last-child,
+.ak-card-link-text {
+  transition: transform 0.25s ease;
+}
+
+.ak-pill-btn:hover span:last-child {
+  transform: translateX(5px);
+}
+
+.ak-card:hover .ak-card-link-text {
+  transform: translateX(4px);
+}
+
+/* Checkmark pop animation in bullet points */
+.ak-about-points li .ak-point-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.ak-about-points li:hover .ak-point-check {
+  transform: scale(1.3) rotate(8deg);
+  color: var(--ak-primary);
+}
+
+/* Achievement Card Icon Gentle Bounce */
+.ak-achievement-card:hover .ak-achievement-icon-box svg {
+  animation: akIconBounce 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes akIconBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22) translateY(-2px); }
+  100% { transform: scale(1); }
+}
+
+/* Social media rail hover shimmer accent */
+.social-rail-section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-rail-section:hover {
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.08);
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .rv-active .rv-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .ak-about-badge {
+    animation: none !important;
+  }
+}
