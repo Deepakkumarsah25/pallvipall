@@ -6,17 +6,16 @@
 
 <header class="site-header">
   <nav class="navbar">
-    <a href="/" class="brand" title="निषाद आरक्षण संकल्प" aria-label="Nishad Sankalp Campaign home">
-      <img class="brand-logo" src="/images/sitelogo.png" alt="निषाद आरक्षण संकल्प" />
-      <span class="brand-name">निषाद आरक्षण संकल्प</span>
+    <a href="/" class="brand" title="पल्लवी पाल - आधिकारिक वेबसाइट" aria-label="Pallavi Pal official home">
+      <img class="brand-logo" src="/images/pallavipal_logo.png" alt="पल्लवी पाल" />
+      <span class="brand-name">पल्लवी पाल</span>
     </a>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="/" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/' ? 'active' : '' %>">Home</a></li>
       <li><a href="/about" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/about' ? 'active' : '' %>">About</a></li>
-      <li><a href="/video" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/video' ? 'active' : '' %>">Video</a></li>
-      <li><a href="/gallery" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/gallery' ? 'active' : '' %>">Gallery</a></li>
-      <li><a href="/news" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/news' ? 'active' : '' %>">News</a></li>
+      <li><a href="/gallery" class="<%= typeof currentUrl !== 'undefined' && (currentUrl === '/gallery' || currentUrl === '/images') ? 'active' : '' %>">Gallery</a></li>
+      <li><a href="/social" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/social' ? 'active' : '' %>">Social</a></li>
       <li><a href="/contact" class="<%= typeof currentUrl !== 'undefined' && currentUrl === '/contact' ? 'active' : '' %>">Contact</a></li>
     </ul>
 

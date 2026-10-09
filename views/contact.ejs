@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= typeof title !== 'undefined' ? title : 'संपर्क करें | निषाद संकल्प अभियान' %></title>
+  <title><%= typeof title !== 'undefined' ? title : 'संपर्क करें | पल्लवी पाल' %></title>
   <link rel="icon" type="image/png" href="/images/logo.png" />
-  <meta name="description" content="निषाद संकल्प अभियान के केंद्रीय कार्यालय, हेल्पलाइन नंबर, ईमेल और संपर्क फॉर्म के माध्यम से सीधे जुड़ें। एकता, शिक्षा और सशक्तिकरण का महाअभियान।" />
-  <link rel="canonical" href="https://nishadaarakshansankalp.com/contact" />
-  <meta property="og:title" content="संपर्क करें | निषाद संकल्प अभियान" />
-  <meta property="og:description" content="निषाद संकल्प अभियान के केंद्रीय कार्यालय, हेल्पलाइन, ईमेल और संपर्क फॉर्म से जुड़ें।" />
-  <meta property="og:url" content="https://nishadaarakshansankalp.com/contact" />
+  <meta name="description" content="पल्लवी पाल - जनसंपर्क, कार्यालय, हेल्पलाइन नंबर, ईमेल और संपर्क फॉर्म के माध्यम से सीधे जुड़ें। जनसेवा, विकास और सामाजिक न्याय का मंच।" />
+  <link rel="canonical" href="https://pallavipal.com/contact" />
+  <meta property="og:title" content="संपर्क करें | पल्लवी पाल" />
+  <meta property="og:description" content="पल्लवी पाल - जनसंपर्क कार्यालय, हेल्पलाइन, ईमेल और संपर्क फॉर्म से सीधे जुड़ें।" />
+  <meta property="og:url" content="https://pallavipal.com/contact" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://nishadaarakshansankalp.com/images/contact-banner.jpg" />
+  <meta property="og:image" content="https://pallavipal.com/images/contact-banner.jpg" />
 
   <!-- Google Fonts: Mukta, Rozha One, Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,7 +89,7 @@
                     id="contactName"
                     name="name"
                     class="form-control-input"
-                    placeholder="उदा. राहुल निषाद"
+                    placeholder="उदा. राहुल कुमार"
                     required
                     autocomplete="name"
                   />
@@ -187,7 +187,7 @@
                 <span class="title-gradient">Contact Us</span>
               </h2>
               <div class="contact-colorful-bar"></div>
-              <p>निषाद संकल्प अभियान के केंद्रीय कार्यालय अथवा हेल्पलाइन से सीधे संवाद स्थापित करें।</p>
+              <p>पल्लवी पाल जी के जनसंपर्क कार्यालय अथवा हेल्पलाइन से सीधे संवाद स्थापित करें।</p>
             </div>
 
             <ul class="connect-list">
@@ -202,11 +202,11 @@
                 </div>
                 <div class="connect-text-group">
                   <span class="connect-label"><%= c.officeTitle || "कार्यालय का पता" %></span>
-                  <p class="connect-address-text"><%= c.officeAddress || "निषाद संकल्प अभियान, केंद्रीय कार्यालय, अयोध्या / लखनऊ, उत्तर प्रदेश" %></p>
+                  <p class="connect-address-text"><%= c.officeAddress || "पल्लवी पाल, जनसंपर्क कार्यालय, लखनऊ / कौशाम्बी, उत्तर प्रदेश" %></p>
 
                   <!-- Clean & Smooth Google Maps Action Link -->
                   <% 
-                    const defaultQuery = encodeURIComponent((c.officeAddress || "Nishad Sankalp Abhiyan Ayodhya").replace(/[\r\n]+/g, ' '));
+                    const defaultQuery = encodeURIComponent((c.officeAddress || "Pallavi Pal MLA Office Uttar Pradesh").replace(/[\r\n]+/g, ' '));
                     const mapUrl = (c.mapDirectionsUrl && c.mapDirectionsUrl.trim()) ? c.mapDirectionsUrl.trim() : `https://www.google.com/maps/search/?api=1&query=${defaultQuery}`;
                   %>
                   <div class="connect-map-wrap">
@@ -296,7 +296,7 @@
               <% if (c.whatsappNumber) { %>
                 <% 
                   const waClean = c.whatsappNumber.replace(/[^0-9]/g, '');
-                  const waMsg = encodeURIComponent(c.whatsappMessage || "नमस्ते, मैं निषाद संकल्प अभियान से संपर्क करना चाहता हूँ।");
+                  const waMsg = encodeURIComponent(c.whatsappMessage || "नमस्ते, मैं पल्लवी पाल जी से संपर्क करना चाहता हूँ।");
                   const waLink = `https://wa.me/${waClean}?text=${waMsg}`;
                 %>
                 <li class="connect-item">

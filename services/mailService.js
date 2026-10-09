@@ -40,7 +40,7 @@ function getTransporter() {
 
 /**
  * Send email notification when contact form is submitted
- * Destination: nishadaarakshansankalp@gmail.com
+ * Destination: pallvipal.official@gmail.com
  *
  * @param {Object} messageData
  * @param {string} messageData.name
@@ -62,14 +62,14 @@ async function sendContactNotification(messageData) {
     const receiverEmail =
       process.env.CONTACT_RECEIVER_EMAIL ||
       process.env.ADMIN_EMAIL ||
-      "nishadaarakshansankalp@gmail.com";
+      "pallvipal.official@gmail.com";
 
     const senderEmail =
       process.env.SMTP_FROM_EMAIL ||
       process.env.SMTP_USERNAME ||
       "deepak232a@gmail.com";
 
-    const senderName = "निषाद आरक्षण संकल्प वेबसाइट";
+    const senderName = "पल्लवी पाल - आधिकारिक पोर्टल";
     const dateStr = new Date().toLocaleString("en-IN", {
       timeZone: "Asia/Kolkata",
       day: "numeric",
@@ -87,7 +87,7 @@ async function sendContactNotification(messageData) {
     const safeMessage = escapeHtml(messageData.message);
     const safeIp = escapeHtml(messageData.ipAddress || "N/A");
 
-    const subject = `🚨 नया संपर्क संदेश: ${messageData.name} (${messageData.district || "निषाद संकल्प"})`;
+    const subject = `🚨 नया जनसंपर्क संदेश: ${messageData.name} (${messageData.district || "जनसेवा केंद्र"})`;
 
     const htmlContent = `
 <!DOCTYPE html>
@@ -120,7 +120,7 @@ async function sendContactNotification(messageData) {
 <body>
   <div class="email-container">
     <div class="email-header">
-      <h1>निषाद आरक्षण संकल्प</h1>
+      <h1>पल्लवी पाल - जनसेवा कार्यालय</h1>
       <p>वेबसाइट संपर्क फ़ॉर्म (Contact Form) से नया संदेश प्राप्त हुआ</p>
     </div>
     <div class="email-body">
@@ -147,12 +147,12 @@ async function sendContactNotification(messageData) {
       <div class="message-box">${safeMessage}</div>
 
       <div class="action-buttons">
-        <a href="mailto:${safeEmail}?subject=Re:%20निषाद%20आरक्षण%20संकल्प%20अभियान%20-%20आपके%20संदेश%20का%20जवाब" class="action-btn btn-reply">ईमेल का जवाब दें ↗</a>
+        <a href="mailto:${safeEmail}?subject=Re:%20पल्लवी%20पाल%20जनसेवा%20कार्यालय%20-%20आपके%20संदेश%20का%20जवाब" class="action-btn btn-reply">ईमेल का जवाब दें ↗</a>
         <a href="tel:${safePhone}" class="action-btn btn-call">सीधे कॉल करें 📞</a>
       </div>
     </div>
     <div class="email-footer">
-      प्राप्त समय: ${dateStr} (IST) &bull; IP: ${safeIp} &bull; निषाद आरक्षण संकल्प पोर्टल
+      प्राप्त समय: ${dateStr} (IST) &bull; IP: ${safeIp} &bull; पल्लवी पाल - आधिकारिक पोर्टल
     </div>
   </div>
 </body>
@@ -160,7 +160,7 @@ async function sendContactNotification(messageData) {
     `;
 
     const textContent = `
-निषाद आरक्षण संकल्प - नया संपर्क संदेश
+पल्लवी पाल - नया संपर्क संदेश
 ---------------------------------------------
 नाम: ${messageData.name}
 फ़ोन: ${messageData.phone}

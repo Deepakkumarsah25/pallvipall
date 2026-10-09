@@ -172,18 +172,18 @@
                   src="<%= homeAbout.imageUrl %>" 
                   alt="About Section Image" 
                   style="width: 100%; height: 100%; object-fit: cover; display: block;"
-                  onerror="this.src='/images/about/nishad-sankalp-rally.jpg'"
+                  onerror="this.src='/images/about/pallavi-pal-rally.jpg'"
                 />
                 
                 <!-- Floating Badge Preview on Image -->
                 <div style="position: absolute; top: 14px; left: 14px; background: rgba(220, 38, 38, 0.95); backdrop-filter: blur(4px); color: #fff; padding: 6px 14px; border-radius: 30px; font-size: 12px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 6px;">
-                  <span id="previewBadgeText"><%= homeAbout.floatingBadgeText || 'ऐतिहासिक जन आंदोलन' %></span>
+                  <span id="previewBadgeText"><%= homeAbout.floatingBadgeText || 'जनप्रतिनिधि • पल्लवी पाल' %></span>
                 </div>
 
                 <!-- Floating Count Badge Preview on Image -->
                 <div style="position: absolute; bottom: 14px; right: 14px; background: #ffffff; color: var(--admin-text-dark); padding: 8px 14px; border-radius: 10px; font-size: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border-left: 4px solid var(--admin-primary);">
-                  <strong id="previewBadgeNum" style="display: block; font-size: 18px; font-weight: 900; color: var(--admin-primary); line-height: 1;"><%= homeAbout.imageBadgeNumber || '18+' %></strong>
-                  <span id="previewBadgeLbl" style="font-size: 11px; font-weight: 600; color: #64748b;"><%= homeAbout.imageBadgeLabel || 'उप-जातियां एकजुट' %></span>
+                  <strong id="previewBadgeNum" style="display: block; font-size: 18px; font-weight: 900; color: var(--admin-primary); line-height: 1;"><%= homeAbout.imageBadgeNumber || '24x7' %></strong>
+                  <span id="previewBadgeLbl" style="font-size: 11px; font-weight: 600; color: #64748b;"><%= homeAbout.imageBadgeLabel || 'जनसेवा में समर्पित' %></span>
                 </div>
               </div>
 
@@ -196,13 +196,13 @@
               <% 
                 const currentImgs = (homeAbout.images && homeAbout.images.length > 0)
                   ? homeAbout.images
-                  : [homeAbout.imageUrl || '/images/about/nishad-sankalp-rally.jpg'];
+                  : [homeAbout.imageUrl || '/images/about/pallavi-pal-rally.jpg'];
               %>
 
               <div id="existingImagesList" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px;">
                 <% currentImgs.forEach(function(imgUrl, idx) { %>
                   <div class="existing-image-item" style="position: relative; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--admin-border); background: #000; aspect-ratio: 16/10;">
-                    <img src="<%= imgUrl %>" alt="Slider Image <%= idx + 1 %>" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='/images/about/nishad-sankalp-rally.jpg'" />
+                    <img src="<%= imgUrl %>" alt="Slider Image <%= idx + 1 %>" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='/images/about/pallavi-pal-rally.jpg'" />
                     <input type="hidden" name="existingImages" value="<%= imgUrl %>" />
                     <button type="button" onclick="removeImageCard(this)" title="इमेज हटाएं" style="position: absolute; top: 4px; right: 4px; background: rgba(220, 38, 38, 0.9); color: #fff; border: none; border-radius: 4px; padding: 3px 6px; font-size: 11px; cursor: pointer; font-weight: 700; line-height: 1;">✕ हटाएं</button>
                     <span style="position: absolute; bottom: 4px; left: 4px; background: rgba(0,0,0,0.65); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">#<%= idx + 1 %></span>
@@ -358,7 +358,7 @@
     div.className = 'existing-image-item';
     div.style.cssText = 'position: relative; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--admin-border); background: #000; aspect-ratio: 16/10;';
     div.innerHTML = `
-      <img src="${url}" alt="Slider Image ${count}" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='/images/about/nishad-sankalp-rally.jpg'" />
+      <img src="${url}" alt="Slider Image ${count}" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='/images/about/pallavi-pal-rally.jpg'" />
       <input type="hidden" name="existingImages" value="${url}" />
       <button type="button" onclick="removeImageCard(this)" title="इमेज हटाएं" style="position: absolute; top: 4px; right: 4px; background: rgba(220, 38, 38, 0.9); color: #fff; border: none; border-radius: 4px; padding: 3px 6px; font-size: 11px; cursor: pointer; font-weight: 700; line-height: 1;">✕ हटाएं</button>
       <span style="position: absolute; bottom: 4px; left: 4px; background: rgba(0,0,0,0.65); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700;">#${count}</span>

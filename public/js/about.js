@@ -1,5 +1,5 @@
 /**
- * ABOUT.JS - निषाद संकल्प अभियान परिचय पेज इंटरैक्टिविटी
+ * ABOUT.JS - पल्लवी पाल परिचय पेज इंटरैक्टिविटी
  * Handles smooth scrolling, scrollspy, and back to top
  */
 

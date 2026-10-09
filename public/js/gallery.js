@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SANKALP PHOTO GALLERY — JAVASCRIPT
  * District Filter, Real-time Search, and Lightbox Viewer
  */
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxName.textContent = name;
     lightboxDistrict.textContent = district ? `📍 ${district}` : "";
     lightboxDate.textContent = date ? `📅 ${date}` : "";
-    lightboxCaption.textContent = caption || "निषाद संकल्प अभियान के प्रति समर्पण में लिया गया संकल्प।";
+    lightboxCaption.textContent = caption || "पल्लवी पाल - जनसेवा एवं सामाजिक सरोकार के ऐतिहासिक पल।";
 
     if (lightboxDownloadBtn) {
       lightboxDownloadBtn.href = imgUrl;

@@ -161,7 +161,7 @@ exports.postCreatePhoto = async (req, res) => {
     let imagePublicId = "";
 
     if (req.file) {
-      const uploaded = await uploadBuffer(req.file.buffer, "nishad-yatra/gallery");
+      const uploaded = await uploadBuffer(req.file.buffer, "pallavi-pal/gallery");
       finalImageUrl = uploaded.secure_url;
       imagePublicId = uploaded.public_id;
       uploadedPublicId = uploaded.public_id;
@@ -204,7 +204,7 @@ exports.postCreatePhoto = async (req, res) => {
     const photoDate = date ? new Date(date) : new Date();
 
     await SankalpPhoto.create({
-      name: name && name.trim() ? name.trim() : "Sanatani Nishad",
+      name: name && name.trim() ? name.trim() : "जनसमर्थक",
       state: finalState || "Uttar Pradesh",
       district: finalDistrict,
       date: isNaN(photoDate.getTime()) ? new Date() : photoDate,
@@ -321,9 +321,9 @@ exports.postBulkUpload = async (req, res) => {
 
     const docsToInsert = [];
     for (const [idx, file] of files.entries()) {
-      const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/gallery");
+      const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/gallery");
       uploadedFiles.push(uploaded);
-      let photoName = defaultName && defaultName.trim() ? defaultName.trim() : "Sanatani Nishad";
+      let photoName = defaultName && defaultName.trim() ? defaultName.trim() : "जनसमर्थक";
       if (files.length > 1 && defaultName && defaultName.trim()) {
         photoName = `${defaultName.trim()} #${idx + 1}`;
       }
@@ -440,7 +440,7 @@ exports.postEditPhoto = async (req, res) => {
     const previousImagePublicId = imagePublicId;
 
     if (req.file) {
-      const uploaded = await uploadBuffer(req.file.buffer, "nishad-yatra/gallery");
+      const uploaded = await uploadBuffer(req.file.buffer, "pallavi-pal/gallery");
       finalImageUrl = uploaded.secure_url;
       imageFilename = "";
       imagePublicId = uploaded.public_id;

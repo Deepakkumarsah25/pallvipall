@@ -7,9 +7,7 @@ const HomeQuickInfo = require("../../models/HomeQuickInfo");
 const InitiativeInquiry = require("../../models/InitiativeInquiry");
 const SankalpPhoto = require("../../models/SankalpPhoto");
 const Admin = require("../../models/admin/Admin");
-const VideoNews = require("../../models/news/VideoNews");
-const KalashYatra = require("../../models/KalashYatra");
-const SankalpMember = require("../../models/SankalpMember");
+const SocialPost = require("../../models/SocialPost");
 
 // Helper to format uptime in hours and minutes
 const formatUptime = (seconds) => {
@@ -43,11 +41,8 @@ exports.dashboard = async (req, res, next) => {
       recentPhotos,
       recentSlides,
       topDistricts,
-      totalNews,
-      videoNews,
-      publishedNews,
-      kalashYatraTotal,
-      sankalpMembersTotal,
+      socialPostsTotal,
+      socialPostsActive,
     ] = await Promise.all([
       InitiativeInquiry.countDocuments().catch(() => 0),
       InitiativeInquiry.countDocuments({ status: "new" }).catch(() => 0),
@@ -64,7 +59,7 @@ exports.dashboard = async (req, res, next) => {
       WhyChoose.findOne().catch(() => null),
       HomeQuickInfo.findOne().catch(() => null),
       Admin.countDocuments().catch(() => 1),
-      InitiativeInquiry.find().sort({ createdAt: -1 }).limit(7).catch(() => []),
+      InitiativeInquiry.find().sort({ createdAt: -1 }).limit(6).catch(() => []),
       SankalpPhoto.find().sort({ createdAt: -1 }).limit(6).catch(() => []),
       HeroSlide.find().sort({ order: 1 }).limit(4).catch(() => []),
       SankalpPhoto.aggregate([
@@ -73,14 +68,12 @@ exports.dashboard = async (req, res, next) => {
         { $sort: { count: -1 } },
         { $limit: 6 },
       ]).catch(() => []),
-      VideoNews.countDocuments().catch(() => 0),
-      VideoNews.countDocuments({ mediaType: { $in: ["youtube", "upload"] } }).catch(() => 0),
-      VideoNews.countDocuments({ published: true }).catch(() => 0),
-      KalashYatra.countDocuments().catch(() => 0),
-      SankalpMember.countDocuments().catch(() => 0),
+      SocialPost.countDocuments().catch(() => 0),
+      SocialPost.countDocuments({ isActive: true }).catch(() => 0),
     ]);
 
     const pillarsCount = whyChooseDoc?.pillars?.length || 0;
+    const sankalpMembersTotal = pledgesCount || 0;
 
     res.render("admin/dashboard/index", {
       title: "Admin Dashboard - Overview",
@@ -101,15 +94,12 @@ exports.dashboard = async (req, res, next) => {
         noticesActive,
         pillarsCount,
         adminsCount,
-        totalNews,
-        videoNews,
-        publishedNews,
-        kalashYatraTotal,
+        socialPostsTotal,
+        socialPostsActive,
         sankalpMembersTotal,
       },
-      totalNews,
-      videoNews,
-      publishedNews,
+      socialPostsTotal,
+      socialPostsActive,
       recentInquiries: recentInquiries || [],
       recentPhotos: recentPhotos || [],
       recentSlides: recentSlides || [],
@@ -146,15 +136,12 @@ exports.dashboard = async (req, res, next) => {
         noticesActive: 0,
         pillarsCount: 0,
         adminsCount: 1,
-        totalNews: 0,
-        videoNews: 0,
-        publishedNews: 0,
-        kalashYatraTotal: 0,
+        socialPostsTotal: 0,
+        socialPostsActive: 0,
         sankalpMembersTotal: 0,
       },
-      totalNews: 0,
-      videoNews: 0,
-      publishedNews: 0,
+      socialPostsTotal: 0,
+      socialPostsActive: 0,
       recentInquiries: [],
       recentPhotos: [],
       recentSlides: [],
