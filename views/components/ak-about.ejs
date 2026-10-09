@@ -1,6 +1,6 @@
 <!-- ==========================================================================
-     ARVIND KEJRIWAL AAP STYLE ABOUT & LEADER SECTION
-     Signature Section Header (Xn), 2-Column Responsive Layout, Read More CTA
+     ABOUT & LEADER SECTION - DR. PALLAVI PATEL (PALLAVI PAL)
+     Signature Section Header, 2-Column Responsive Layout, Read More CTA
      ========================================================================== -->
 <% const aboutData = (typeof homeAbout !== 'undefined' && homeAbout) ? homeAbout : {}; %>
 <section class="ak-section ak-bg-alt" id="about">
@@ -14,7 +14,7 @@
         </svg>
       </div>
       <h2 class="ak-header-title">
-        हमारे बारे में <span class="ak-highlight">About Leader & Mission</span>
+        हमारे बारे में <span class="ak-highlight">About The Pallavi Pal</span>
       </h2>
     </div>
 
@@ -29,13 +29,13 @@
           %>
           <img 
             src="<%= mainImg %>" 
-            alt="पल्लवी पाल - जनसेवा एवं सामाजिक न्याय" 
+            alt="डॉ. पल्लवी पटेल (पल्लवी पाल) - जनसेवा एवं सामाजिक न्याय" 
             loading="lazy"
             onerror="this.src='/images/about/pallavi-pal-rally.jpg'"
           />
           <div class="ak-about-badge">
             <span style="font-size: 1.1rem;">🔥</span>
-            <span><%= aboutData.floatingBadgeText || 'जनसेवा व सामाजिक न्याय' %></span>
+            <span>जनप्रतिनिधि • डॉ. पल्लवी पटेल</span>
           </div>
         </div>
       </div>
@@ -43,37 +43,35 @@
       <!-- Right Column: Narrative & Mission Points -->
       <div class="ak-about-content">
         <h3 class="ak-about-heading">
-          <%= (aboutData.quoteText && aboutData.quoteText.trim()) 
-              ? aboutData.quoteText 
-              : 'जब समाज का एक-एक हाथ साथ जुड़ता है, तो इतिहास की दिशा बदल जाती है। पल्लवी पाल जी का यह संकल्प आपकी आवाज़ है।' %>
+          संवैधानिक अधिकारों, सामाजिक न्याय और जन-जन के सम्मान के लिए सड़क से सदन तक समर्पित नेतृत्व।
         </h3>
 
-        <% if (aboutData.tagline && aboutData.tagline.trim()) { %>
-          <p class="ak-about-text" style="font-weight: 600; color: var(--ak-primary);">
-            <%= aboutData.tagline %>
-          </p>
-        <% } %>
+        <p class="ak-about-text" style="font-weight: 600; color: var(--ak-primary);">
+          समाजवादी विचारधारा, सामाजिक समरसता और कमेरा समाज के सम्मान व स्वाभिमान का संकल्प।
+        </p>
 
         <p class="ak-about-text">
-          यह अभियान केवल चुनावी राजनीति का हिस्सा नहीं, बल्कि समाज के अंतिम पायदान पर खड़े प्रत्येक नागरिक तक शिक्षा, संवैधानिक आरक्षण, सम्मान और आर्थिक स्वावलंबन पहुँचाने का एक पवित्र और ऐतिहासिक संकल्प है।
+          डॉ. पल्लवी पटेल (पल्लवी पाल) समाजवादी विचारधारा और सामाजिक न्याय के सिद्धांतों को समर्पित एक प्रखर व जनप्रिय जननेत्री हैं। उत्तर प्रदेश के सिराथू (कौशाम्बी) विधानसभा से विधायक के रूप में, उन्होंने सदैव किसान, मजदूर, युवा, महिला और समाज के अंतिम पायदान पर खड़े प्रत्येक नागरिक के संवैधानिक अधिकारों, सम्मान और सर्वांगीण विकास के लिए सदन से लेकर सड़क तक पूरी दृढ़ता से आवाज उठाई है। उनका राजनीतिक व सामाजिक जीवन जनसेवा, लोकतांत्रिक मूल्यों और संविधान की रक्षा के लिए समर्पित है।
         </p>
 
         <!-- Bullet Highlights -->
         <ul class="ak-about-points">
-          <% 
-            const pointsList = (aboutData.points && aboutData.points.length > 0) ? aboutData.points : [
-              { title: 'निःशुल्क सदस्यता एवं पारदर्शी भागीदारी' },
-              { title: 'गांव व ब्लॉक स्तर पर प्रत्यक्ष संवाद व लोक-पंचायत' },
-              { title: 'संवैधानिक अधिकारों व सामाजिक न्याय की सशक्त पैरवी' },
-              { title: 'युवाओं के लिए शिक्षा, कौशल विकास व रोजगार मार्गदर्शन' }
-            ];
-          %>
-          <% pointsList.forEach(function(pt) { %>
-            <li>
-              <span class="ak-point-check">✓</span>
-              <span><%= pt.title || pt %></span>
-            </li>
-          <% }); %>
+          <li>
+            <span class="ak-point-check">✓</span>
+            <span>समाजवादी विचारधारा एवं सामाजिक न्याय का सशक्त संकल्प</span>
+          </li>
+          <li>
+            <span class="ak-point-check">✓</span>
+            <span>विधानसभा सदन में जनहित व संवैधानिक अधिकारों की निर्भीक पैरवी</span>
+          </li>
+          <li>
+            <span class="ak-point-check">✓</span>
+            <span>किसान, मजदूर, कामगार एवं कमेरा समाज का आर्थिक व सामाजिक सशक्तिकरण</span>
+          </li>
+          <li>
+            <span class="ak-point-check">✓</span>
+            <span>युवाओं के लिए रोजगार, गुणवत्तापूर्ण शिक्षा व महिला स्वावलंबन</span>
+          </li>
         </ul>
 
         <!-- Read More Button -->

@@ -28,9 +28,15 @@
   <!-- Arvind Kejriwal AAP Style Homepage CSS -->
   <link rel="stylesheet" href="/css/ak-homepage.css" />
 
+  <!-- Social Wall Multi-Platform Rails CSS -->
+  <link rel="stylesheet" href="/css/social.css" />
+
   <!-- Supporting Components CSS -->
   <link rel="stylesheet" href="/css/sidebar.css" />
   <link rel="stylesheet" href="/css/initiative-modal.css" />
+
+  <!-- Scroll-Reveal & Interactive Animations CSS -->
+  <link rel="stylesheet" href="/css/animations.css" />
 </head>
 
 <body>
@@ -43,27 +49,21 @@
   <!-- Dynamic Initiative Action Modal -->
   <%- include("components/initiative-modal") %>
 
-  <!-- Main Content Area: Exact Sections as https://arvindkejriwalaap.com/ -->
+  <!-- Main Content Area -->
   <main id="main-content">
     <!-- 1. Hero Section: Aspect-ratio Banner Slider with Left-Aligned Bold Titles -->
     <%- include("components/ak-hero") %>
 
-    <!-- 2. About / Leader Section: Signature Xn Header, Vision Narrative, Read More CTA -->
+    <!-- 2. About / Leader Section: Signature Header, Vision Narrative, Read More CTA -->
     <%- include("components/ak-about") %>
 
-    <!-- 3. Key Achievements Section: 4-Column Card Grid with Metric Badges & Stories -->
+    <!-- 3. Key Achievements Section: 4-Column Text-Only Card Grid (No Images) -->
     <%- include("components/ak-achievements") %>
 
-    <!-- 4. Journey Through Time Section: Milestones Timeline with Connecting Track & Nodes -->
-    <%- include("components/ak-journey") %>
-
-    <!-- 5. Gallery Section: Unified Photos Showcase Cards with View Gallery CTA -->
+    <!-- 4. Gallery Section: Unified Photos Showcase Cards with View Gallery CTA -->
     <%- include("components/ak-gallery") %>
 
-    <!-- 6. Government Schemes Section: Community Welfare Initiatives with Apply/Support Modal -->
-    <%- include("components/ak-schemes") %>
-
-    <!-- 8. Social Wall & Connect Section: WhatsApp Live Connect, YouTube, Twitter & Helpline -->
+    <!-- 5. Social Wall & Connect Section: Multi-Platform Rails (Instagram, Facebook, Twitter) -->
     <%- include("components/ak-social") %>
   </main>
 
@@ -74,6 +74,8 @@
   <script src="/js/ak-hero.js"></script>
   <script src="/js/sidebar.js"></script>
   <script src="/js/initiative-modal.js"></script>
+  <script src="/js/social.js"></script>
+  <script src="/js/animations.js"></script>
   <script src="/js/index.js"></script>
 </body>
 
