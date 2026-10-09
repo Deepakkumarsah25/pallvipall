@@ -9,7 +9,7 @@ const heroSlideSchema = new mongoose.Schema(
     },
     badgeText: {
       type: String,
-      default: "Jai Nishadraj • Sacred Consciousness & Empowerment Pledge",
+      default: "जनसेवा ही संकल्प • पल्लवी पाल",
       trim: true,
     },
     headingPrefix: {

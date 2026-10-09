@@ -18,7 +18,7 @@
         <div class="ak-hero-slide <%= idx === 0 ? 'active' : '' %>" data-index="<%= idx %>">
           <img
             src="<%= slide.imageUrl %>"
-            alt="<%= slide.tag || slide.headingPrefix || 'Nishad Sankalp Campaign' %>"
+            alt="<%= slide.tag || slide.headingPrefix || 'पल्लवी पाल - जनसेवा एवं विकास संकल्प' %>"
             class="ak-hero-bg"
             loading="<%= idx === 0 ? 'eager' : 'lazy' %>"
           />
@@ -34,16 +34,16 @@
               <% } %>
 
               <<%= idx === 0 ? 'h1' : 'h2' %> class="ak-hero-title">
-                <%= slide.headingPrefix || 'निषाद आरक्षण' %>
+                <%= slide.headingPrefix || 'पल्लवी पाल' %>
                 <% if (slide.highlightText) { %>
                   <span class="ak-highlight"><%= slide.highlightText %></span>
                 <% } %>
-                <%= slide.headingSuffix || 'महा-अभियान' %>
+                <%= slide.headingSuffix || 'जनसेवा संकल्प' %>
               </<%= idx === 0 ? 'h1' : 'h2' %>>
 
               <% if (slide.subtitle || slide.headingPrefix) { %>
                 <h3 class="ak-hero-subtitle">
-                  <%= slide.subtitle || 'एकता, शिक्षा, संवैधानिक अधिकार व सामाजिक स्वाभिमान' %>
+                  <%= slide.subtitle || 'सशक्तिकरण, शिक्षा, संवैधानिक अधिकार व सामाजिक न्याय' %>
                 </h3>
               <% } %>
 

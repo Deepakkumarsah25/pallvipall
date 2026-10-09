@@ -82,17 +82,17 @@ exports.postUpdateHomeAbout = async (req, res) => {
       currentImages = [...doc.images];
     } else {
       currentImages = [
-        "/images/about/nishad-sankalp-rally.jpg",
-        "/images/about/nishad-sankalp-hero.jpg",
-        "/images/about/nishad-sankalp-chaupal.jpg",
-        "/images/about/nishad-sankalp-heritage.jpg",
+        "/images/about/pallavi-pal-rally.jpg",
+        "/images/about/pallavi-pal-hero.jpg",
+        "/images/about/pallavi-pal-chaupal.jpg",
+        "/images/about/pallavi-pal-heritage.jpg",
       ];
     }
 
     // Process newly uploaded files (req.files array from multer upload.any())
     const files = Array.isArray(req.files) ? req.files : req.file ? [req.file] : [];
     for (const file of files) {
-      const uploaded = await uploadBuffer(file.buffer, "nishad-yatra/home-about");
+      const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/home-about");
       uploadedAssets.push(uploaded);
       currentImages.push(uploaded.secure_url);
     }
@@ -101,10 +101,10 @@ exports.postUpdateHomeAbout = async (req, res) => {
     currentImages = [...new Set(currentImages)].filter(Boolean);
     if (currentImages.length === 0) {
       currentImages = [
-        "/images/about/nishad-sankalp-rally.jpg",
-        "/images/about/nishad-sankalp-hero.jpg",
-        "/images/about/nishad-sankalp-chaupal.jpg",
-        "/images/about/nishad-sankalp-heritage.jpg",
+        "/images/about/pallavi-pal-rally.jpg",
+        "/images/about/pallavi-pal-hero.jpg",
+        "/images/about/pallavi-pal-chaupal.jpg",
+        "/images/about/pallavi-pal-heritage.jpg",
       ];
     }
 

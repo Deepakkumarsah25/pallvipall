@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "social-rights": {
       tag: "Awareness & Rights Wing",
       title: "Social Unity & Legal Rights Support",
-      description: "An active wing under the Nishad Sankalp Campaign for legal aid camps, ration & pension benefits, and constitutional rights protection at the grassroots level.",
+      description: "पल्लवी पाल जनसेवा पहल के अंतर्गत कानूनी सहायता शिविर, राशन व पेंशन लाभ एवं जमीनी स्तर पर संवैधानिक अधिकारों का संरक्षण।",
       highlights: [
         "Free assistance in resolving administrative hurdles in government schemes and benefits.",
         "Regular legal counseling sessions organized at traditional settlements and ghats.",
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       highlights: [
         "Pradhan Mantri Matsya Sampada Yojana (PMMSY) - 40% to 60% government subsidy support.",
         "Kisan Credit Card (KCC) for boatmen - Concessional interest rate credit facilities.",
-        "Self-Help Groups (SHGs) formation, registration, and financial literacy."
+        "Self-Help Groups (SHGs) formation, practical guidance, and financial literacy."
       ],
       helplineText: "Schemes Advisory: +91 99999 99997",
       helplineTel: "+919999999997",
@@ -81,11 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "cultural-events": {
       tag: "Cultural Heritage Wing",
-      title: "Cultural Heritage & Nishadraj Jayanti Festival",
-      description: "A cultural initiative celebrating the legendary heritage, friendship, and valor of Maharaj Nishadraj Guhya and historical icons.",
+      title: "Cultural Heritage & Social Harmony Festival",
+      description: "ऐतिहासिक सांस्कृतिक धरोहर, सामाजिक सद्भाव और महापुरुषों के विचारों को जन-जन तक पहुंचाने का सांस्कृतिक अभियान।",
       highlights: [
-        "Annual state-level Nishadraj Jayanti celebrations, grand processions, and cultural summits.",
-        "Conferences and community dialogues at Shringverpur Dham, Prayagraj, and Varanasi.",
+        "वार्षिक राज्य स्तरीय सांस्कृतिक सम्मेलन, विचार गोष्ठियां एवं सामाजिक चेतना यात्रा।",
+        "Conferences and community dialogues across Uttar Pradesh districts.",
         "Felicitation ceremonies recognizing youth and elders in education, sports, and social service."
       ],
       helplineText: "Festival Committee: +91 99999 99994",

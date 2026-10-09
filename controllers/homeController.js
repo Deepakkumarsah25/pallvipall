@@ -6,8 +6,6 @@ const HomeQuickInfo = require("../models/HomeQuickInfo");
 const HomeAbout = require("../models/HomeAbout");
 const InitiativeInquiry = require("../models/InitiativeInquiry");
 const SankalpPhoto = require("../models/SankalpPhoto");
-const KalashYatra = require("../models/KalashYatra");
-const VideoNews = require("../models/news/VideoNews");
 const {
   defaultHeroSlides,
   defaultInitiatives,
@@ -17,68 +15,10 @@ const {
 } = require("../scripts/seedHomeData");
 const { defaultGalleryPhotos } = require("../scripts/seedGalleryData");
 
-const homepageKalashPipeline = [
-  { $limit: 1 },
-  {
-    $project: {
-      hero: 1,
-      milestonesSection: 1,
-      videos: { $slice: [{ $ifNull: ["$videos", []] }, 10] },
-      highlightedVideo: {
-        $arrayElemAt: [
-          {
-            $filter: {
-              input: { $ifNull: ["$videos", []] },
-              as: "video",
-              cond: { $eq: ["$$video.isHighlighted", true] },
-            },
-          },
-          0,
-        ],
-      },
-    },
-  },
-];
-
-function getHomepageKalashFallback() {
-  const defaults = KalashYatra.defaultData;
-  return {
-    hero: defaults.hero,
-    milestonesSection: defaults.milestonesSection,
-    videos: defaults.videos.slice(0, 10),
-    highlightedVideo: defaults.videos.find((video) => video.isHighlighted) || null,
-  };
-}
-
-async function getHomepageKalash() {
-  try {
-    let [kalash] = await KalashYatra.aggregate(homepageKalashPipeline);
-
-    if (!kalash) {
-      await KalashYatra.create(KalashYatra.defaultData);
-      [kalash] = await KalashYatra.aggregate(homepageKalashPipeline);
-    }
-
-    if (!kalash) return getHomepageKalashFallback();
-
-    return {
-      ...kalash,
-      hero: { ...KalashYatra.defaultData.hero, ...(kalash.hero || {}) },
-      milestonesSection: {
-        ...KalashYatra.defaultData.milestonesSection,
-        ...(kalash.milestonesSection || {}),
-      },
-      videos: kalash.videos || [],
-    };
-  } catch {
-    return getHomepageKalashFallback();
-  }
-}
-
 // Public Home Page
 exports.getHomePage = async (req, res) => {
   try {
-    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, kalashDoc, newsDocs, homeAboutDoc] =
+    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, homeAboutDoc] =
       await Promise.all([
         HeroSlide.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(10),
         Initiative.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(24),
@@ -86,12 +26,6 @@ exports.getHomePage = async (req, res) => {
         SiteNotice.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(20),
         HomeQuickInfo.findOne(),
         SankalpPhoto.find({ isPublished: true }).sort({ order: 1, date: -1 }).limit(10),
-        getHomepageKalash(),
-        VideoNews.find({ published: true })
-          .sort({ publicationDate: -1, publishedAt: -1, createdAt: -1 })
-          .limit(10)
-          .lean()
-          .catch(() => []),
         HomeAbout.findOne(),
       ]);
 
@@ -107,100 +41,6 @@ exports.getHomePage = async (req, res) => {
     const finalHomeAbout = homeAboutDoc || (HomeAbout.defaultData || {});
     const finalGalleryPhotos =
       galleryPhotos && galleryPhotos.length > 0 ? galleryPhotos : defaultGalleryPhotos.slice(0, 10);
-
-    const kalash = kalashDoc || KalashYatra.defaultData;
-
-    // Helper to extract YouTube video ID
-    function getYouTubeId(url) {
-      if (!url || typeof url !== "string") return "";
-      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/))([\w-]{11})/);
-      return match ? match[1] : "";
-    }
-
-    function getVimeoId(url) {
-      if (!url || typeof url !== "string") return "";
-      try {
-        const parsed = new URL(url);
-        if (!/(^|\.)vimeo\.com$/i.test(parsed.hostname)) return "";
-        return parsed.pathname.match(/\/(?:video\/)?(\d+)(?:\/|$)/)?.[1] || "";
-      } catch {
-        return "";
-      }
-    }
-
-    // Helper to resolve an effective thumbnail URL
-    function resolveThumb(thumb, videoUrl, fallback = "/images/kalash-yatra-hero.jpg") {
-      if (thumb && thumb.trim() && !thumb.includes("/images/kalash-yatra-hero.jpg")) {
-        return thumb.trim();
-      }
-      const ytId = getYouTubeId(videoUrl);
-      if (ytId) {
-        return `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
-      }
-      const vimeoId = getVimeoId(videoUrl);
-      if (vimeoId) {
-        return `https://vumbnail.com/${vimeoId}.jpg`;
-      }
-      return thumb && thumb.trim() ? thumb.trim() : fallback;
-    }
-
-    // The homepage query returns the first highlighted video in stored order.
-    let highlightVideo = null;
-    let highlightedVidId = null;
-
-    if (kalash && kalash.highlightedVideo) {
-      const foundHighlight = kalash.highlightedVideo;
-      highlightedVidId = String(foundHighlight._id);
-      const resolvedPoster = resolveThumb(foundHighlight.thumbnail, foundHighlight.videoUrl);
-      highlightVideo = {
-          _id: foundHighlight._id,
-          title: foundHighlight.title,
-          videoUrl: foundHighlight.videoUrl,
-          posterImage: resolvedPoster,
-          duration: foundHighlight.duration || "12:45 Min",
-          badge: "★ मुख्य संकल्प वीडियो",
-          tag: foundHighlight.tag || "मुख्य वीडियो",
-          district: foundHighlight.district,
-          state: foundHighlight.state,
-          description: foundHighlight.description || "",
-        };
-    }
-
-    // Fallback to hero.featuredVideo if no video is explicitly marked isHighlighted
-    if (!highlightVideo && kalash && kalash.hero && kalash.hero.featuredVideo) {
-      const fv = kalash.hero.featuredVideo;
-      highlightVideo = {
-        title: fv.title,
-        duration: fv.duration || "12:00 Min",
-        videoUrl: fv.videoUrl,
-        posterImage: resolveThumb(fv.posterImage, fv.videoUrl),
-        badge: fv.badge || "★ मुख्य संकल्प वीडियो",
-      };
-    }
-
-    // Show up to ten videos in the home page carousel.
-    let latestVideos = [];
-    if (kalash && kalash.videos && kalash.videos.length > 0) {
-      latestVideos = kalash.videos
-        .slice(0, 10)
-        .map((v) => {
-          const raw = v.toObject ? v.toObject() : { ...v };
-          return {
-            ...raw,
-            thumbnail: resolveThumb(raw.thumbnail, raw.videoUrl, "/images/kalash-yatra-featured.jpg"),
-          };
-        });
-    } else if (kalash && kalash.milestonesSection && kalash.milestonesSection.items) {
-      latestVideos = kalash.milestonesSection.items.slice(0, 10);
-    }
-
-    // Latest news for the home page carousel
-    let highlightNews = null;
-    let homeNewsList = [];
-
-    if (newsDocs && newsDocs.length > 0) {
-      homeNewsList = newsDocs.slice(0, 10);
-    }
 
     // Convert initiatives to client-side modal dictionary
     const initiativesModalMap = {};
@@ -221,8 +61,8 @@ exports.getHomePage = async (req, res) => {
     });
 
     res.render("index", {
-      title: "Nishad Sankalp Campaign",
-      metaDescription: "Learn about the Nishad Aarakshan Sankalp campaign, its initiatives, community programs, news, videos, and the Sankalp Yatra for unity and empowerment.",
+      title: "पल्लवी पाल | आधिकारिक वेबसाइट",
+      metaDescription: "पल्लवी पाल - जनसेवा, सामाजिक न्याय, किसान व युवा सशक्तिकरण और जनकल्याणकारी पहलों का आधिकारिक पोर्टल।",
       heroSlides: finalHeroSlides,
       initiatives: finalInitiatives,
       initiativesModalMap,
@@ -230,20 +70,17 @@ exports.getHomePage = async (req, res) => {
       notices: finalNotices,
       quickInfo: finalQuickInfo,
       galleryPhotos: finalGalleryPhotos,
-      kalash,
-      highlightVideo,
-      latestVideos,
-      highlightNews,
-      homeNewsList,
       homeAbout: finalHomeAbout,
+      latestVideos: [],
+      highlightVideo: null,
+      highlightNews: null,
+      homeNewsList: [],
     });
   } catch (error) {
     console.error("Home page render error:", error);
-    const kalashFallback = KalashYatra.defaultData;
-    // Safe render with defaults so the user's site never crashes
     res.render("index", {
-      title: "Nishad Sankalp Campaign",
-      metaDescription: "Learn about the Nishad Aarakshan Sankalp campaign, its initiatives, community programs, news, videos, and the Sankalp Yatra for unity and empowerment.",
+      title: "पल्लवी पाल | आधिकारिक वेबसाइट",
+      metaDescription: "पल्लवी पाल - जनसेवा, सामाजिक न्याय, किसान व युवा सशक्तिकरण और जनकल्याणकारी पहलों का आधिकारिक पोर्टल।",
       heroSlides: defaultHeroSlides,
       initiatives: defaultInitiatives,
       initiativesModalMap: {},
@@ -251,12 +88,11 @@ exports.getHomePage = async (req, res) => {
       notices: defaultNotices,
       quickInfo: defaultQuickInfo,
       galleryPhotos: defaultGalleryPhotos.slice(0, 10),
-      kalash: kalashFallback,
-      highlightVideo: kalashFallback?.hero?.featuredVideo || null,
-      latestVideos: (kalashFallback?.videos || []).slice(0, 10),
+      homeAbout: HomeAbout.defaultData || {},
+      latestVideos: [],
+      highlightVideo: null,
       highlightNews: null,
       homeNewsList: [],
-      homeAbout: HomeAbout.defaultData || {},
     });
   }
 };

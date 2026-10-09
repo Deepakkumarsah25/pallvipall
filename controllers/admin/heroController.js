@@ -70,7 +70,7 @@ exports.postCreateHeroSlide = async (req, res) => {
     let finalImageUrl = "";
     let uploadedImage;
     if (req.file) {
-      uploadedImage = await uploadBuffer(req.file.buffer, "nishad-yatra/hero");
+      uploadedImage = await uploadBuffer(req.file.buffer, "pallavi-pal/hero");
       finalImageUrl = uploadedImage.secure_url;
     } else if (imageUrl && imageUrl.trim()) {
       finalImageUrl = imageUrl.trim();
@@ -165,7 +165,7 @@ exports.postEditHeroSlide = async (req, res) => {
     let imagePublicId = existingSlide.imagePublicId || "";
     const previousImagePublicId = imagePublicId;
     if (req.file) {
-      const uploaded = await uploadBuffer(req.file.buffer, "nishad-yatra/hero");
+      const uploaded = await uploadBuffer(req.file.buffer, "pallavi-pal/hero");
       finalImageUrl = uploaded.secure_url;
       imagePublicId = uploaded.public_id;
     } else if (imageUrl && imageUrl.trim()) {

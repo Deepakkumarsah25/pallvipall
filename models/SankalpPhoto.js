@@ -6,7 +6,7 @@ const sankalpPhotoSchema = new mongoose.Schema(
       type: String,
       required: [true, "Name is required"],
       trim: true,
-      default: "Sanatani Nishad",
+      default: "जनसमर्थक",
     },
     district: {
       type: String,

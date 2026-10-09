@@ -8,15 +8,15 @@ const homeAboutSchema = new mongoose.Schema(
     },
     badgeText: {
       type: String,
-      default: "★ अभियान परिचय • Nishad Sankalp Campaign",
+      default: "★ जनसेवा संकल्प • पल्लवी पाल",
     },
     headingPrefix: {
       type: String,
-      default: "निषाद समाज के स्वाभिमान, एकता और",
+      default: "जनता के सम्मान, स्वाभिमान और",
     },
     highlightHeading: {
       type: String,
-      default: "संवैधानिक अधिकारों का ऐतिहासिक जन-आंदोलन",
+      default: "सामाजिक न्याय के लिए समर्पित नेतृत्व",
     },
     headingSuffix: {
       type: String,
@@ -24,42 +24,42 @@ const homeAboutSchema = new mongoose.Schema(
     },
     tagline: {
       type: String,
-      default: "18 उपजातियों की एकजुटता, आरक्षण न्याय और सामाजिक सशक्तिकरण का महाअभियान",
+      default: "संवैधानिक अधिकारों की रक्षा, किसान-युवा उत्थान और सर्वांगीण विकास का संकल्प",
     },
     description1: {
       type: String,
       default:
-        "निषाद संकल्प अभियान समाज के सभी वर्गों—मल्लाह, केवट, बिंद, कश्यप, धीवर, मांझी, साहनी सहित सभी 18 उपजातियों को एक सूत्र में पिरोकर उनके संवैधानिक अधिकारों, सामाजिक न्याय और सम्मानजनक भागीदारी के लिए समर्पित एक राष्ट्रीय चेतना आंदोलन है।",
+        "पल्लवी पाल जनहित, सामाजिक न्याय और संवैधानिक समानता के लिए सड़क से लेकर सदन तक निरंतर संघर्षरत एक मुखर और संवेदनशील जनप्रतिनिधि हैं। उनका ध्येय अंतिम पंक्ति के व्यक्ति तक विकास और अवसर पहुंचाना है।",
     },
     description2: {
       type: String,
       default:
-        "गांव-गांव में चौपाल, युवा संवाद और संकल्प यात्राओं के माध्यम से जन-जन को उनके लोकतांत्रिक अधिकारों के प्रति जागरूक किया जा रहा है। शिक्षा, स्वरोजगार और राजनीतिक हिस्सेदारी ही समाज के सर्वांगीण उत्थान का सच्चा मार्ग है।",
+        "क्षेत्र के प्रत्येक गांव, कस्बे और मोहल्ले में चौपाल, जनसंवाद और विकास कार्यों के माध्यम से आम नागरिकों की समस्याओं का त्वरित समाधान और सशक्तिकरण सुनिश्चित करना ही उनका संकल्प है।",
     },
     imageUrl: {
       type: String,
-      default: "/images/about/nishad-sankalp-rally.jpg",
+      default: "/images/about/pallavi-pal-rally.jpg",
     },
     images: {
       type: [String],
       default: [
-        "/images/about/nishad-sankalp-rally.jpg",
-        "/images/about/nishad-sankalp-hero.jpg",
-        "/images/about/nishad-sankalp-chaupal.jpg",
-        "/images/about/nishad-sankalp-heritage.jpg",
+        "/images/about/pallavi-pal-rally.jpg",
+        "/images/about/pallavi-pal-hero.jpg",
+        "/images/about/pallavi-pal-chaupal.jpg",
+        "/images/about/pallavi-pal-heritage.jpg",
       ],
     },
     imageBadgeNumber: {
       type: String,
-      default: "18+",
+      default: "24x7",
     },
     imageBadgeLabel: {
       type: String,
-      default: "उप-जातियां एकजुट",
+      default: "जनसेवा में समर्पित",
     },
     floatingBadgeText: {
       type: String,
-      default: "ऐतिहासिक जन आंदोलन",
+      default: "जनप्रतिनिधि • पल्लवी पाल",
     },
     points: [
       {
@@ -76,11 +76,11 @@ const homeAboutSchema = new mongoose.Schema(
     ],
     quoteText: {
       type: String,
-      default: "संगठन में ही समाज की वास्तविक शक्ति है और संवैधानिक न्याय हमारा जन्मसिद्ध अधिकार है।",
+      default: "जनसेवा ही मेरा संकल्प है और हर नागरिक का सम्मान मेरी प्राथमिकता।",
     },
     quoteAuthor: {
       type: String,
-      default: "— निषाद संकल्प आह्वान",
+      default: "— पल्लवी पाल",
     },
     readMoreText: {
       type: String,
@@ -114,54 +114,54 @@ const homeAboutSchema = new mongoose.Schema(
 
 const defaultHomeAboutData = {
   isActive: true,
-  badgeText: "★ अभियान परिचय • Nishad Sankalp Campaign",
-  headingPrefix: "निषाद समाज के स्वाभिमान, एकता और",
-  highlightHeading: "संवैधानिक अधिकारों का ऐतिहासिक जन-आंदोलन",
+  badgeText: "★ जनसेवा संकल्प • पल्लवी पाल",
+  headingPrefix: "जनता के सम्मान, स्वाभिमान और",
+  highlightHeading: "सामाजिक न्याय के लिए समर्पित नेतृत्व",
   headingSuffix: "",
-  tagline: "18 उपजातियों की एकजुटता, आरक्षण न्याय और सामाजिक सशक्तिकरण का महाअभियान",
+  tagline: "संवैधानिक अधिकारों की रक्षा, किसान-युवा उत्थान और सर्वांगीण विकास का संकल्प",
   description1:
-    "निषाद संकल्प अभियान समाज के सभी वर्गों—मल्लाह, केवट, बिंद, कश्यप, धीवर, मांझी, साहनी सहित सभी 18 उपजातियों को एक सूत्र में पिरोकर उनके संवैधानिक अधिकारों, सामाजिक न्याय और सम्मानजनक भागीदारी के लिए समर्पित एक राष्ट्रीय चेतना आंदोलन है।",
+    "पल्लवी पाल जनहित, सामाजिक न्याय और संवैधानिक समानता के लिए सड़क से लेकर सदन तक निरंतर संघर्षरत एक मुखर और संवेदनशील जनप्रतिनिधि हैं। उनका ध्येय अंतिम पंक्ति के व्यक्ति तक विकास और अवसर पहुंचाना है।",
   description2:
-    "गांव-गांव में चौपाल, युवा संवाद और संकल्प यात्राओं के माध्यम से जन-जन को उनके लोकतांत्रिक अधिकारों के प्रति जागरूक किया जा रहा है। शिक्षा, स्वरोजगार और राजनीतिक हिस्सेदारी ही समाज के सर्वांगीण उत्थान का सच्चा मार्ग है।",
-  imageUrl: "/images/about/nishad-sankalp-rally.jpg",
+    "क्षेत्र के प्रत्येक गांव, कस्बे और मोहल्ले में चौपाल, जनसंवाद और विकास कार्यों के माध्यम से आम नागरिकों की समस्याओं का त्वरित समाधान और सशक्तिकरण सुनिश्चित करना ही उनका संकल्प है।",
+  imageUrl: "/images/about/pallavi-pal-rally.jpg",
   images: [
-    "/images/about/nishad-sankalp-rally.jpg",
-    "/images/about/nishad-sankalp-hero.jpg",
-    "/images/about/nishad-sankalp-chaupal.jpg",
-    "/images/about/nishad-sankalp-heritage.jpg",
+    "/images/about/pallavi-pal-rally.jpg",
+    "/images/about/pallavi-pal-hero.jpg",
+    "/images/about/pallavi-pal-chaupal.jpg",
+    "/images/about/pallavi-pal-heritage.jpg",
   ],
-  imageBadgeNumber: "18+",
-  imageBadgeLabel: "उप-जातियां एकजुट",
-  floatingBadgeText: "ऐतिहासिक जन आंदोलन",
+  imageBadgeNumber: "24x7",
+  imageBadgeLabel: "जनसेवा में समर्पित",
+  floatingBadgeText: "जनप्रतिनिधि • पल्लवी पाल",
   points: [
     {
-      title: "संवैधानिक आरक्षण न्याय",
-      description: "अनुच्छेद 341 के अंतर्गत मझवार/निषाद समाज की सभी जातियों को अनुसूचित जाति (SC) श्रेणी में आरक्षण का अधिकार।",
+      title: "संवैधानिक न्याय एवं समानता",
+      description: "संविधान के मूल्यों की रक्षा, कमजोर और वंचित वर्गों के अधिकारों के लिए दृढ़ संकल्प।",
       iconKey: "scale",
     },
     {
       title: "शिक्षा एवं युवा स्वावलंबन",
-      description: "छात्रवृत्ति, प्रतियोगी परीक्षाओं की निशुल्क कोचिंग व तकनीकी स्वरोजगार से युवाओं का भविष्य उज्ज्वल बनाना।",
+      description: "शिक्षा के बेहतर अवसर, प्रतियोगी परीक्षा सहायता और तकनीकी कौशल से युवाओं का सशक्तिकरण।",
       iconKey: "book",
     },
     {
-      title: "पारंपरिक जल-संसाधन अधिकार",
-      description: "नदियों, पोखरों, मत्स्य पालन और नौकायन के पारंपरिक अधिकारों को स्थानीय मछुआरा समाज के लिए सुरक्षित करना।",
+      title: "किसान एवं मजदूर कल्याण",
+      description: "अन्नदाता किसानों के अधिकारों की सुरक्षा, उचित मूल्य और कामगारों की सामाजिक सुरक्षा।",
       iconKey: "shield",
     },
     {
-      title: "सामाजिक व राजनीतिक चेतना",
-      description: "समानुपातिक प्रतिनिधित्व और नीति-निर्माण में समाज के समर्पित युवाओं व नेतृत्वकर्ताओं की सीधी भागीदारी।",
+      title: "पारदर्शी एवं सक्रिय नेतृत्व",
+      description: "सदन में जनता की आवाज को मजबूती से उठाना और जमीनी स्तर पर हर समस्या का समयबद्ध समाधान।",
       iconKey: "users",
     },
   ],
   stats: [
-    { number: "18+", label: "उप-जातियां" },
-    { number: "75+", label: "जिले" },
-    { number: "10 लाख+", label: "संकल्प पत्र" },
+    { number: "100+", label: "विकास कार्य" },
+    { number: "75+", label: "विधानसभा क्षेत्र" },
+    { number: "50,000+", label: "संतुष्ट परिवार" },
     { number: "100%", label: "संवैधानिक न्याय" },
   ],
-  quoteText: "संगठन में ही समाज की वास्तविक शक्ति है और संवैधानिक न्याय हमारा जन्मसिद्ध अधिकार है।",
+  quoteText: "जनसेवा ही मेरा संकल्प है और हर नागरिक का सम्मान मेरी प्राथमिकता।",
   readMoreText: "Read More...",
   readMoreLink: "/about",
   primaryBtnText: "Read More...",
