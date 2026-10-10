@@ -182,8 +182,14 @@
 .ak-hero-slider {
   position: relative;
   width: 100%;
-  height: clamp(380px, 50vh, 560px);
+  height: clamp(560px, 75vh, 760px);
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .ak-hero-slider {
+    height: clamp(380px, 50vh, 560px);
+  }
 }
 
 .ak-hero-slide {
