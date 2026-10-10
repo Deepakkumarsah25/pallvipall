@@ -137,23 +137,26 @@ exports.postCreatePhoto = async (req, res) => {
   try {
     const {
       name,
+      title,
       state,
       district,
+      location,
       customDistrict,
       date,
       caption,
+      description,
       imageUrl,
       isPublished,
       order,
     } = req.body;
 
-    let finalDistrict = (district === "__other__" || !district) && customDistrict
-      ? customDistrict.trim()
-      : (district ? district.trim() : "");
+    const finalTitle = (title && title.trim()) || (name && name.trim()) || "कार्यक्रम फ़ोटो";
+    const finalLocation = (location && location.trim()) || (district && district.trim()) || (customDistrict && customDistrict.trim()) || "उत्तर प्रदेश";
+    const finalCaption = (description && description.trim()) || (caption && caption.trim()) || "";
 
     let finalState = state && state.trim() ? state.trim() : "";
-    if (!finalState && finalDistrict) {
-      finalState = findStateForDistrict(finalDistrict) || "Uttar Pradesh";
+    if (!finalState && finalLocation) {
+      finalState = findStateForDistrict(finalLocation) || "Uttar Pradesh";
     }
 
     let finalImageUrl = "";
@@ -170,45 +173,27 @@ exports.postCreatePhoto = async (req, res) => {
     } else {
       const districtsList = await SankalpPhoto.distinct("district");
       return res.render("admin/gallery/form", {
-        title: "Add New Sankalp Photo",
+        title: "Add New Photo",
         admin: req.session.admin,
-        photo: { ...req.body, state: finalState, district: finalDistrict },
+        photo: { ...req.body, name: finalTitle, district: finalLocation },
         formatDateForInput,
         districtsList,
         statesList: getStatesList(),
         statesWithDistricts: INDIA_STATES_DISTRICTS,
         currentPath: "/admin/gallery",
         isEdit: false,
-        error: "Please choose a photo file or enter an image URL.",
+        error: "कृपया फ़ोटो फ़ाइल चुनें या फ़ोटो URL दर्ज करें।",
       });
     }
-
-    if (!finalDistrict) {
-      if (uploadedPublicId) await removeAsset(uploadedPublicId).catch(() => {});
-      const districtsList = await SankalpPhoto.distinct("district");
-      return res.render("admin/gallery/form", {
-        title: "Add New Sankalp Photo",
-        admin: req.session.admin,
-        photo: { ...req.body, state: finalState, district: finalDistrict },
-        formatDateForInput,
-        districtsList,
-        statesList: getStatesList(),
-        statesWithDistricts: INDIA_STATES_DISTRICTS,
-        currentPath: "/admin/gallery",
-        isEdit: false,
-        error: "Please select or enter a district.",
-      });
-    }
-
 
     const photoDate = date ? new Date(date) : new Date();
 
     await SankalpPhoto.create({
-      name: name && name.trim() ? name.trim() : "जनसमर्थक",
+      name: finalTitle,
       state: finalState || "Uttar Pradesh",
-      district: finalDistrict,
+      district: finalLocation,
       date: isNaN(photoDate.getTime()) ? new Date() : photoDate,
-      caption: caption ? caption.trim() : "",
+      caption: finalCaption,
       imageUrl: finalImageUrl,
       imageFilename,
       imagePublicId,
@@ -217,7 +202,7 @@ exports.postCreatePhoto = async (req, res) => {
       order: Number(order) || 0,
     });
 
-    res.redirect("/admin/gallery?msg=Sankalp photo successfully added.");
+    res.redirect("/admin/gallery?msg=" + encodeURIComponent("फ़ोटो सफलतापूर्वक जोड़ दी गई।"));
   } catch (error) {
     if (uploadedPublicId) await removeAsset(uploadedPublicId).catch(() => {});
     console.error("Create photo error:", error);
@@ -283,49 +268,38 @@ exports.postBulkUpload = async (req, res) => {
     const {
       defaultState,
       defaultDistrict,
+      location,
       customBulkDistrict,
       defaultDate,
       defaultName,
+      title,
       defaultCaption,
+      description,
       isPublished,
     } = req.body;
 
-    let finalDistrict = (defaultDistrict === "__other__" || !defaultDistrict) && customBulkDistrict
-      ? customBulkDistrict.trim()
-      : (defaultDistrict ? defaultDistrict.trim() : "");
+    let finalDistrict = (location && location.trim())
+      || ((defaultDistrict === "__other__" || !defaultDistrict) && customBulkDistrict ? customBulkDistrict.trim() : (defaultDistrict ? defaultDistrict.trim() : "उत्तर प्रदेश"));
 
     let finalState = defaultState && defaultState.trim() ? defaultState.trim() : "";
     if (!finalState && finalDistrict) {
       finalState = findStateForDistrict(finalDistrict) || "Uttar Pradesh";
     }
 
-    if (!finalDistrict) {
-      const districtsList = await SankalpPhoto.distinct("district");
-      return res.render("admin/gallery/bulk", {
-        title: "Bulk Image Upload",
-        admin: req.session.admin,
-        districtsList,
-        statesList: getStatesList(),
-        statesWithDistricts: INDIA_STATES_DISTRICTS,
-        formatDateForInput,
-        currentPath: "/admin/gallery",
-        error: "Please specify a district for all photos.",
-        todayStr: formatDateForInput(new Date()),
-      });
-    }
-
-
     const photoDate = defaultDate ? new Date(defaultDate) : new Date();
     const publishedBool =
       isPublished === "on" || isPublished === "true" || isPublished === true;
+
+    const baseTitle = (title && title.trim()) || (defaultName && defaultName.trim()) || "कार्यक्रम फ़ोटो";
+    const baseDesc = (description && description.trim()) || (defaultCaption && defaultCaption.trim()) || "जनसेवा व विकास कार्यक्रम";
 
     const docsToInsert = [];
     for (const [idx, file] of files.entries()) {
       const uploaded = await uploadBuffer(file.buffer, "pallavi-pal/gallery");
       uploadedFiles.push(uploaded);
-      let photoName = defaultName && defaultName.trim() ? defaultName.trim() : "जनसमर्थक";
-      if (files.length > 1 && defaultName && defaultName.trim()) {
-        photoName = `${defaultName.trim()} #${idx + 1}`;
+      let photoName = baseTitle;
+      if (files.length > 1) {
+        photoName = `${baseTitle} #${idx + 1}`;
       }
 
       docsToInsert.push({
@@ -333,7 +307,7 @@ exports.postBulkUpload = async (req, res) => {
         state: finalState || "Uttar Pradesh",
         district: finalDistrict,
         date: isNaN(photoDate.getTime()) ? new Date() : photoDate,
-        caption: defaultCaption ? defaultCaption.trim() : "Mass Pledge Campaign",
+        caption: baseDesc,
         imageUrl: uploaded.secure_url,
         imageFilename: "",
         imagePublicId: uploaded.public_id,
@@ -350,7 +324,7 @@ exports.postBulkUpload = async (req, res) => {
     }
 
     res.redirect(
-      `/admin/gallery?msg=${files.length} photos successfully uploaded together!`
+      `/admin/gallery?msg=${files.length} फ़ोटो सफलतापूर्वक अपलोड हो गईं!`
     );
   } catch (error) {
     console.error("Bulk upload error:", error);
@@ -388,7 +362,7 @@ exports.getEditPhoto = async (req, res) => {
     photoData.state = photoState;
 
     res.render("admin/gallery/form", {
-      title: "Edit Sankalp Photo",
+      title: "Edit Photo",
       admin: req.session.admin,
       photo: photoData,
       formatDateForInput,
@@ -410,11 +384,14 @@ exports.postEditPhoto = async (req, res) => {
   try {
     const {
       name,
+      title,
       state,
       district,
+      location,
       customDistrict,
       date,
       caption,
+      description,
       imageUrl,
       isPublished,
       order,
@@ -425,13 +402,13 @@ exports.postEditPhoto = async (req, res) => {
       return res.redirect("/admin/gallery?err=Photo not found");
     }
 
-    let finalDistrict = (district === "__other__" || !district) && customDistrict
-      ? customDistrict.trim()
-      : (district && district.trim() ? district.trim() : existing.district);
+    const finalTitle = (title && title.trim()) || (name && name.trim()) || existing.name;
+    const finalLocation = (location && location.trim()) || (district && district.trim()) || (customDistrict && customDistrict.trim()) || existing.district;
+    const finalCaption = typeof description !== "undefined" ? description.trim() : (typeof caption !== "undefined" ? caption.trim() : existing.caption);
 
     let finalState = state && state.trim() ? state.trim() : (existing.state || "");
-    if (!finalState && finalDistrict) {
-      finalState = findStateForDistrict(finalDistrict) || "Uttar Pradesh";
+    if (!finalState && finalLocation) {
+      finalState = findStateForDistrict(finalLocation) || "Uttar Pradesh";
     }
 
     let finalImageUrl = existing.imageUrl;
@@ -451,11 +428,11 @@ exports.postEditPhoto = async (req, res) => {
 
     const photoDate = date ? new Date(date) : existing.date;
 
-    existing.name = name && name.trim() ? name.trim() : existing.name;
+    existing.name = finalTitle;
     existing.state = finalState || "Uttar Pradesh";
-    existing.district = finalDistrict;
+    existing.district = finalLocation;
     existing.date = isNaN(photoDate.getTime()) ? existing.date : photoDate;
-    existing.caption = typeof caption !== "undefined" ? caption.trim() : existing.caption;
+    existing.caption = finalCaption;
     existing.imageUrl = finalImageUrl;
     existing.imageFilename = imageFilename;
     existing.imagePublicId = imagePublicId;

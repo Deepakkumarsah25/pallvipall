@@ -6,6 +6,7 @@ const HomeQuickInfo = require("../models/HomeQuickInfo");
 const HomeAbout = require("../models/HomeAbout");
 const InitiativeInquiry = require("../models/InitiativeInquiry");
 const SankalpPhoto = require("../models/SankalpPhoto");
+const SocialPost = require("../models/SocialPost");
 const {
   defaultHeroSlides,
   defaultInitiatives,
@@ -13,21 +14,21 @@ const {
   defaultNotices,
   defaultQuickInfo,
 } = require("../scripts/seedHomeData");
-const { defaultGalleryPhotos } = require("../scripts/seedGalleryData");
 const socialSyncService = require("../services/socialSyncService");
 
 // Public Home Page
 exports.getHomePage = async (req, res) => {
   try {
-    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, homeAboutDoc, socialRails] =
+    const [heroSlides, initiatives, whyChooseDoc, notices, quickInfoDoc, galleryPhotos, homeAboutDoc, rawSocialPosts, socialRails] =
       await Promise.all([
         HeroSlide.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(10),
         Initiative.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(24),
         WhyChoose.findOne(),
         SiteNotice.find({ isActive: true }).sort({ order: 1, createdAt: 1 }).limit(20),
         HomeQuickInfo.findOne(),
-        SankalpPhoto.find({ isPublished: true }).sort({ order: 1, date: -1 }).limit(10),
+        SankalpPhoto.find({ isPublished: true }).sort({ order: 1, date: -1 }).limit(8),
         HomeAbout.findOne(),
+        SocialPost.find({ isActive: true }).sort({ isPinned: -1, publishedAt: -1, _id: -1 }).limit(8).lean().catch(() => []),
         socialSyncService.getAllPlatformRails().catch((e) => {
           console.warn("Notice: could not load social rails for home page:", e.message);
           return { instagram: [], facebook: [], twitter: [] };
@@ -45,11 +46,16 @@ exports.getHomePage = async (req, res) => {
     const finalQuickInfo = quickInfoDoc || defaultQuickInfo;
     const finalHomeAbout = homeAboutDoc || (HomeAbout.defaultData || {});
     const finalGalleryPhotos =
-      galleryPhotos && galleryPhotos.length > 0 ? galleryPhotos : defaultGalleryPhotos.slice(0, 10);
+      galleryPhotos && galleryPhotos.length > 0 ? galleryPhotos.slice(0, 8) : [];
 
-    const finalInstagramPosts = (socialRails && socialRails.instagram) || [];
-    const finalFacebookPosts = (socialRails && socialRails.facebook) || [];
-    const finalTwitterPosts = (socialRails && socialRails.twitter) || [];
+    const defaultSocialList = (SocialPost && Array.isArray(SocialPost.defaultPosts)) ? SocialPost.defaultPosts : [];
+    const finalSocialPosts = (rawSocialPosts && rawSocialPosts.length > 0)
+      ? rawSocialPosts.slice(0, 8)
+      : defaultSocialList.slice(0, 8);
+
+    const finalInstagramPosts = ((socialRails && socialRails.instagram) || []).slice(0, 8);
+    const finalFacebookPosts = ((socialRails && socialRails.facebook) || []).slice(0, 8);
+    const finalTwitterPosts = ((socialRails && socialRails.twitter) || []).slice(0, 8);
 
     // Convert initiatives to client-side modal dictionary
     const initiativesModalMap = {};
@@ -80,6 +86,7 @@ exports.getHomePage = async (req, res) => {
       quickInfo: finalQuickInfo,
       galleryPhotos: finalGalleryPhotos,
       homeAbout: finalHomeAbout,
+      socialPosts: finalSocialPosts,
       instagramPosts: finalInstagramPosts,
       facebookPosts: finalFacebookPosts,
       twitterPosts: finalTwitterPosts,
@@ -99,7 +106,8 @@ exports.getHomePage = async (req, res) => {
       whyChoose: defaultWhyChoose,
       notices: defaultNotices,
       quickInfo: defaultQuickInfo,
-      galleryPhotos: defaultGalleryPhotos.slice(0, 10),
+      galleryPhotos: [],
+      socialPosts: (SocialPost && Array.isArray(SocialPost.defaultPosts)) ? SocialPost.defaultPosts.slice(0, 8) : [],
       homeAbout: HomeAbout.defaultData || {},
       instagramPosts: [],
       facebookPosts: [],

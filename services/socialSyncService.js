@@ -10,15 +10,8 @@ class SocialSyncService {
    * Automatically seed initial posts if collection is empty
    */
   async seedDefaultIfEmpty() {
-    try {
-      const count = await SocialPost.countDocuments();
-      if (count === 0 && Array.isArray(SocialPost.defaultPosts)) {
-        await SocialPost.insertMany(SocialPost.defaultPosts);
-        console.log("✅ Seeded initial social posts successfully");
-      }
-    } catch (err) {
-      console.warn("Notice: could not seed default social posts:", err.message);
-    }
+    // Explicitly disabled: do not re-seed social posts automatically.
+    return;
   }
 
   /**

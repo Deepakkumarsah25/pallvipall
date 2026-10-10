@@ -37,6 +37,23 @@ exports.getSocialPage = async (req, res) => {
  */
 exports.apiGetPosts = async (req, res) => {
   try {
+    const { platform, page, limit, search } = req.query;
+
+    if (platform && platform !== "all") {
+      const result = await socialSyncService.getSocialPosts({
+        platform,
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 8,
+        search,
+      });
+
+      return res.json({
+        success: true,
+        data: result.posts,
+        pagination: result.pagination,
+      });
+    }
+
     const rails = await socialSyncService.getAllPlatformRails();
     res.json({
       success: true,

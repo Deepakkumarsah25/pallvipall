@@ -316,43 +316,9 @@ const defaultQuickInfo = {
 };
 
 const seedHomeData = async () => {
-  try {
-    // 1. Hero Slides
-    const heroCount = await HeroSlide.countDocuments();
-    if (heroCount === 0) {
-      await HeroSlide.insertMany(defaultHeroSlides);
-    }
-
-    // 2. Initiatives
-    const initiativeCount = await Initiative.countDocuments();
-    if (initiativeCount === 0) {
-      await Initiative.insertMany(defaultInitiatives);
-    }
-
-    // 3. Why Choose Us
-    const whyChooseCount = await WhyChoose.countDocuments();
-    if (whyChooseCount === 0) {
-      await WhyChoose.create(defaultWhyChoose);
-    }
-
-    // 4. Site Notices
-    const noticeCount = await SiteNotice.countDocuments();
-    if (noticeCount === 0) {
-      await SiteNotice.insertMany(defaultNotices);
-    }
-
-    // 5. Quick Info
-    const quickInfoCount = await HomeQuickInfo.countDocuments();
-    if (quickInfoCount === 0) {
-      await HomeQuickInfo.create(defaultQuickInfo);
-    }
-
-    // 6. Home About Highlight
-    const HomeAbout = require("../models/HomeAbout");
-    await HomeAbout.getOrSeed();
-  } catch (err) {
-    console.error("Home data seed error:", err.message);
-  }
+  // Explicitly disabled: do not automatically re-seed home data.
+  // Database data remains exactly as managed by the user.
+  return;
 };
 
 module.exports = {
