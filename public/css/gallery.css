@@ -19,7 +19,7 @@
 .gallery-page {
   background: var(--gallery-bg);
   min-height: 100vh;
-  padding-bottom: 90px;
+  padding-bottom: 0;
 }
 
 /* =========================================
@@ -105,7 +105,7 @@
 .gallery-container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 44px 24px 0;
+  padding: 44px 24px 36px;
 }
 
 .gallery-controls {
@@ -739,7 +739,7 @@
   }
 
   .gallery-container {
-    padding: 30px 16px 0;
+    padding: 30px 16px 24px;
   }
 
   .gallery-controls {
@@ -839,7 +839,7 @@
 
 @media (max-width: 480px) {
   .gallery-container {
-    padding: 24px 12px 0;
+    padding: 24px 12px 20px;
   }
 
   .gallery-controls-bar {
