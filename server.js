@@ -72,6 +72,7 @@ app.use((req, res, next) => {
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.set("X-Frame-Options", "SAMEORIGIN");
+  res.locals.currentUrl = req.path;
   next();
 });
 

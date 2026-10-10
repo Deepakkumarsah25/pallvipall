@@ -18,24 +18,60 @@ class TwitterService {
   async fetchPosts(options = {}) {
     const limit = options.limit || 10;
     const token = options.bearerToken || this.bearerToken;
-    const uid = options.userId || this.userId;
+    const uidOrHandle = options.userId || this.userId;
 
-    if (token && uid) {
+    if (token) {
       try {
-        const url = `https://api.twitter.com/2/users/${uid}/tweets?max_results=${limit}&tweet.fields=created_at,public_metrics,entities,attachments&expansions=attachments.media_keys&media.fields=url,preview_image_url`;
+        let numericUserId = uidOrHandle;
+        const cleanHandle = String(uidOrHandle || "").trim().replace(/^@/, "");
+
+        // If username is provided rather than a numeric ID, resolve ID via X API v2
+        if (cleanHandle && !/^\d+$/.test(cleanHandle)) {
+          const userLookupUrl = `https://api.twitter.com/2/users/by/username/${encodeURIComponent(cleanHandle)}`;
+          const userRes = await fetch(userLookupUrl, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!userRes.ok) {
+            const errBody = await userRes.json().catch(() => ({}));
+            const errMsg = errBody.detail || errBody.title || `Twitter User Lookup Failed (Status ${userRes.status})`;
+            throw new Error(`X API Error (${userRes.status}): ${errMsg}`);
+          }
+
+          const userData = await userRes.json();
+          if (userData?.data?.id) {
+            numericUserId = userData.data.id;
+          }
+        }
+
+        if (!numericUserId) {
+          throw new Error("No valid X user ID or username provided.");
+        }
+
+        const url = `https://api.twitter.com/2/users/${numericUserId}/tweets?max_results=${limit}&tweet.fields=created_at,public_metrics,entities,attachments&expansions=attachments.media_keys&media.fields=url,preview_image_url`;
         const response = await fetch(url, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        if (response.ok) {
-          const data = await response.json();
-          if (Array.isArray(data.data)) {
-            return data.data.map((item) => this.normalizePost(item, data.includes?.media || []));
-          }
+
+        if (!response.ok) {
+          const errBody = await response.json().catch(() => ({}));
+          const errMsg = errBody.detail || errBody.title || `Twitter Fetch Failed (Status ${response.status})`;
+          throw new Error(`X API Error (${response.status}): ${errMsg}`);
         }
+
+        const data = await response.json();
+        if (Array.isArray(data.data)) {
+          return data.data.map((item) => this.normalizePost(item, data.includes?.media || []));
+        }
+
+        return [];
       } catch (err) {
-        console.warn("⚠️ Twitter API fetch failed, falling back to local campaign posts:", err.message);
+        console.warn("⚠️ Twitter API fetch failed:", err.message);
+        throw err;
       }
     }
 

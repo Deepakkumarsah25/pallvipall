@@ -34,21 +34,24 @@
   <!-- Quick Action Sidebar Drawer -->
   <%- include("components/sidebar") %>
 
+  <!-- HERO BANNER (Similar to Gallery Section) -->
+  <section class="social-hero">
+    <div class="social-hero-overlay"></div>
+    <div class="social-hero-inner">
+
+      <h1>
+        <span>सोशल मीडिया</span> वॉल
+      </h1>
+      <p class="social-hero-desc">
+        पल्लवी पाल जी के आधिकारिक सोशल हैंडल्स — इंस्टाग्राम, फेसबुक और एक्स (ट्विटर) से सीधे जुड़ें।<br />
+        विधानसभा क्षेत्र, जनसरोकार, सामाजिक न्याय एवं ताज़ा गतिविधियों की हर महत्वपूर्ण अपडेट एक ही स्थान पर।
+      </p>
+    </div>
+  </section>
+
   <!-- Main Social Wall Page -->
   <main class="social-wall-main">
-    
-    <!-- Top Breadcrumb Bar -->
-    <div class="social-breadcrumb-bar">
-      <div class="ak-container">
-        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-          <a href="/" class="crumb-link">Home</a>
-          <span class="crumb-sep">&gt;</span>
-          <span class="crumb-active">Social Wall</span>
-        </nav>
-      </div>
-    </div>
-
-    <div class="ak-container">
+    <div class="ak-container social-wall-content-wrap">
 
       <!-- ================================================================
            SECTION 1: INSTAGRAM RAIL (FIRST)
@@ -197,6 +200,11 @@
 
         <div class="social-track-wrap ak-cards-scroll-wrap" id="twitterRail" data-platform="twitter" data-page="1" data-has-more="<%= (twitterPosts || []).length >= 8 ? 'true' : 'false' %>">
           <div class="social-cards-track">
+            <% if (!twitterPosts || twitterPosts.length === 0) { %>
+              <div style="padding: 24px 20px; color: #64748b; font-size: 14px; font-weight: 500;">
+                No tweets available right now. Real-time updates will appear once new tweets are synced.
+              </div>
+            <% } %>
             <% (twitterPosts || []).slice(0, 8).forEach(function(post) { %>
               <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-card rail-card-twitter rail-card-clickable" aria-label="<%= post.title || post.caption || 'X Post' %>">
                 <div class="rail-card-media-box">
