@@ -163,3 +163,33 @@ document.addEventListener(
 
   }
 );
+
+// =========================================
+// AUTO ACTIVE LINK SYNCHRONIZATION
+// =========================================
+(function initActiveNavSync() {
+  const path = window.location.pathname.toLowerCase();
+  const links = document.querySelectorAll(".nav-links a");
+  let matched = false;
+
+  links.forEach((link) => {
+    const href = (link.getAttribute("href") || "").toLowerCase();
+    if (!href) return;
+
+    if (href !== "/" && (path === href || path.startsWith(href + "/") || (href === "/gallery" && path.startsWith("/images")))) {
+      links.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+      matched = true;
+    }
+  });
+
+  if (!matched && (path === "/" || path === "")) {
+    links.forEach((l) => {
+      if (l.getAttribute("href") === "/") {
+        l.classList.add("active");
+      } else {
+        l.classList.remove("active");
+      }
+    });
+  }
+})();

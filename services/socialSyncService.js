@@ -62,7 +62,8 @@ class SocialSyncService {
     }
 
     const status = errors.length === 0 ? "Success" : "Partial";
-    const message = `Auto-fetched ${syncedCount} posts.${errors.length ? " (" + errors.length + " warnings)" : ""}`;
+    const errorDetails = errors.map((e) => `${e.platform}: ${e.message}`).join(", ");
+    const message = `Auto-fetched ${syncedCount} posts.${errors.length ? " (" + errorDetails + ")" : ""}`;
 
     await SocialConfig.updateOne(
       { key: "main_config" },
@@ -181,15 +182,14 @@ class SocialSyncService {
         .lean(),
     ]);
 
-    // Fallback to default sample posts if DB has 0 for any platform
+    // Fallback to default sample posts if DB has 0 for Instagram or Facebook
     const defaultIg = SocialPost.defaultPosts.filter((p) => p.platform === "instagram");
     const defaultFb = SocialPost.defaultPosts.filter((p) => p.platform === "facebook");
-    const defaultTw = SocialPost.defaultPosts.filter((p) => p.platform === "twitter");
 
     return {
       instagram: instagram.length ? instagram : defaultIg,
       facebook: facebook.length ? facebook : defaultFb,
-      twitter: twitter.length ? twitter : defaultTw,
+      twitter: twitter, // Only display real Twitter posts, no fake fallback posts!
     };
   }
 

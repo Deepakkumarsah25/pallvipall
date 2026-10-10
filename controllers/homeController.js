@@ -77,6 +77,7 @@ exports.getHomePage = async (req, res) => {
 
     res.render("index", {
       title: "पल्लवी पाल | आधिकारिक वेबसाइट",
+      currentUrl: "/",
       metaDescription: "पल्लवी पाल - जनसेवा, सामाजिक न्याय, किसान व युवा सशक्तिकरण और जनकल्याणकारी पहलों का आधिकारिक पोर्टल।",
       heroSlides: finalHeroSlides,
       initiatives: finalInitiatives,
@@ -99,6 +100,7 @@ exports.getHomePage = async (req, res) => {
     console.error("Home page render error:", error);
     res.render("index", {
       title: "पल्लवी पाल | आधिकारिक वेबसाइट",
+      currentUrl: "/",
       metaDescription: "पल्लवी पाल - जनसेवा, सामाजिक न्याय, किसान व युवा सशक्तिकरण और जनकल्याणकारी पहलों का आधिकारिक पोर्टल।",
       heroSlides: defaultHeroSlides,
       initiatives: defaultInitiatives,

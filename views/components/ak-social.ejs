@@ -189,6 +189,11 @@
 
       <div class="social-track-wrap ak-cards-scroll-wrap" id="twitterRail">
         <div class="social-cards-track">
+          <% if (!twitterPosts || twitterPosts.length === 0) { %>
+            <div style="padding: 24px 20px; color: #64748b; font-size: 14px; font-weight: 500;">
+              No tweets available right now. Real-time updates will appear once new tweets are synced.
+            </div>
+          <% } %>
           <% (twitterPosts || []).slice(0, 8).forEach(function(post) { %>
             <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer" class="rail-card rail-card-twitter rail-card-clickable" aria-label="<%= post.title || post.caption || 'X Post' %>">
               <div class="rail-card-media-box">

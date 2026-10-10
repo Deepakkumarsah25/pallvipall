@@ -255,7 +255,7 @@ exports.saveConfig = async (req, res) => {
           "facebook.pageAccessToken": (fbPageAccessToken || "").trim(),
           "facebook.pageName": (fbPageName || "निषाद आरक्षण संकल्प").trim(),
           "twitter.bearerToken": (twBearerToken || "").trim(),
-          "twitter.username": (twUsername || "nishad_sankalp").trim(),
+          "twitter.username": (twUsername || "nishad_sankalp").trim().replace(/^@/, ""),
         },
       },
       { upsert: true, new: true }
@@ -274,7 +274,11 @@ exports.saveConfig = async (req, res) => {
 exports.triggerAutoFetch = async (req, res) => {
   try {
     const result = await socialSyncService.syncAllPlatforms();
-    res.redirect("/admin/social?success=" + encodeURIComponent(`Auto-fetch completed: ${result.syncedCount} posts imported/updated from linked accounts!`));
+    let msg = `Auto-fetch completed: ${result.syncedCount} posts imported/updated!`;
+    if (result.errors && result.errors.length) {
+      msg += ` [Alerts: ${result.errors.map((e) => `${e.platform} - ${e.message}`).join(" | ")}]`;
+    }
+    res.redirect("/admin/social?success=" + encodeURIComponent(msg));
   } catch (error) {
     console.error("Auto fetch error:", error);
     res.redirect("/admin/social?error=" + encodeURIComponent("Auto-fetch error: " + error.message));

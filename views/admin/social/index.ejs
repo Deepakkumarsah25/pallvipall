@@ -479,6 +479,11 @@
                   <strong style="font-size: 13.5px; color: #0f172a;">API Credentials</strong>
                 </div>
 
+                <div class="form-group">
+                  <label class="form-label">X Username / Handle (without @)</label>
+                  <input type="text" name="twUsername" class="form-control" value="<%= config.twitter?.username || 'nishad_sankalp' %>" placeholder="nishad_sankalp" />
+                </div>
+
                 <div class="form-group" style="margin-bottom: 0;">
                   <label class="form-label">X Bearer Token</label>
                   <input type="password" name="twBearerToken" class="form-control" value="<%= config.twitter?.bearerToken || '' %>" placeholder="AAAAAAAAAAAAAAAAAAAAA..." />

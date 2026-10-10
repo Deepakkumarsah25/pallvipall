@@ -41,6 +41,7 @@ exports.getGalleryPage = async (req, res) => {
 
     res.render("gallery", {
       title: "फ़ोटो एवं कार्यक्रम गैलरी | पल्लवी पाल",
+      currentUrl: "/gallery",
       photos,
       search,
       pagination,
@@ -53,6 +54,7 @@ exports.getGalleryPage = async (req, res) => {
     const hasActiveFilters = Boolean(search);
     res.render("gallery", {
       title: "फ़ोटो एवं कार्यक्रम गैलरी | पल्लवी पाल",
+      currentUrl: "/gallery",
       photos: [],
       quickInfo: {},
       search,
