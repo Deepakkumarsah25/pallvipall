@@ -1,9 +1,10 @@
 <!-- ==========================================================================
-     ARVIND KEJRIWAL AAP STYLE GALLERY SECTION (CAMPAIGN PHOTOS)
-     Section Header with Camera Icon + 4-Column Cards Grid + View Gallery CTA
+     HOME PAGE GALLERY RAIL SECTION (CAMPAIGN PHOTOS)
+     Single-row horizontal rail (8 photos max) with auto-slide & swipe
+     Card UI matching the official Gallery Page design
      ========================================================================== -->
 <%
-  const photos = (typeof galleryPhotos !== 'undefined' && Array.isArray(galleryPhotos)) ? galleryPhotos.slice(0, 6) : [];
+  const photos = (typeof galleryPhotos !== 'undefined' && Array.isArray(galleryPhotos)) ? galleryPhotos.slice(0, 8) : [];
 %>
 
 <section class="ak-section ak-bg-white" id="gallery">
@@ -22,48 +23,65 @@
         </h2>
       </div>
 
-      <!-- Arrow Controls (Matching Social Media rail) -->
-      <div class="rail-controls ak-rail-controls">
-        <button type="button" class="rail-arrow-btn rail-prev" data-target="galleryRail" aria-label="Previous Photo">‹</button>
-        <button type="button" class="rail-arrow-btn rail-next" data-target="galleryRail" aria-label="Next Photo">›</button>
+      <!-- Link Arrow navigating to Gallery Page -->
+      <div class="rail-header-action">
+        <a href="/gallery" class="rail-header-arrow-link" aria-label="View Full Gallery" title="गैलरी देखें">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <p class="ak-header-sub">
-      जनसभाओं, विकास कार्यक्रमों, जनसंपर्क अभियानों एवं सामाजिक आयोजनों के जीवंत दृश्य व तस्वीरें।
-    </p>
 
-    <!-- Horizontal Scroll Track Wrapper -->
+    <!-- Horizontal Scroll Track Wrapper (Single row, right-to-left auto slide & touch swipe) -->
     <div class="social-track-wrap ak-cards-scroll-wrap" id="galleryRail">
-      <div class="ak-cards-grid ak-grid-4 ak-cards-track">
-        <% photos.forEach(function(photo) { %>
-          <article class="ak-card">
-            <div class="ak-card-img-wrap">
-              <img 
-                src="<%= photo.imageUrl || '/images/kalash-yatra-featured.jpg' %>" 
-                alt="<%= photo.name %>" 
-                loading="lazy"
-                onerror="this.src='/images/kalash-yatra-featured.jpg'"
-              />
-              <span class="ak-card-badge green">📷 Photo</span>
-            </div>
-            <div class="ak-card-body">
-              <span class="ak-card-meta">
-                <span>📍</span> <%= photo.district || 'Campaign District' %>
-              </span>
-              <h3 class="ak-card-title"><%= photo.name %></h3>
-              <a href="/gallery" class="ak-card-link-text">गैलरी में देखें →</a>
-            </div>
+      <div class="ak-gallery-cards-track">
+        <% photos.forEach(function(photo, index) { %>
+          <% 
+            const photoDateStr = photo.formattedDate || (photo.date ? new Date(photo.date).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '');
+            const photoLocation = photo.district || photo.state || 'उत्तर प्रदेश';
+            const photoTitle = photo.name || 'कार्यक्रम झलक';
+            const photoDesc = photo.caption || 'पल्लवी पाल जी के नेतृत्व में जनसेवा व विकास कार्यक्रम की विशेष झलक।';
+          %>
+          <article class="gallery-card home-gallery-rail-card">
+            <a href="/gallery" class="home-gallery-card-link" aria-label="<%= photoTitle %>">
+              <!-- IMAGE CONTAINER WITH TOP BADGES (MATCHING GALLERY PAGE) -->
+              <div class="gallery-card-media">
+                <div class="gallery-card-img-box">
+                  <img 
+                    src="<%= photo.imageUrl || '/images/kalash-yatra-featured.jpg' %>" 
+                    alt="<%= photoTitle %>" 
+                    loading="lazy"
+                    onerror="this.onerror=null; this.src='/images/kalash-yatra-featured.jpg';"
+                  />
+                  <!-- OVERLAY GRADIENT & TOP BADGES -->
+                  <div class="card-media-overlay"></div>
+                  
+                  <div class="card-top-badges">
+                    <span class="card-location-badge">📍 <%= photoLocation %></span>
+                    <% if (photoDateStr) { %>
+                      <span class="card-date-badge">📅 <%= photoDateStr %></span>
+                    <% } %>
+                  </div>
+
+                  <div class="card-fullscreen-hint" title="गैलरी में देखें">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD BODY: TITLE & DESCRIPTION -->
+              <div class="gallery-card-body">
+                <h3 class="gallery-card-title"><%= photoTitle %></h3>
+                <p class="gallery-card-desc"><%= photoDesc %></p>
+              </div>
+            </a>
           </article>
         <% }); %>
       </div>
-    </div>
-
-    <div class="ak-section-cta">
-      <a href="/gallery" class="ak-pill-btn">
-        <span>View Full Photo Gallery</span>
-        <span>→</span>
-      </a>
     </div>
 
   </div>

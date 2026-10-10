@@ -1,6 +1,5 @@
 const SankalpPhoto = require("../models/SankalpPhoto");
 const HomeQuickInfo = require("../models/HomeQuickInfo");
-const { defaultGalleryPhotos, seedGalleryData } = require("../scripts/seedGalleryData");
 const { getPagination } = require("../utils/pagination");
 
 function escapeRegex(value) {
@@ -54,10 +53,10 @@ exports.getGalleryPage = async (req, res) => {
     const hasActiveFilters = Boolean(search);
     res.render("gallery", {
       title: "फ़ोटो एवं कार्यक्रम गैलरी | पल्लवी पाल",
-      photos: hasActiveFilters ? [] : defaultGalleryPhotos,
+      photos: [],
       quickInfo: {},
       search,
-      pagination: { page: 1, pageSize: 9, total: hasActiveFilters ? 0 : defaultGalleryPhotos.length, totalPages: hasActiveFilters ? 0 : Math.ceil(defaultGalleryPhotos.length / 9) },
+      pagination: { page: 1, pageSize: 9, total: 0, totalPages: 0 },
     });
   }
 };

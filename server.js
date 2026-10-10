@@ -34,8 +34,6 @@ if (!process.env.SESSION_SECRET) {
 const sessionConfig = require("./config/session");
 const csrfProtection = require("./middleware/csrfProtection");
 const createDefaultAdmin = require("./config/createAdmin");
-const { seedHomeData } = require("./scripts/seedHomeData");
-const { seedGalleryData } = require("./scripts/seedGalleryData");
 const { ADMIN_LOGIN_URL } = require("./config/adminAuth");
 
 // ========================================
@@ -190,17 +188,8 @@ const startServer = async () => {
     // Automatically create admin if not exists
     await createDefaultAdmin();
 
-    // Automatically seed default home page data if empty
-    await seedHomeData();
-
-    // Automatically seed default gallery photos if empty
-    await seedGalleryData();
-
     // Automatically seed default contact page data if empty
     await ContactInfo.getOrSeed();
-
-    // Automatically seed default social posts if empty
-    await socialSyncService.seedDefaultIfEmpty();
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running at http://localhost:${PORT}`);
